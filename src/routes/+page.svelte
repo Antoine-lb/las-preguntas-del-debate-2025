@@ -53,13 +53,6 @@
 	let mostrarEliminados = $state(false);
 
 	/**
-	 * Modo de prueba: permite importar JSONs temporales
-	 */
-	let modoPrueba = $state(false);
-	let respuestasPrueba = $state<any[]>([]);
-	let errorImportacion = $state<string | null>(null);
-
-	/**
 	 * Candidato seleccionado derivado
 	 */
 	const candidatoSeleccionado = $derived(
@@ -127,7 +120,7 @@
 		return debatesFiltrados.reduce((acc, d) => {
 			const preguntas = getPreguntasPorDebate(d.id);
 			const filtradas = candidatoSeleccionadoId
-				? preguntas.filter((p) => getRespuestaConPrueba(p.id, candidatoSeleccionadoId!))
+				? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
 				: temaSeleccionadoId
 					? preguntas.filter((p) => p.temaId === temaSeleccionadoId)
 					: preguntas;
@@ -143,7 +136,7 @@
 		debatesFiltrados.forEach((d) => {
 			const preguntas = getPreguntasPorDebate(d.id);
 			const filtradas = candidatoSeleccionadoId
-				? preguntas.filter((p) => getRespuestaConPrueba(p.id, candidatoSeleccionadoId!))
+				? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
 				: temaSeleccionadoId
 					? preguntas.filter((p) => p.temaId === temaSeleccionadoId)
 					: preguntas;
@@ -151,13 +144,13 @@
 			filtradas.forEach((pregunta) => {
 				if (candidatoSeleccionadoId) {
 					// Solo contar la respuesta del candidato seleccionado
-					if (getRespuestaConPrueba(pregunta.id, candidatoSeleccionadoId)) {
+					if (getRespuesta(pregunta.id, candidatoSeleccionadoId)) {
 						count++;
 					}
 				} else {
 					// Contar todas las respuestas a esta pregunta
 					d.candidatosIds.forEach((cId) => {
-						if (getRespuestaConPrueba(pregunta.id, cId)) {
+						if (getRespuesta(pregunta.id, cId)) {
 							count++;
 						}
 					});
@@ -167,109 +160,6 @@
 		return count;
 	});
 
-	/**
-	 * Obtiene respuesta, considerando modo de prueba
-	 * En modo prueba, combina las respuestas importadas con las existentes
-	 */
-	function getRespuestaConPrueba(preguntaId: string, candidatoId: string) {
-		if (modoPrueba && respuestasPrueba.length > 0) {
-			// Primero buscar en respuestas de prueba
-			const respuestaPrueba = respuestasPrueba.find(
-				(r: any) => r.preguntaId === preguntaId && r.candidatoId === candidatoId
-			);
-			if (respuestaPrueba) {
-				return respuestaPrueba;
-			}
-		}
-		// Si no está en prueba o no se encontró, buscar en respuestas normales
-		return getRespuesta(preguntaId, candidatoId);
-	}
-
-	/**
-	 * Maneja la importación de archivo JSON
-	 */
-	async function handleFileImport(event: Event) {
-		const input = event.target as HTMLInputElement;
-		const file = input.files?.[0];
-
-		if (!file) return;
-
-		errorImportacion = null;
-
-		try {
-			const text = await file.text();
-			const data = JSON.parse(text);
-
-			// Validar estructura
-			if (!data.debateId || !Array.isArray(data.respuestas)) {
-				throw new Error('JSON inválido: debe tener "debateId" y "respuestas" como array');
-			}
-
-			// Validar que el debate existe
-			const debate = debates2025.find((d) => d.id === data.debateId);
-			if (!debate) {
-				throw new Error(
-					`Debate con ID "${data.debateId}" no encontrado. IDs disponibles: ${debates2025.map((d) => d.id).join(', ')}`
-				);
-			}
-
-			// Validar cada respuesta
-			data.respuestas.forEach((r: any, idx: number) => {
-				// Validar que existan los campos (aunque estén vacíos para templates)
-				if (r.preguntaId === undefined || r.candidatoId === undefined || r.resumen === undefined) {
-					throw new Error(`Respuesta ${idx + 1}: faltan campos (preguntaId, candidatoId, resumen)`);
-				}
-
-				// Validar que el candidato existe (si el campo no está vacío)
-				if (r.candidatoId && !getCandidatoById(r.candidatoId)) {
-					throw new Error(`Respuesta ${idx + 1}: candidato "${r.candidatoId}" no existe`);
-				}
-
-				// Validar timestamp si existe
-				if (r.timestamp !== undefined && typeof r.timestamp !== 'number') {
-					throw new Error(`Respuesta ${idx + 1}: timestamp debe ser un número`);
-				}
-			});
-
-			// Si llegamos aquí, todo está bien
-			respuestasPrueba = data.respuestas;
-			modoPrueba = true;
-
-			console.log('✅ JSON importado correctamente');
-			console.log(`📊 Debate: ${data.debateId}`);
-			console.log(`📝 ${data.respuestas.length} respuestas cargadas`);
-			console.log('---');
-			console.log('Respuestas por candidato:');
-			const porCandidato = data.respuestas.reduce((acc: any, r: any) => {
-				acc[r.candidatoId] = (acc[r.candidatoId] || 0) + 1;
-				return acc;
-			}, {});
-			Object.entries(porCandidato).forEach(([id, count]) => {
-				const candidato = getCandidatoById(id);
-				console.log(`  - ${candidato?.nombre || id}: ${count} respuestas`);
-			});
-		} catch (error) {
-			const mensaje = error instanceof Error ? error.message : 'Error desconocido';
-			errorImportacion = mensaje;
-			console.error('❌ Error al importar JSON:', mensaje);
-			console.error(error);
-			modoPrueba = false;
-			respuestasPrueba = [];
-		}
-
-		// Limpiar input
-		input.value = '';
-	}
-
-	/**
-	 * Desactiva modo de prueba
-	 */
-	function desactivarModoPrueba() {
-		modoPrueba = false;
-		respuestasPrueba = [];
-		errorImportacion = null;
-		console.log('🔄 Modo de prueba desactivado');
-	}
 </script>
 
 <svelte:head>
@@ -307,7 +197,7 @@
 				{#each candidatosVisibles as candidato}
 					<button
 						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group flex items-center gap-1.5 md:gap-2 pr-2 md:pr-4 rounded-full border-2 transition-all duration-200 overflow-hidden h-12 md:h-20 {candidatoSeleccionadoId ===
+						class="group flex items-center gap-1.5 md:gap-2 pr-3 md:pr-4 rounded-full border transition-all duration-200 overflow-hidden h-12 md:h-20 {candidatoSeleccionadoId ===
 						candidato.id
 							? 'shadow-md'
 							: ''}"
@@ -363,7 +253,7 @@
 				<!-- Botón "Otros" para toggle de eliminados -->
 				<button
 					onclick={() => (mostrarEliminados = !mostrarEliminados)}
-					class="group flex items-center gap-1.5 md:gap-2 pr-4 md:pr-6 rounded-full border-2 transition-all duration-200 overflow-hidden h-12 md:h-20 {mostrarEliminados
+					class="group flex items-center gap-1.5 md:gap-2 pr-4 md:pr-6 rounded-full border transition-all duration-200 overflow-hidden h-12 md:h-20 {mostrarEliminados
 						? 'border-yellow-600/30 bg-yellow-50/50 shadow-sm'
 						: 'border-yellow-600/20 bg-transparent hover:bg-yellow-50/30'}"
 				>
@@ -399,12 +289,12 @@
 		<!-- Temas -->
 		<div>
 			<h3 class="text-sm font-medium text-gray-600 mb-2">Temas</h3>
-			<div class="flex flex-wrap gap-2">
+			<div class="flex flex-wrap gap-1.5 md:gap-2">
 				{#each temas as tema}
 					{@const IconoTema = iconosPorTema[tema.id]}
 					<button
 						onclick={() => seleccionarTema(tema.id)}
-						class="flex items-center gap-2.5 px-4 py-2.5 rounded-full border-2 transition-all duration-200 text-sm font-medium {temaSeleccionadoId ===
+						class="flex items-center gap-1.5 md:gap-2.5 px-2.5 md:px-4 py-1.5 md:py-2.5 rounded-full border transition-all duration-200 text-xs md:text-sm font-medium {temaSeleccionadoId ===
 						tema.id
 							? 'shadow-md'
 							: 'hover:shadow-sm'}"
@@ -415,7 +305,7 @@
 						"
 					>
 						{#if IconoTema}
-							<IconoTema class="w-6 h-6" />
+							<IconoTema class="w-4 h-4 md:w-6 md:h-6" />
 						{/if}
 						{tema.nombre}
 					</button>
@@ -528,64 +418,16 @@
 				{/if}
 			</div>
 
-			<!-- Importador discreto -->
-			<div class="flex items-center gap-2">
-				{#if modoPrueba}
-					<span class="text-sm text-yellow-700 font-medium">
-						Modo de Prueba ({respuestasPrueba.length} respuestas)
-					</span>
-					<button
-						onclick={desactivarModoPrueba}
-						class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-lg transition-colors border border-yellow-300"
-					>
-						<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-							<path
-								fill-rule="evenodd"
-								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-								clip-rule="evenodd"
-							></path>
-						</svg>
-						Desactivar
-					</button>
-				{:else}
-					<label
-						class="inline-flex items-center gap-1 px-3 py-1.5 text-sm text-gray-200 rounded-lg cursor-pointer transition-colors"
-						title="Importar JSON para probar"
-					>
-						<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-							<path
-								d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"
-							></path>
-							<path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
-						</svg>
-						JSON
-						<input
-							type="file"
-							accept=".json,application/json"
-							onchange={handleFileImport}
-							class="hidden"
-						/>
-					</label>
-				{/if}
-			</div>
 		</div>
 	</section>
 
 	<!-- Debates y Preguntas -->
 	<section class="space-y-12">
-		<!-- Error de importación (si existe) -->
-		{#if errorImportacion && !modoPrueba}
-			<div class="mb-6 p-3 bg-red-100 border border-red-300 rounded-lg text-sm text-red-800">
-				<strong>Error al importar:</strong>
-				{errorImportacion}
-			</div>
-		{/if}
-
 		{#key `${candidatoSeleccionadoId}-${temaSeleccionadoId}`}
 			{#each debatesFiltrados as debate, idx}
 				{@const preguntas = getPreguntasPorDebate(debate.id)}
 				{@const preguntasConRespuesta = candidatoSeleccionadoId
-					? preguntas.filter((p) => getRespuestaConPrueba(p.id, candidatoSeleccionadoId!))
+					? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
 					: temaSeleccionadoId
 						? preguntas.filter((p) => p.temaId === temaSeleccionadoId)
 						: preguntas}
@@ -681,7 +523,7 @@
 						<div class="divide-y divide-gray-100">
 							{#each preguntasConRespuesta as pregunta, idx}
 								{@const respuestaMostrar = candidatoSeleccionadoId
-									? getRespuestaConPrueba(pregunta.id, candidatoSeleccionadoId)
+									? getRespuesta(pregunta.id, candidatoSeleccionadoId)
 									: null}
 
 								<div class="p-5">
@@ -749,7 +591,7 @@
 													debate.candidatosIds
 														.map((cId) => ({
 															candidato: getCandidatoById(cId),
-															respuesta: getRespuestaConPrueba(pregunta.id, cId)
+															respuesta: getRespuesta(pregunta.id, cId)
 														}))
 														.filter((r) => r.respuesta && r.candidato)
 												)[0] || []}
