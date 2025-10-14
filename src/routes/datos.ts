@@ -14,6 +14,7 @@ import respuestasAsimet from './respuestas/asimet-foro-2025-08-28.json';
 import respuestasCHV from './respuestas/chv-debate-presidencial-2025-09-10-BASE.json';
 import respuestasEnatrans from './respuestas/enatrans-2025-08-07.json';
 import respuestasIcare from './respuestas/icare-congreso-2025-08-26-BASE.json';
+import respuestasEnade from './respuestas/enade-icare-2025-10-14.json';
 
 export interface Debate {
 	id: string;
@@ -104,6 +105,24 @@ export const getTemaById = (id: string): Tema | undefined => {
  * Lista de debates presidenciales 2025
  */
 export const debates2025: Debate[] = [
+	{
+		id: 'enade-icare-2025-10-14',
+		nombre: 'ENADE 2025: Verba et Facta - Panel Presidencial',
+		fecha: '2025-10-14',
+		organizador: 'ICARE (Instituto Chileno de Administración Racional de Empresas)',
+		duracion: '2h',
+		conductores: ['Juan Manuel Astorga'],
+		transcriptUrl: '',
+		candidatosIds: [
+			'jose-antonio-kast',
+			'jeannette-jara',
+			'harold-mayne-nicholls',
+			'franco-parisi',
+			'johannes-kaiser',
+			'evelyn-matthei',
+			'marco-enriquez-ominami'
+		]
+	},
 	{
 		id: 'chv-debate-presidencial-2025-09-10',
 		nombre: 'Primer Debate Presidencial 2025',
@@ -226,9 +245,118 @@ export const debates2025: Debate[] = [
 ];
 
 /**
- * Preguntas del Debate CHV (10 de septiembre de 2025)
+ * Preguntas de todos los debates presidenciales 2025
  */
 export const preguntas2025: Pregunta[] = [
+	// Debate ENADE ICARE - 14 de octubre de 2025
+	{
+		id: 'enade-q1',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Productividad y permisología. ¿Cómo garantizar que la reducción de plazos no genere nuevos focos de corrupción ni debilite la fiscalización ambiental, incluso bajo un escenario de austeridad?',
+		orden: 1,
+		temaId: 'economia'
+	},
+	{
+		id: 'enade-q2',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Crecimiento económico y protección ambiental. ¿Qué meta de crecimiento fija para el 2030 y qué mecanismo de control ciudadano garantiza que su agenda de desregulación no debilite estándares ambientales?',
+		orden: 2,
+		temaId: 'medio-ambiente'
+	},
+	{
+		id: 'enade-q3',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Seguridad ciudadana y libertades individuales. ¿A qué tasa de homicidios por 100.000 habitantes se compromete para el 2030 y qué dos medidas priorizará garantizando el respeto a las libertades civiles?',
+		orden: 3,
+		temaId: 'seguridad'
+	},
+	{
+		id: 'enade-q4',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Control migratorio y no discriminación. ¿Puede fijar una meta anual de expulsiones efectivas y explicar los mecanismos de garantía legal para evitar errores en ese proceso?',
+		orden: 4,
+		temaId: 'seguridad'
+	},
+	{
+		id: 'enade-q5',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Sostenibilidad fiscal y demandas sociales. ¿Qué trayectoria de deuda del PIB propone y bajo qué regla fiscal permanente puede garantizar responsabilidad de gasto de aquí al 2030?',
+		orden: 5,
+		temaId: 'economia'
+	},
+	{
+		id: 'enade-q6',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Representatividad y gobernabilidad. ¿Deberíamos cambiar el sistema en el que se eligen a las autoridades? Y de ser así, ¿cómo se garantiza que todos los chilenos se sientan representados?',
+		orden: 6
+	},
+	{
+		id: 'enade-q7',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Tensión: Capital humano y automatización. ¿Qué porcentaje de la fuerza laboral debería recibir capacitación relevante cada año hasta 2030? ¿Con qué presupuesto y cómo reportaría la tasa de inserción laboral?',
+		orden: 7,
+		temaId: 'empleo'
+	},
+	{
+		id: 'enade-q8',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Democracia. ¿Cómo generaría un nuevo pacto político entre las distintas fuerzas, considerando el aumento de partidos políticos y la crisis social?',
+		orden: 8
+	},
+	{
+		id: 'enade-q9',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Confianza. ¿Cómo logrará unir a todo el país cuando representa a un sector político específico?',
+		orden: 9
+	},
+	{
+		id: 'enade-q10',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Economía plateada. ¿Qué políticas implementará para reconocer el trabajo doméstico y de cuidados no remunerado, principalmente realizado por mujeres?',
+		orden: 10,
+		temaId: 'empleo'
+	},
+	{
+		id: 'enade-q11',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Educación. ¿Cómo recuperar la educación pública, incluyendo la educación unidocente en sectores rurales?',
+		orden: 11,
+		temaId: 'educacion'
+	},
+	{
+		id: 'enade-q12',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Pobreza. ¿Cómo compensará la situación de personas que quedarán fuera del espacio de la economía formal con el avance de la inteligencia artificial?',
+		orden: 12,
+		temaId: 'empleo'
+	},
+	{
+		id: 'enade-q13',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Estado de Derecho. ¿Por qué se negó, junto con el Partido Comunista, a firmar el Acuerdo por la Paz el 15 de noviembre de 2019?',
+		orden: 13
+	},
+	{
+		id: 'enade-q14',
+		debateId: 'enade-icare-2025-10-14',
+		pregunta:
+			'Diálogo Improbable: Innovación. ¿Cuál será su estrategia de resiliencia económica ante crisis internacionales (como Argentina) para tener recursos para la innovación?',
+		orden: 14,
+		temaId: 'economia'
+	},
 	// Debate CHV - 10 de septiembre
 	{
 		id: 'chv-q1',
@@ -985,6 +1113,9 @@ const cargarRespuestas = (): Respuesta[] => {
 	const todas: Respuesta[] = [];
 
 	// Cargar respuestas de cada debate
+	if (respuestasEnade?.respuestas) {
+		todas.push(...respuestasEnade.respuestas);
+	}
 	if (respuestasClapes?.respuestas) {
 		todas.push(...respuestasClapes.respuestas);
 	}
