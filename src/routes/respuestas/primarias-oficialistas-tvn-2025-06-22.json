@@ -1,0 +1,326 @@
+{
+	"debateId": "primarias-oficialistas-tvn-2025-06-22",
+	"respuestas": [
+		{
+			"preguntaId": "primarias-tvn-q1",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Respalda la declaración del Presidente Boric por apego al derecho internacional; califica el bombardeo de EE.UU. como ilegal y condena el genocidio en Gaza, abogando por la paz.",
+			"timestamp": 915
+		},
+		{
+			"preguntaId": "primarias-tvn-q1",
+			"candidatoId": "carolina-toha",
+			"resumen": "Coincide en que la acción de EE.UU. vulnera el derecho internacional; llama a negociación entre partes y aclara que asistiría a foros, pero no integraría BRICS ni avalaría conductas de Irán o Rusia.",
+			"timestamp": 930
+		},
+		{
+			"preguntaId": "primarias-tvn-q1",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Advierte riesgo de escalada bélica y enfatiza promover la paz; sobre BRICS, señala que la asistencia del Presidente sería como invitado y sujeta a la contingencia.",
+			"timestamp": 960
+		},
+		{
+			"preguntaId": "primarias-tvn-q1",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Pide desescalar; rechaza violencia y la energía nuclear; cuestiona que el Presidente se pronunciara de inmediato, sugiriendo que lo hiciera el canciller con consulta a fuerzas políticas.",
+			"timestamp": 990
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q2",
+			"candidatoId": "carolina-toha",
+			"resumen": "Sostiene que la acción de EE.UU. vulnera el derecho internacional; llama a negociar y precisa que asistiría a foros pero no integraría BRICS ni avalaría conductas de Irán o Rusia.",
+			"timestamp": 940
+		},
+		{
+			"preguntaId": "primarias-tvn-q2",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Advierte riesgo de escalada bélica; prioriza promover la paz y señala que la asistencia del Presidente a BRICS sería como invitado y sujeta a contingencia.",
+			"timestamp": 965
+		},
+		{
+			"preguntaId": "primarias-tvn-q2",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Respalda la línea histórica de Chile de defensa del derecho internacional; califica como ilegal el bombardeo de EE.UU. y condena el genocidio en Gaza.",
+			"timestamp": 925
+		},
+		{
+			"preguntaId": "primarias-tvn-q2",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Plantea desescalar el conflicto, rechaza la energía nuclear y sugiere que la primera declaración debió realizarla el canciller, tras consulta transversal.",
+			"timestamp": 1000
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q3",
+			"candidatoId": "carolina-toha",
+			"resumen": "Se inclina por no asistir a la cumbre BRICS ni integrar ese bloque; prioriza foros donde Chile afirme el derecho internacional y condene conductas de Irán y Rusia.",
+			"timestamp": 940
+		},
+		{
+			"preguntaId": "primarias-tvn-q3",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Asistencia solo como invitado y sujeta a contingencia; foco en promover la paz y evitar escaladas bélicas.",
+			"timestamp": 960
+		},
+		{
+			"preguntaId": "primarias-tvn-q3",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Defiende apego al derecho internacional y la paz; cualquier participación en foros se subordina a esos principios.",
+			"timestamp": 925
+		},
+		{
+			"preguntaId": "primarias-tvn-q3",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Prefiere prudencia institucional; sugiere canalizar posiciones por Cancillería y priorizar desescalamiento, sin adscribirse a bloques como BRICS.",
+			"timestamp": 995
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q4",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Medida concreta: seguir el dinero del narco con más atribuciones y tecnología; reforzar prevención apoyando a niñez vulnerada y reingreso escolar para evitar captación delictiva.",
+			"timestamp": 1380
+		},
+		{
+			"preguntaId": "primarias-tvn-q4",
+			"candidatoId": "carolina-toha",
+			"resumen": "Duplicar formación anual de carabineros (3.500→7.000), cuadruplicar el GOPE y permitir instrucciones generales de fiscales para que policías actúen sin esperar autorizaciones en terreno.",
+			"timestamp": 1500
+		},
+		{
+			"preguntaId": "primarias-tvn-q4",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Apoya aumentar dotación y extender carrera de Carabineros; refuerza prevención barrial e infraestructura comunitaria y perseguir patrimonio del narco, incluyendo levantar secreto bancario.",
+			"timestamp": 1560
+		},
+		{
+			"preguntaId": "primarias-tvn-q4",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Propone crear policía municipal de proximidad para liberar funciones de Carabineros y establecer decomiso sin condena para bienes de origen ilícito como herramienta anticrimen.",
+			"timestamp": 1590
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q5",
+			"candidatoId": "carolina-toha",
+			"resumen": "Como presidenta, duplicaría la formación anual de Carabineros, cuadruplicaría el GOPE y permitiría instrucciones generales de fiscales para actuar sin demoras en terreno.",
+			"timestamp": 1500
+		},
+		{
+			"preguntaId": "primarias-tvn-q5",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Apoya aumentar dotación y extender la carrera de Carabineros; complementa con prevención barrial, infraestructura comunitaria y persecución patrimonial del narco.",
+			"timestamp": 1565
+		},
+		{
+			"preguntaId": "primarias-tvn-q5",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Plantea policía municipal de cercanía y decomiso sin condena para cortar financiamiento criminal; acelerar presencia oportuna ante delitos violentos.",
+			"timestamp": 1595
+		},
+		{
+			"preguntaId": "primarias-tvn-q5",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Prioriza seguir el dinero del narco con tecnología y levantar secreto bancario; prevención focalizada en niñez vulnerada y reingreso escolar.",
+			"timestamp": 1440
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q6",
+			"candidatoId": "carolina-toha",
+			"resumen": "Descarta conflicto de interés si Marcel sigue en Hacienda: su profesionalismo prima; el presupuesto lo elabora un equipo y lo aprueba el Congreso; no opina sobre su decisión personal.",
+			"timestamp": 2400
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q7",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Será continuidad de los aprendizajes del gobierno: combina rectificaciones y acuerdos (40 horas, royalty) con convicciones; gobernar para el país real, no para el país soñado.",
+			"timestamp": 2700
+		},
+		{
+			"preguntaId": "primarias-tvn-q7",
+			"candidatoId": "carolina-toha",
+			"resumen": "Pone énfasis en política de Estado en seguridad y economía: acuerdos amplios, liderazgo firme y foco en resultados, evitando nostalgias o refundaciones.",
+			"timestamp": 2760
+		},
+		{
+			"preguntaId": "primarias-tvn-q7",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Valora acuerdos para sacar reformas como pensiones; propone continuidad con cambios: fortalecer seguridad, crecimiento con mejores salarios y gobernabilidad.",
+			"timestamp": 2790
+		},
+		{
+			"preguntaId": "primarias-tvn-q7",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Ofrece continuidad crítica: más regionalización, policía municipal y decomiso sin condena; reconoce avances pero pide corregir falencias.",
+			"timestamp": 2820
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q8",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Subir el impuesto corporativo de 27% a 30% con integración total, invariabilidad tributaria por 10 años y depreciación instantánea para incentivar inversión y tecnología.",
+			"timestamp": 5700
+		},
+		{
+			"preguntaId": "primarias-tvn-q8",
+			"candidatoId": "carolina-toha",
+			"resumen": "Bajar la tasa corporativa hacia el estándar internacional, compensando con mayores impuestos a altas rentas, impuestos verdes y sobretasa a empresas con tarifas reguladas.",
+			"timestamp": 5610
+		},
+		{
+			"preguntaId": "primarias-tvn-q8",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Mantener el 27% corporativo; focalizar rebajas por I+D; evaluar impuesto al patrimonio y medidas para más recaudación sin prometer gastos sin ingresos.",
+			"timestamp": 5640
+		},
+		{
+			"preguntaId": "primarias-tvn-q8",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Impulsar impuesto al patrimonio para el 0,1% más rico, ajustes en impuesto a la renta (primer retiro de utilidades) y devolución de IVA al 40% más vulnerable.",
+			"timestamp": 5760
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q9",
+			"candidatoId": "carolina-toha",
+			"resumen": "Para legitimar mayores ingresos del Estado, propone combate duro a corrupción e ineficiencia: secreto bancario abierto y permanente para autoridades, y reforma integral de procesos (permisología) para agilizar gestión pública.",
+			"timestamp": 6000
+		},
+		{
+			"preguntaId": "primarias-tvn-q9",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Condena abusos como licencias médicas fraudulentas; exige devolución de dineros y sanciones más duras. Reconoce brechas de gestión y la necesidad de fortalecer la eficiencia del Estado.",
+			"timestamp": 6030
+		},
+		{
+			"preguntaId": "primarias-tvn-q9",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Defiende un Estado eficiente: fortalecer y descentralizar Contraloría y reorganizar el Estado (ahorro estimado 0,5% del PIB); junto con ello, avanzar en devolución de IVA al 40% más vulnerable.",
+			"timestamp": 6090
+		},
+		{
+			"preguntaId": "primarias-tvn-q9",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Levantar secreto bancario para autoridades; bajar IVA a canasta básica compensándolo en bienes superfluos; repatriación de capitales exenta si se invierte en vivienda y beneficios tributarios para dinamizar construcción.",
+			"timestamp": 6120
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q10",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Reconoce falencias en implementación de Mejor Niñez; propone evaluar y reformar la reforma con más control y financiamiento oportuno a colaboradores, fortaleciendo Oficinas Locales de Protección para prevenir institucionalización.",
+			"timestamp": 6605
+		},
+		{
+			"preguntaId": "primarias-tvn-q10",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Reorganizar financiamiento del sistema sin retroceder la reforma; igualar rol público/privado y priorizar casas de acogida. Extender apoyo más allá de los 18 años y robustecer reingreso escolar como política de seguridad y dignidad.",
+			"timestamp": 6720
+		},
+		{
+			"preguntaId": "primarias-tvn-q10",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Diagnostica centralismo e inestabilidad institucional; propone descentralizar y que gobiernos regionales asuman supervisión, con control democrático y traspaso de atribuciones y recursos.",
+			"timestamp": 6750
+		},
+		{
+			"preguntaId": "primarias-tvn-q10",
+			"candidatoId": "carolina-toha",
+			"resumen": "El problema es de contexto: más violencia y salud mental. Plantea estrategia nacional de salud mental en escuelas, apoyo docente y programa de tarde (deporte, cultura, apoyo) tipo garantía universal para jóvenes.",
+			"timestamp": 6780
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q11",
+			"candidatoId": "carolina-toha",
+			"resumen": "Para recuperar autoridad docente: rituales básicos (saludo al entrar), cursos más pequeños o con apoyos, y respaldo efectivo ante conflictos para no dejarlos solos.",
+			"timestamp": 7860
+		},
+		{
+			"preguntaId": "primarias-tvn-q11",
+			"candidatoId": "jaime-mulet",
+			"resumen": "La escuela refleja la sociedad; foco en educación inicial 0–6 años: cobertura total de sala cuna, jardín, pre‑kínder y kínder para igualar oportunidades y apoyar a las madres.",
+			"timestamp": 7890
+		},
+		{
+			"preguntaId": "primarias-tvn-q11",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Respaldar autoridad con protocolos claros y apoyo directivo; fortalecer convivencia escolar, equipos psicosociales y coordinación con municipalidades y seguridad cuando corresponda.",
+			"timestamp": 7920
+		},
+		{
+			"preguntaId": "primarias-tvn-q11",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Autoridad docente va con condiciones: disminución de ausentismo y deserción, programas de reingreso y acompañamiento, y soporte a escuelas en contextos críticos.",
+			"timestamp": 7950
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q12",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Primer decreto: apertura de un proceso participativo amplio para definir rumbo en crecimiento, derechos sociales y seguridad; convocará transversalmente más allá de su base electoral.",
+			"timestamp": 8400
+		},
+		{
+			"preguntaId": "primarias-tvn-q12",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Primer decreto: mensaje firme a Latinoamérica de que Chile no puede recibir más inmigrantes por capacidad limitada, resguardando DD.HH.; foco en orden y atender a quienes ya están.",
+			"timestamp": 8460
+		},
+		{
+			"preguntaId": "primarias-tvn-q12",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Primer decreto: presentar de inmediato una reforma tributaria para justicia, inversión y desarrollo humano; marcar contraste con la derecha y afirmar compromisos democráticos.",
+			"timestamp": 8490
+		},
+		{
+			"preguntaId": "primarias-tvn-q12",
+			"candidatoId": "carolina-toha",
+			"resumen": "Primer decreto: facultades especiales vía DFL para desplegar militares en zonas de violencia crítica sin estado de emergencia; seguridad con mano firme y agenda de reencuentro.",
+			"timestamp": 8520
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q13",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Plantea 'blindar' la frontera con más capacidades aduaneras y apoyo de FFAA (no muros ni zanjas); reconducir a quienes delinquen respetando DD.HH.",
+			"timestamp": 1800
+		},
+		{
+			"preguntaId": "primarias-tvn-q13",
+			"candidatoId": "carolina-toha",
+			"resumen": "Rol permanente de FFAA en cuidado de fronteras y más tecnología; regularización cautelosa sin antecedentes penales; extender sistemas de monitoreo con IA en todo el país.",
+			"timestamp": 1860
+		},
+		{
+			"preguntaId": "primarias-tvn-q13",
+			"candidatoId": "gonzalo-winter",
+			"resumen": "Control de fronteras con tecnología (p. ej., sistemas LISAR/DAS); trato digno al trabajador honesto y expulsión al delincuente; procesos regulatorios dentro del marco legal vigente.",
+			"timestamp": 1920
+		},
+		{
+			"preguntaId": "primarias-tvn-q13",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Cerrar el flujo irregular y expulsar administrativos a quienes entraron por pasos no habilitados; priorizar empleo para chilenos; reconoce complejidad diplomática pero pide señales claras.",
+			"timestamp": 1980
+		}
+		,
+		{
+			"preguntaId": "primarias-tvn-q14",
+			"candidatoId": "carolina-toha",
+			"resumen": "Propone eliminar el control previo de Contraloría para universidades públicas y mantener control posterior, para agilizar su gestión sin perder fiscalización.",
+			"timestamp": 4740
+		},
+		{
+			"preguntaId": "primarias-tvn-q14",
+			"candidatoId": "jaime-mulet",
+			"resumen": "Se muestra reticente a eliminar control previo; sugiere fortalecer control ex‑ante en municipios y gobiernos regionales para prevenir desvíos y mayor probidad.",
+			"timestamp": 4770
+		}
+	]
+}
+
+

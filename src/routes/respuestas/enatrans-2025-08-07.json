@@ -1,0 +1,59 @@
+{
+	"debateId": "enatrans-2025-08-07",
+	"respuestas": [
+		{
+			"preguntaId": "enatrans-q1",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone 140.000 cámaras en todo Chile (2.500 millones de dólares) para estadísticas y pruebas, sellar fronteras con cámaras aéreas, respuesta operativa rápida (2 minutos y medio), y mejorar conectividad en zonas sin señal.",
+			"timestamp": 6600
+		},
+		{
+			"preguntaId": "enatrans-q1",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Critica sistemas de vigilancia masiva tipo China, propone aumentar espacio carcelario en 90.000 plazas, métodos tradicionales con condenas efectivas, satélites geoestacionarios para control no invasivo de carreteras, y perseguir comercio ilegal.",
+			"timestamp": 6900
+		},
+		{
+			"preguntaId": "enatrans-q1",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Menciona experiencia desde 2017 con planes específicos: integrar cámaras privadas al sistema público, plan Escudo Fronterizo (basado en experiencia de Hungría), plan Implacable para comercio ilegal, y coordinación de más de 20 organismos públicos.",
+			"timestamp": 7200
+		},
+		{
+			"preguntaId": "enatrans-q2",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Plantea que los ciudadanos son patrones, no esclavos del Estado; no es partidario de que el Estado intervenga permanentemente en lo económico ni que el privado se haga cargo de funciones públicas; critica el corporativismo y las alianzas entre grupos económicos y políticos que afectan la libre competencia.",
+			"timestamp": 7800
+		},
+		{
+			"preguntaId": "enatrans-q2",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone que la alianza público-privada es fundamental, menciona que el Estado debe evitar colusiones y abuso de posición dominante, pagar bien a 30 días, y escuchar las señales que dan los privados (áreas de descanso, puertos, plazas de pesaje).",
+			"timestamp": 8100
+		},
+		{
+			"preguntaId": "enatrans-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone colaboración en capacitación de conductores profesionales (200 horas, curso caro), organización de áreas de descanso, fiscalización de horas de manejo, cambio de tecnología (eléctrico, gas natural) con puntos de recarga, y actualización de normativa sobre largo y peso de camiones.",
+			"timestamp": 8400
+		},
+		{
+			"preguntaId": "enatrans-q3",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Menciona que la izquierda radical quedará fuera del gobierno, aplicará mano durísima con crimen organizado, inmigración ilegal y narcotráfico, anticipará situaciones de violencia requisando camiones en manifestaciones ilegales, y su plan económico apunta al pleno empleo con facilitación regulatoria, baja tributaria y ajuste fiscal.",
+			"timestamp": 8700
+		},
+		{
+			"preguntaId": "enatrans-q3",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone que la ciudadanía verá cortes de gastos superfluos, control de flujo migratorio ilegal, trabajo firme contra crimen organizado; menciona que el 65% de los chilenos avaló la violencia del estallido pero después vieron las consecuencias desastrosas, por lo que no le teme al estallido porque necesita respaldo popular.",
+			"timestamp": 9000
+		},
+		{
+			"preguntaId": "enatrans-q3",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Plantea que el estallido fue un diseño planificado, un golpe de Estado a la institucionalidad con la mesa de unidad social detrás; critica que la fiscalía se negó a investigar la logística detrás de las manifestaciones, y propone tratar con todo el rigor de la ley a grupos ultrones relacionados con el Partido Comunista.",
+			"timestamp": 9300
+		}
+	]
+}

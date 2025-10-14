@@ -1,0 +1,77 @@
+{
+	"debateId": "salmon-summit-2025-07-22",
+	"respuestas": [
+		{
+			"preguntaId": "salmon-q1",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone descentralizar relocalizaciones a través de mesas acuícolas regionales, fortaleciendo capacidades de gobiernos regionales y transfiriendo competencias, recursos y responsabilidades.",
+			"timestamp": 6300
+		},
+		{
+			"preguntaId": "salmon-q1",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone usar facultades existentes de Comisiones de Uso Borde Costero para vetar permisos abusivos de ley Lafkenche y descentralizar decisiones regionalmente.",
+			"timestamp": 6600
+		},
+		{
+			"preguntaId": "salmon-q1",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone que la industria se gane el respeto haciendo bien las cosas (medio ambiente, trabajadores, comunidad) para poder exigir mayor autonomía regional.",
+			"timestamp": 6900
+		},
+		{
+			"preguntaId": "salmon-q2",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone diversificar la industria acuícola, fomentar pymes para cultivo de otras especies como algas y moluscos, y que la salmonicultura apalanque el desarrollo de otras industrias.",
+			"timestamp": 7500
+		},
+		{
+			"preguntaId": "salmon-q2",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone armonizar autoridades, implementar silencio administrativo, coordinar instituciones (Subpesca, Fuerza Armada, CEA, SMA) y usar desechos orgánicos para fertilizar praderas.",
+			"timestamp": 7800
+		},
+		{
+			"preguntaId": "salmon-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone cambiar la concepción de permisología evaluando beneficios y costos de proyectos, reducir impuestos de 27% a 23% y recortar gastos superfluos en 2.000 millones de dólares.",
+			"timestamp": 8100
+		},
+		{
+			"preguntaId": "salmon-q3",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone regular concentración económica, crear consorcios de pymes, encadenamientos entre grandes y pequeñas empresas, y crear un hub de innovación de acuicultura mundial en la región.",
+			"timestamp": 8700
+		},
+		{
+			"preguntaId": "salmon-q3",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone conectar investigación universitaria con desarrollo productivo, abrir nuevos mercados, mejorar puertos con escáneres móviles y aduanas, y desregular para que las pymes puedan crecer.",
+			"timestamp": 9000
+		},
+		{
+			"preguntaId": "salmon-q3",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Critica la permisología que afecta a las pymes, problemas de pago del gobierno, regulación excesiva que perjudica a las pymes, y el traspaso de recursos de Corfo que debilitó el apoyo a pymes.",
+			"timestamp": 9300
+		},
+		{
+			"preguntaId": "salmon-q4",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone tres énfasis: seguridad pública (perseguir patrimonio narco, levantar secreto bancario, fortalecer policías), salud pública y vivienda, y crecimiento con trabajo para la gente y pymes.",
+			"timestamp": 9900
+		},
+		{
+			"preguntaId": "salmon-q4",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone liderazgo contra la corriente, enfrentar crimen organizado con decisión y fuerza, desregular lo entrampado, terminar con toldos azules y crimen organizado, y respeto a carabineros.",
+			"timestamp": 10200
+		},
+		{
+			"preguntaId": "salmon-q4",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone buscar un camino que una a los chilenos, enfrentar crimen organizado con inteligencia y tecnología, experiencia en seguridad comunal, bajar impuestos de 27% a 23%, y colaboración en lugar de confrontación.",
+			"timestamp": 10500
+		}
+	]
+}

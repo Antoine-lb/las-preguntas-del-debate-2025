@@ -1,0 +1,77 @@
+{
+	"debateId": "sofofa-2025-07-31",
+	"respuestas": [
+		{
+			"preguntaId": "sofofa-q1",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Critica rebajas de impuestos corporativos que solo beneficiarían al 3% de empresas más grandes; propone propuestas responsables y cumplibles, destacando oportunidades en transición energética y desarrollo de capital humano avanzado.",
+			"timestamp": 9600
+		},
+		{
+			"preguntaId": "sofofa-q1",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone reducir impuestos corporativos de 27% a 23%, cortar gastos en 8.000 millones de dólares, reconvertir Estado para acompañar sector privado, plan de inversión pública con 30 proyectos estratégicos y PYME waiver para permisos en un día.",
+			"timestamp": 10200
+		},
+		{
+			"preguntaId": "sofofa-q1",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Menciona ejemplo de La Florida donde bajar impuestos aumentó recaudación; propone cortar gastos superfluos, eliminar evasión del Transantiago y comercio informal, y crear Fuerza de Acción Inmediata para destrabar nudos críticos.",
+			"timestamp": 10800
+		},
+		{
+			"preguntaId": "sofofa-q2",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Presenta planes específicos: Cancerbero (nadie sale de cárceles, construir cárceles adicionales), Escudo Fronterizo, barrido total, y Fuerza de Acción Inmediata para coordinar más de 20 organismos que combaten crimen organizado.",
+			"timestamp": 12000
+		},
+		{
+			"preguntaId": "sofofa-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone 11 medidas: inteligencia financiera, 32 mil nuevos cupos en cárceles, control total de fronteras y aeropuertos, fuerzas de tarea para decomisar bienes de capos, y seminarios internacionales con expertos.",
+			"timestamp": 12600
+		},
+		{
+			"preguntaId": "sofofa-q2",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone fortalecer la ruta del dinero, levantar secreto bancario, fortalecer unidad de análisis financiero, mejorar reportes bancarios, y acelerar decomiso y venta de bienes incautados, argumentando que las organizaciones criminales vienen por la plata.",
+			"timestamp": 13200
+		},
+		{
+			"preguntaId": "sofofa-q3",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone que la seguridad es clave para el empleo, menciona que el único empleo que ha aumentado es el de guardias de seguridad, propone crédito tributario para trabajos de calidad, combatir trabajo informal del 26% al 15%, e impuesto negativo para empleos precarios.",
+			"timestamp": 13800
+		},
+		{
+			"preguntaId": "sofofa-q3",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone que la mejor receta para más empleos es crecer más, menciona problemas estructurales de transición laboral por tecnología e IA, propone mesa prospectiva laboral, mejorar programas de subsidio, y elevar participación laboral femenina con apoyos en cuidados.",
+			"timestamp": 14400
+		},
+		{
+			"preguntaId": "sofofa-q3",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone que el empleo se genera con crecimiento económico, menciona la necesidad de definir el modelo de crecimiento que seguirá Chile, y destaca la importancia de la paz social para la inversión.",
+			"timestamp": 15000
+		},
+		{
+			"preguntaId": "sofofa-q4",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone recortar 6.000 a 8.000 millones de dólares en forma permanente: licencias médicas (600-800 millones), compras públicas (800 millones), gasto en personal (450 millones), y no permitir mayor crecimiento del empleo fiscal.",
+			"timestamp": 15600
+		},
+		{
+			"preguntaId": "sofofa-q4",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Menciona que presentaron indicación de rebaja de 5.000 millones al presupuesto (aprobados 700), propone encontrar recursos mal gastados en 700 programas del Estado, y menciona ejemplo de Paraguay que abrió inversión con rebajas tributarias.",
+			"timestamp": 16200
+		},
+		{
+			"preguntaId": "sofofa-q4",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone no hacer promesas irresponsables, mantener trayectoria de estabilización de deuda pública, evaluación completa de finanzas públicas, y tomar definiciones para hacer los cortes necesarios en programas.",
+			"timestamp": 16800
+		}
+	]
+}

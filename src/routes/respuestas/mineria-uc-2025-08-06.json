@@ -1,0 +1,293 @@
+{
+	"debateId": "mineria-uc-2025-08-06",
+	"respuestas": [
+		{
+			"preguntaId": "mineria-q1",
+			"candidatoId": "franco-parisi",
+			"resumen": "Sí, propone concesionar el litio a través de decreto presidencial para atraer inversiones, ofreciendo a las comunidades originarias ser accionistas a través de serie B de acciones. Menciona que Argentina está acelerado y Chile se está quedando atrás.",
+			"timestamp": 2100
+		},
+		{
+			"preguntaId": "mineria-q1",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone meta de 1 millón de toneladas de carbonato de litio para 2035, trabajando unidos sector privado, público y universidades. Menciona que las baterías de litio solo llevan 10% de litio, por lo que propone estudiar tecnologías de frontera del litio.",
+			"timestamp": 900
+		},
+		{
+			"preguntaId": "mineria-q1",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Critica el acuerdo Cuenco-SQM y propone auditoría estratégica independiente extranjera para transparentar la gestión del litio a los chilenos, mencionando que los chilenos tienen derecho a saber qué pasó con su litio.",
+			"timestamp": 3900
+		},
+		{
+			"preguntaId": "mineria-q1",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Menciona el litio en el contexto de minerales críticos, destacando la importancia de fomentar la exploración y producción de minerales críticos como el litio para aprovechar las oportunidades geopolíticas del país.",
+			"timestamp": 4500
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone formar capital humano avanzado para estudiar tecnologías de frontera del litio y baterías, promoviendo clusters para encontrar formas de agregar valor. Menciona que las baterías de litio solo llevan 10% de litio, por lo que propone estudiar tecnologías de frontera del litio y baterías.",
+			"timestamp": 2400
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone apoyo tributario para empresas que hagan I+D, transfiriendo beneficios como bien público para desarrollo de investigación universitaria e industrial minera. También propone impulsar fundiciones como Paipote para agregar valor a minerales críticos.",
+			"timestamp": 2400
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Propone crear condiciones necesarias para industrialización: reducir carga tributaria, mejorar energía industrial, infraestructura de transporte, puertos y comunicaciones. Menciona oportunidad con Argentina para atender sus necesidades mineras y traspasar producción al Pacífico.",
+			"timestamp": 3300
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone que Codelco lidere progreso tecnológico junto al sector privado, siguiendo el modelo del Consejo Minero para planificar necesidades futuras de trabajo y cuellos de botella, con planificación como en países avanzados.",
+			"timestamp": 4200
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone impulsar definitivamente la Fundación Videla (Paipote), desarrollar más fundiciones al alero de Codelco, fortalecer ENAMI para pequeña y mediana minería, y dar certezas tributarias manteniendo impuestos sin subirlos ni bajarlos.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q2",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone usar ProChile para organizar exportación de servicios mineros, aprovechando oportunidades con Argentina donde empresas ya están estableciendo contactos, destacando la alta credibilidad chilena en materia minera.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q3",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone trabajar unidos sector privado, sector público y universidades para lograr metas mineras. Menciona el ejemplo de Noruega donde universidades, gobierno y sector privado se ponen de acuerdo para desarrollar la industria. Propone colaboración entre universidades, sector privado y público en proyectos mineros.",
+			"timestamp": 900
+		},
+		{
+			"preguntaId": "mineria-q3",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone apoyo tributario para empresas que hagan I+D, transfiriendo beneficios como bien público para desarrollo de investigación universitaria e industrial minera. Menciona que la sinergia entre empresas privadas, apoyo estatal y universidades es vital en cada región del país.",
+			"timestamp": 2400
+		},
+		{
+			"preguntaId": "mineria-q3",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Propone que el Estado sea facilitador, reduciendo carga tributaria y modernizando instituciones como Cochilco y Cernagio Min. Menciona que las universidades deben generar tecnologías del futuro en simbiosis productiva, impulsada y premiada por el Estado desde el punto de vista tributario.",
+			"timestamp": 3300
+		},
+		{
+			"preguntaId": "mineria-q3",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone colaboración entre universidades, sector privado y sector público para estudiar la mejor forma de sacar adelante proyectos mineros, estableciendo estándares altos y garantías de cumplimiento, siguiendo el modelo de otros países.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q4",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone simplificación de todos los permisos con tiempos más cortos, reducción de impuestos de primera categoría de 27% a 23%, y estabilidad tributaria con DL 600 para proyectos de largo plazo. Menciona que Chile se demora 10 años en dar permisos mientras otros países lo hacen en 1-2 años.",
+			"timestamp": 900
+		},
+		{
+			"preguntaId": "mineria-q4",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone facilitación regulatoria, simplificación normativa y terminar con el laberinto de permisología, respetando medio ambiente y seguridad laboral. Menciona que Chile pasó del puesto 4 al 38 en índice Fraser y del 41 al 49 en percepción de políticas públicas, proponiendo volver a ser competitivos como Estados Unidos, Canadá y Australia.",
+			"timestamp": 2700
+		},
+		{
+			"preguntaId": "mineria-q4",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Critica que Chile pasó de ser el segundo país más competitivo del mundo en minería según índice Fraser a competir con Botswana y Namibia en el puesto 30-32. Propone reducir carga tributaria, modernizar instituciones como Cochilco y Cernagio Min, y transformar la burocracia para hacer el sistema más amigable.",
+			"timestamp": 1800
+		},
+		{
+			"preguntaId": "mineria-q4",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Menciona que el royalty minero aprobado en el Parlamento ha permitido fijar certeza jurídica en el mundo minero, haciendo que los proyectos de inversión se cuadruplicaran en el último periodo. Propone mantener esta certeza jurídica para atraer inversión.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q5",
+			"candidatoId": "franco-parisi",
+			"resumen": "Menciona que 50 mil millones de dólares están esperando aprobación de proyectos Greenfield en sistemas de evaluación ambiental. Propone aumentar al doble la capacidad de ENAMI para gestionar hasta 100.000 toneladas anuales para pequeños y medianos mineros.",
+			"timestamp": 1800
+		},
+		{
+			"preguntaId": "mineria-q5",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Menciona que el royalty minero aprobado en el Parlamento ha permitido fijar certeza jurídica en el mundo minero, haciendo que los proyectos de inversión se cuadruplicaran en el último periodo. Propone acelerar proyectos en curso como Escondida, Frippor y Espino.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q5",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone cambiar totalmente la forma de dar permisos, estableciendo colaboración entre Estado, universidades y sector privado para evaluar beneficios ambientales. Menciona que hay 100 mil millones de dólares esperando algún permiso y propone crear oficina dependiente del presidente para sacar proyectos rápidamente.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q5",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Menciona que hay 100 mil millones de dólares dispuestos a ser invertidos pero los permisos se lo impiden. Propone dar estabilidad tributaria, evitar judicialización de temas que no debieran verse en tribunales y salir mucho más rápido con todos los permisos.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q6",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone potenciar desarrollo regional con pequeña y mediana minería, mencionando que el encadenamiento regional es tres veces mayor que el de la gran minería. Propone plantas móviles de flotación de ENAMI para agregar valor y contribuir al desarrollo regional que queda abandonado por el centralismo.",
+			"timestamp": 900
+		},
+		{
+			"preguntaId": "mineria-q6",
+			"candidatoId": "franco-parisi",
+			"resumen": "Propone aprovechar el corredor bioceánico Capricornio para crear un hub logístico único en Antofagasta, con fundición de barros y concentrados, trasladando Casa Matriz de Codelco al norte y desarrollando infraestructura regional. Menciona que Antofagasta tiene un potencial único.",
+			"timestamp": 3600
+		},
+		{
+			"preguntaId": "mineria-q6",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone dejar trabajar a los que saben del tema en minerales críticos como tierras raras y cobalto. Critica la burocracia que bloquea inversiones, mencionando el caso de tierras raras donde CONAF rechazó un proyecto por error estadístico menor al 1%, perdiendo Chile una inversión de 600 millones de dólares.",
+			"timestamp": 4500
+		},
+		{
+			"preguntaId": "mineria-q6",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone usar ProChile para organizar exportación de servicios mineros, aprovechando oportunidades con Argentina donde empresas ya están estableciendo contactos. Menciona que Chile tiene alta credibilidad en materia minera y que la industria privada es muy rápida para ver oportunidades.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q6",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone impulsar definitivamente la Fundación Videla (Paipote), desarrollar más fundiciones al alero de Codelco, fortalecer ENAMI para pequeña y mediana minería, y dar certezas tributarias para minerales críticos como tierras raras.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q7",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Propone retrotraer el acuerdo Cuenco-CQM, realizar licitación en la materia y someter a Codelco a auditoría estratégica independiente extranjera para transparentar la gestión del litio a los chilenos. Menciona que Codelco está endeudado en 23.000 millones de dólares y que los chilenos tienen derecho a saber qué pasó con su litio.",
+			"timestamp": 3900
+		},
+		{
+			"preguntaId": "mineria-q7",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone respetar el convenio Cuenco-CQM si cumple con los requisitos y pasa todas las vallas, porque hay que respetar la palabra y la certeza jurídica. Critica que Corfo no defendió los intereses de los chilenos y que a Codelco le conviene porque tiene una deuda gigante.",
+			"timestamp": 4500
+		},
+		{
+			"preguntaId": "mineria-q8",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone apoyo tributario para empresas que hagan I+D, transfiriendo beneficios como bien público para desarrollo de investigación universitaria e industrial minera. Menciona que la sinergia entre empresas privadas, apoyo estatal y universidades es vital en cada región del país.",
+			"timestamp": 2400
+		},
+		{
+			"preguntaId": "mineria-q8",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Propone que el Estado sea facilitador, reduciendo carga tributaria y modernizando instituciones como Cochilco y Cernagio Min. Menciona que las universidades deben generar tecnologías del futuro en simbiosis productiva, impulsada y premiada por el Estado desde el punto de vista tributario.",
+			"timestamp": 3300
+		},
+		{
+			"preguntaId": "mineria-q8",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone colaboración entre universidades, sector privado y sector público para estudiar la mejor forma de sacar adelante proyectos mineros, estableciendo estándares altos y garantías de cumplimiento, siguiendo el modelo de otros países.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q8",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone que Codelco lidere progreso tecnológico junto al sector privado, siguiendo el modelo del Consejo Minero para planificar necesidades futuras de trabajo y cuellos de botella, con planificación como en países avanzados.",
+			"timestamp": 4200
+		},
+		{
+			"preguntaId": "mineria-q8",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone mantener políticas como Proveedores de Clase Mundial, conformación de clusters mineros, roadmap desde el cobre a la innovación, política minera 2050 y Mesa Nacional de Proveedores para agregar valor más allá de la extracción de materias primas.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q9",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Propone dejar trabajar a los que saben del tema en minerales críticos como tierras raras y cobalto. Critica la burocracia que bloquea inversiones, mencionando el caso de tierras raras donde CONAF rechazó un proyecto por error estadístico menor al 1%, perdiendo Chile una inversión de 600 millones de dólares que ya va en Brasil.",
+			"timestamp": 4500
+		},
+		{
+			"preguntaId": "mineria-q9",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone estrategia para aprovechar la oportunidad geopolítica de los minerales críticos, impulsando definitivamente la Fundación Videla (Paipote) para fundir y refinar minerales críticos como tierras raras, aprovechando las ventajas comparativas de Chile en la negociación con distintos países.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q9",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Menciona minerales críticos como el litio y el yodo en el contexto de promover la generación de valor agregado en la minería, aprovechando el gran poder de mercado de Chile en múltiples minerales críticos.",
+			"timestamp": 2400
+		},
+		{
+			"preguntaId": "mineria-q10",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone cambiar totalmente la forma de dar permisos, estableciendo colaboración entre Estado, universidades y sector privado para evaluar beneficios ambientales. Menciona que hay 100 mil millones de dólares esperando algún permiso y propone crear oficina dependiente del presidente para sacar proyectos rápidamente.",
+			"timestamp": 3000
+		},
+		{
+			"preguntaId": "mineria-q10",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone acelerar y apoyar proyectos que están en curso y aquellos que habiendo podido levantarse no se han tomado con suficiente énfasis. Menciona el convenio con Argentina y la alianza entre Andina y los bronces Angloamerican como experiencias exitosas de colaboración público-privada.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q10",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Menciona que hay 100 mil millones de dólares dispuestos a ser invertidos pero los permisos se lo impiden. Propone dar estabilidad tributaria, evitar judicialización de temas que no debieran verse en tribunales y salir mucho más rápido con todos los permisos.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q11",
+			"candidatoId": "jose-antonio-kast",
+			"resumen": "Critica que primó la ideología sobre el bien país en la Estrategia Nacional del Litio, mencionando que Chile perdió por goleada. Propone respetar el convenio Cuenco-CQM si cumple con los requisitos y pasa todas las vallas, porque hay que respetar la palabra y la certeza jurídica. Critica que Corfo no defendió los intereses de los chilenos y que a Codelco le conviene porque tiene una deuda gigante. Propone hacer modificaciones legales en la ley orgánica constitucional y código minero para concesionar el litio.",
+			"timestamp": 4500
+		},
+		{
+			"preguntaId": "mineria-q12",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone profundizar el convenio internacional con Argentina para acelerar proyectos binacionales como Zónfilos del Sol, José María y los Pelambres. Menciona la alianza entre Andina y los bronces Angloamerican como experiencia exitosa de colaboración público-privada y propone empujar proyectos que se han demorado mucho tiempo en salir.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q12",
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Propone profundizar el convenio firmado con Argentina aprovechando yacimientos binacionales. Menciona que Chile tiene tremenda ventaja en experiencia técnica minera que no tienen los argentinos, ofreciendo servicios y productos a cambio de acceso a puertos argentinos para despachar producción hacia el Atlántico, generando integración económica en torno a la explotación minera de los Andes.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q12",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone usar ProChile para organizar exportación de servicios mineros, aprovechando oportunidades con Argentina donde empresas ya están estableciendo contactos. Menciona que Chile tiene alta credibilidad en materia minera y que la industria privada es muy rápida para ver oportunidades.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q13",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone usar ProChile para organizar exportación de servicios mineros, aprovechando oportunidades con Argentina donde empresas ya están estableciendo contactos. Menciona que Chile tiene alta credibilidad en materia minera y que la industria privada es muy rápida para ver oportunidades.",
+			"timestamp": 5100
+		},
+		{
+			"preguntaId": "mineria-q13",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone mantener políticas como Proveedores de Clase Mundial, conformación de clusters mineros, roadmap desde el cobre a la innovación, política minera 2050 y Mesa Nacional de Proveedores para agregar valor más allá de la extracción de materias primas.",
+			"timestamp": 4200
+		},
+		{
+			"preguntaId": "mineria-q13",
+			"candidatoId": "jeannette-jara",
+			"resumen": "Propone impulsar definitivamente la Fundación Videla (Paipote) para fundir y refinar minerales críticos como tierras raras, aprovechando las ventajas comparativas de Chile en la negociación con distintos países y fortaleciendo el desarrollo económico internacional.",
+			"timestamp": 4800
+		},
+		{
+			"preguntaId": "mineria-q14",
+			"candidatoId": "evelyn-matthei",
+			"resumen": "Propone usar ProChile para organizar exportación de servicios mineros, aprovechando oportunidades con Argentina donde empresas ya están estableciendo contactos, destacando la alta credibilidad chilena en materia minera.",
+			"timestamp": 5100
+		}
+	]
+}
