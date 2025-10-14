@@ -290,8 +290,8 @@
 
 	<!-- Header -->
 	<header class="mb-12 text-center">
-		<h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Las preguntas del debate</h1>
-		<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Las preguntas del debate</h1>
+		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
 			Infografía interactiva con todas las preguntas y respuestas de los candidatos. Haz clic en un
 			candidato para filtrar sus respuestas.
 		</p>
@@ -299,7 +299,7 @@
 
 	<!-- Selector de Candidatos y Temas -->
 	<section class="mb-12">
-		<h2 class="text-xl font-semibold mb-4 text-gray-900">Filtrar por candidato</h2>
+		<h2 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Filtrar por candidato</h2>
 
 		<!-- Candidatos -->
 		<div class="mb-4">
@@ -359,26 +359,39 @@
 						</div>
 					</button>
 				{/each}
-			</div>
 
-			<!-- Toggle para mostrar eliminados -->
-			<div class="flex justify-center mt-3">
+				<!-- Botón "Otros" para toggle de eliminados -->
 				<button
 					onclick={() => (mostrarEliminados = !mostrarEliminados)}
-					class="text-xs text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1.5"
+					class="group flex items-center gap-1.5 md:gap-2 pr-4 md:pr-6 rounded-full border-2 transition-all duration-200 overflow-hidden h-12 md:h-20 {mostrarEliminados
+						? 'border-yellow-600/30 bg-yellow-50/50 shadow-sm'
+						: 'border-yellow-600/20 bg-transparent hover:bg-yellow-50/30'}"
 				>
-					<svg
-						class="w-3.5 h-3.5 transition-transform duration-200 {mostrarEliminados
-							? 'rotate-180'
-							: ''}"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
-						></path>
-					</svg>
-					Candidatos eliminados
+					<div class="h-full flex items-center justify-center pl-3 md:pl-4">
+						<svg
+							class="w-4 md:w-5 h-4 md:h-5 text-yellow-700 transition-transform duration-300 ease-out {mostrarEliminados
+								? 'rotate-180'
+								: 'group-hover:rotate-90'}"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 4v16m8-8H4"
+							></path>
+						</svg>
+					</div>
+					<div class="text-left py-1 md:py-2">
+						<h3 class="font-semibold text-sm md:text-base leading-tight text-yellow-700">
+							{mostrarEliminados ? 'Ocultar otros' : 'Otros'}
+						</h3>
+						<p class="hidden md:block text-sm leading-tight text-yellow-600">
+							{mostrarEliminados ? 'Eliminados en primarias' : 'Ver más candidatos'}
+						</p>
+					</div>
 				</button>
 			</div>
 		</div>

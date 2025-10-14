@@ -54,6 +54,16 @@ export const candidatos2025: Candidato[] = [
 		abreviacion: 'JJ'
 	},
 	{
+		id: 'franco-parisi',
+		nombre: 'Franco Parisi',
+		partido: 'Partido de la Gente (PDG)',
+		foto: '/blog/candidatos/franco-parisi.webp',
+		fotoSinFondo: '/blog/candidatos/sin-fondo/franco-parisi.webp',
+		estado: 'confirmado',
+		color: '#5B2C83',
+		abreviacion: 'FP'
+	},
+	{
 		id: 'marco-enriquez-ominami',
 		nombre: 'Marco Enríquez-Ominami',
 		partido: 'Partido Humanista (PH)',
@@ -75,14 +85,14 @@ export const candidatos2025: Candidato[] = [
 		abreviacion: 'KA'
 	},
 	{
-		id: 'franco-parisi',
-		nombre: 'Franco Parisi',
-		partido: 'Partido de la Gente (PDG)',
-		foto: '/blog/candidatos/franco-parisi.webp',
-		fotoSinFondo: '/blog/candidatos/sin-fondo/franco-parisi.webp',
+		id: 'eduardo-artes',
+		nombre: 'Eduardo Artés',
+		partido: 'Unión Patriótica',
+		foto: '/blog/candidatos/eduardo-artes.webp',
+		fotoSinFondo: '/blog/candidatos/sin-fondo/eduardo-artes.webp',
 		estado: 'confirmado',
-		color: '#5B2C83',
-		abreviacion: 'FP'
+		color: '#E4002B',
+		abreviacion: 'EA'
 	},
 	{
 		id: 'harold-mayne-nicholls',
@@ -93,16 +103,6 @@ export const candidatos2025: Candidato[] = [
 		estado: 'potencial',
 		color: '#6E6E6E',
 		abreviacion: 'HM'
-	},
-	{
-		id: 'eduardo-artes',
-		nombre: 'Eduardo Artés',
-		partido: 'Unión Patriótica',
-		foto: '/blog/candidatos/eduardo-artes.webp',
-		fotoSinFondo: '/blog/candidatos/sin-fondo/eduardo-artes.webp',
-		estado: 'confirmado',
-		color: '#E4002B',
-		abreviacion: 'EA'
 	},
 	{
 		id: 'carolina-toha',
