@@ -48,6 +48,11 @@
 	let temaSeleccionadoId = $state<string | null>(null);
 
 	/**
+	 * Estado: mostrar candidatos eliminados en primarias
+	 */
+	let mostrarEliminados = $state(false);
+
+	/**
 	 * Modo de prueba: permite importar JSONs temporales
 	 */
 	let modoPrueba = $state(false);
@@ -59,6 +64,15 @@
 	 */
 	const candidatoSeleccionado = $derived(
 		candidatoSeleccionadoId ? getCandidatoById(candidatoSeleccionadoId) : null
+	);
+
+	/**
+	 * Candidatos visibles según filtro de eliminados
+	 */
+	const candidatosVisibles = $derived(
+		mostrarEliminados
+			? candidatos2025
+			: candidatos2025.filter((c) => !c.eliminadoEnPrimarias)
 	);
 
 	/**
@@ -289,11 +303,11 @@
 
 		<!-- Candidatos -->
 		<div class="mb-4">
-			<div class="flex flex-wrap gap-3">
-				{#each candidatos2025 as candidato}
+			<div class="flex flex-wrap gap-2 md:gap-3">
+				{#each candidatosVisibles as candidato}
 					<button
 						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group flex items-center gap-2 pr-4 rounded-full border-2 transition-all duration-200 overflow-hidden h-20 {candidatoSeleccionadoId ===
+						class="group flex items-center gap-1.5 md:gap-2 pr-2 md:pr-4 rounded-full border-2 transition-all duration-200 overflow-hidden h-12 md:h-20 {candidatoSeleccionadoId ===
 						candidato.id
 							? 'shadow-md'
 							: ''}"
@@ -322,9 +336,9 @@
 									: 'rounded-full'}"
 							/>
 						</div>
-						<div class="text-left py-2">
+						<div class="text-left py-1 md:py-2">
 							<h3
-								class="font-semibold text-base leading-tight {candidatoSeleccionadoId ===
+								class="font-semibold text-sm md:text-base leading-tight {candidatoSeleccionadoId ===
 								candidato.id
 									? ''
 									: 'text-gray-900'}"
@@ -333,7 +347,7 @@
 								{candidato.nombre}
 							</h3>
 							<p
-								class="text-sm leading-tight {candidatoSeleccionadoId === candidato.id
+								class="hidden md:block text-sm leading-tight {candidatoSeleccionadoId === candidato.id
 									? ''
 									: 'text-gray-600'}"
 								style={candidatoSeleccionadoId === candidato.id
@@ -345,6 +359,27 @@
 						</div>
 					</button>
 				{/each}
+			</div>
+
+			<!-- Toggle para mostrar eliminados -->
+			<div class="flex justify-center mt-3">
+				<button
+					onclick={() => (mostrarEliminados = !mostrarEliminados)}
+					class="text-xs text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-1.5"
+				>
+					<svg
+						class="w-3.5 h-3.5 transition-transform duration-200 {mostrarEliminados
+							? 'rotate-180'
+							: ''}"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"
+						></path>
+					</svg>
+					Candidatos eliminados
+				</button>
 			</div>
 		</div>
 

@@ -13,6 +13,7 @@ export interface Candidato {
 	estado: 'confirmado' | 'precandidata' | 'potencial';
 	color: string; // Color hexadecimal del partido/candidato
 	abreviacion: string; // Abreviación de 2 letras única
+	eliminadoEnPrimarias?: boolean; // True si perdió en las primarias
 }
 
 /**
@@ -112,7 +113,8 @@ export const candidatos2025: Candidato[] = [
 		fotoSinFondo: '/blog/candidatos/sin-fondo/carolina-toha.webp',
 		estado: 'confirmado',
 		color: '#FFCD00',
-		abreviacion: 'CT'
+		abreviacion: 'CT',
+		eliminadoEnPrimarias: true
 	},
 	{
 		id: 'gonzalo-winter',
@@ -122,7 +124,8 @@ export const candidatos2025: Candidato[] = [
 		fotoSinFondo: '/blog/candidatos/sin-fondo/gonzalo-winter.webp',
 		estado: 'confirmado',
 		color: '#00B5E2',
-		abreviacion: 'GW'
+		abreviacion: 'GW',
+		eliminadoEnPrimarias: true
 	},
 	{
 		id: 'jaime-mulet',
@@ -132,7 +135,8 @@ export const candidatos2025: Candidato[] = [
 		fotoSinFondo: '/blog/candidatos/sin-fondo/jaime-mulet.webp',
 		estado: 'confirmado',
 		color: '#00A859',
-		abreviacion: 'JM'
+		abreviacion: 'JM',
+		eliminadoEnPrimarias: true
 	}
 ];
 
