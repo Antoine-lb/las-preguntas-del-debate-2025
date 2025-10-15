@@ -49,8 +49,8 @@
 		const words = getWordsData();
 		if (words.length === 0) return;
 
-		// Configuración de fuentes y tamaños mejorada
-		const fontFamily = '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
+		// Configuración de fuentes y tamaños mejorada con alta nitidez
+		const fontFamily = '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif';
 		const maxFontSize = 72;
 		const minFontSize = 16;
 
@@ -128,7 +128,13 @@
 			const sizeMultiplier = Math.pow(normalizedWeight, 0.8);
 			const fontSize = minFontSize + (maxFontSize - minFontSize) * sizeMultiplier;
 
+			// Configurar fuente con peso optimizado para nitidez
 			ctx.font = `600 ${fontSize}px ${fontFamily}`;
+			
+			// Configurar renderizado de texto para máxima nitidez
+			ctx.textBaseline = 'alphabetic';
+			ctx.textAlign = 'left';
+			ctx.textRenderingOptimization = 'optimizeQuality';
 
 			// Medir el texto
 			const textMetrics = ctx.measureText(word.text);
@@ -138,19 +144,20 @@
 			// Encontrar posición libre
 			const position = findFreePosition(wordWidth, wordHeight);
 
-			// Crear gradiente para el texto
+			// Crear gradiente más sutil para mejor nitidez
 			const textGradient = ctx.createLinearGradient(position.x, position.y, position.x + wordWidth, position.y + wordHeight);
 			
 			// Usar colores más vibrantes y modernos
 			const baseColor = word.color;
 			textGradient.addColorStop(0, baseColor);
-			textGradient.addColorStop(1, adjustBrightness(baseColor, -20));
+			textGradient.addColorStop(0.5, baseColor);
+			textGradient.addColorStop(1, adjustBrightness(baseColor, -15));
 
-			// Dibujar sombra sutil
-			ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
-			ctx.shadowBlur = 4;
-			ctx.shadowOffsetX = 2;
-			ctx.shadowOffsetY = 2;
+			// Dibujar sombra muy sutil para nitidez
+			ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+			ctx.shadowBlur = 2;
+			ctx.shadowOffsetX = 1;
+			ctx.shadowOffsetY = 1;
 
 			// Dibujar el texto con gradiente
 			ctx.fillStyle = textGradient;
@@ -178,16 +185,21 @@
 			});
 		});
 
-		// Dibujar título con mejor estilo
-		ctx.font = 'bold 28px "Inter", "Segoe UI", sans-serif';
-		ctx.fillStyle = '#1e293b';
+		// Dibujar título con máxima nitidez
+		ctx.font = '700 32px "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif';
+		ctx.textRenderingOptimization = 'optimizeQuality';
+		ctx.textBaseline = 'alphabetic';
+		ctx.fillStyle = '#0f172a';
 		ctx.textAlign = 'center';
-		ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
-		ctx.shadowBlur = 2;
-		ctx.shadowOffsetY = 1;
-		ctx.fillText(getTitle(), width / 2, 35);
 		
-		// Resetear sombra
+		// Sombra muy sutil para el título
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.06)';
+		ctx.shadowBlur = 1;
+		ctx.shadowOffsetY = 1;
+		
+		ctx.fillText(getTitle(), width / 2, 40);
+		
+		// Resetear sombra y alineación
 		ctx.shadowColor = 'transparent';
 		ctx.shadowBlur = 0;
 		ctx.shadowOffsetY = 0;
@@ -206,8 +218,27 @@
 	onMount(() => {
 		if (canvas) {
 			ctx = canvas.getContext('2d')!;
-			canvas.width = width;
-			canvas.height = height;
+			
+			// Configurar canvas para alta resolución y nitidez
+			const devicePixelRatio = window.devicePixelRatio || 1;
+			const rect = canvas.getBoundingClientRect();
+			
+			// Establecer el tamaño real del canvas
+			canvas.width = width * devicePixelRatio;
+			canvas.height = height * devicePixelRatio;
+			
+			// Establecer el tamaño de visualización
+			canvas.style.width = width + 'px';
+			canvas.style.height = height + 'px';
+			
+			// Escalar el contexto para la alta resolución
+			ctx.scale(devicePixelRatio, devicePixelRatio);
+			
+			// Configurar renderizado de texto para máxima nitidez
+			ctx.textRenderingOptimization = 'optimizeQuality';
+			ctx.imageSmoothingEnabled = true;
+			ctx.imageSmoothingQuality = 'high';
+			
 			drawWordCloud();
 		}
 	});
@@ -274,6 +305,14 @@
 		position: relative;
 		overflow: hidden;
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		
+		/* Optimización para alta resolución */
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges;
+		image-rendering: pixelated;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
 	}
 
 	.wordcloud-canvas::before {
