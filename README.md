@@ -1,5 +1,7 @@
 # Las Preguntas del Debate - Chile 2025
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ec422c90-353a-402a-86d8-781a765a606e/deploy-status)](https://app.netlify.com/sites/las-preguntas-del-debate-2025/deploys)
+
 Una infografía interactiva que recopila todas las preguntas y respuestas de los candidatos presidenciales en los debates de la elección presidencial de Chile 2025.
 
 ## Sobre el Proyecto
