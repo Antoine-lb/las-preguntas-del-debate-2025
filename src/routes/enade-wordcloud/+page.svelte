@@ -100,18 +100,19 @@
 				{#each candidatosDisponibles as candidato}
 					<button
 						onclick={() => selectCandidato(candidato.id)}
-						class="px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg
+						class="px-4 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg
 							{selectedCandidato === candidato.id 
 								? 'text-white shadow-lg' 
 								: 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200 hover:border-gray-300'}"
 						style:background={selectedCandidato === candidato.id ? `linear-gradient(135deg, ${candidato.color}, ${adjustBrightness(candidato.color, -20)})` : undefined}
 						style:box-shadow={selectedCandidato === candidato.id ? `0 10px 25px -5px ${candidato.color}40` : undefined}
 					>
-						<span class="flex items-center gap-2">
-							<div 
-								class="w-3 h-3 rounded-full"
-								style:background-color={candidato.color}
-							></div>
+						<span class="flex items-center gap-3">
+							<img 
+								src="/blog/candidatos/{candidato.nombre.toLowerCase().replace(/\s+/g, '-').replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')}.webp"
+								alt="{candidato.nombre}"
+								class="w-6 h-6 rounded-full object-cover border border-white shadow-sm"
+							/>
 							{candidato.nombre}
 						</span>
 					</button>
@@ -125,9 +126,14 @@
 			{#if selectedCandidato}
 				<div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
 					<div 
-						class="px-4 py-2 rounded-full text-white font-semibold text-sm shadow-lg"
+						class="px-4 py-2 rounded-full text-white font-semibold text-sm shadow-lg flex items-center gap-2"
 						style:background={`linear-gradient(135deg, ${candidatosDisponibles.find(c => c.id === selectedCandidato)?.color}, ${adjustBrightness(candidatosDisponibles.find(c => c.id === selectedCandidato)?.color || '#000', -20)})`}
 					>
+						<img 
+							src="/blog/candidatos/{candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre.toLowerCase().replace(/\s+/g, '-').replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')}.webp"
+							alt="{candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}"
+							class="w-5 h-5 rounded-full object-cover border border-white shadow-sm"
+						/>
 						{candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}
 					</div>
 				</div>
@@ -146,14 +152,21 @@
 		<!-- Lista de conceptos por candidato - Movida aquí para estar debajo de la nube -->
 		{#if selectedCandidato}
 			<div class="mt-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-8 border border-gray-100">
-				<div class="flex items-center gap-3 mb-8">
-					<div 
-						class="w-12 h-12 rounded-xl flex items-center justify-center"
-						style:background={`linear-gradient(135deg, ${candidatosDisponibles.find(c => c.id === selectedCandidato)?.color}, ${adjustBrightness(candidatosDisponibles.find(c => c.id === selectedCandidato)?.color || '#000', -20)})`}
-					>
-						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
-						</svg>
+				<div class="flex items-center gap-4 mb-8">
+					<div class="relative">
+						<img 
+							src="/blog/candidatos/{candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre.toLowerCase().replace(/\s+/g, '-').replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')}.webp"
+							alt="{candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}"
+							class="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
+						/>
+						<div 
+							class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center"
+							style:background-color={candidatosDisponibles.find(c => c.id === selectedCandidato)?.color}
+						>
+							<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+							</svg>
+						</div>
 					</div>
 					<h3 class="text-2xl font-bold text-gray-900">
 						Conceptos detallados - {candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}
