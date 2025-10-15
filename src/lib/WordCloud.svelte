@@ -30,18 +30,33 @@
 	function drawWordCloud() {
 		if (!ctx || !canvas) return;
 
-		// Limpiar canvas
-		ctx.clearRect(0, 0, width, height);
-		ctx.fillStyle = '#f8f9fa';
+		// Crear gradiente de fondo
+		const gradient = ctx.createLinearGradient(0, 0, width, height);
+		gradient.addColorStop(0, '#f8fafc');
+		gradient.addColorStop(1, '#e2e8f0');
+		
+		ctx.fillStyle = gradient;
 		ctx.fillRect(0, 0, width, height);
+
+		// Dibujar patrón de puntos sutiles
+		ctx.fillStyle = '#cbd5e1';
+		ctx.globalAlpha = 0.1;
+		for (let i = 0; i < width; i += 40) {
+			for (let j = 0; j < height; j += 40) {
+				ctx.beginPath();
+				ctx.arc(i, j, 1, 0, 2 * Math.PI);
+				ctx.fill();
+			}
+		}
+		ctx.globalAlpha = 1;
 
 		const words = getWordsData();
 		if (words.length === 0) return;
 
-		// Configuración de fuentes y tamaños
-		const fontFamily = 'Arial, sans-serif';
-		const maxFontSize = 48;
-		const minFontSize = 12;
+		// Configuración de fuentes y tamaños mejorada
+		const fontFamily = '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
+		const maxFontSize = 56;
+		const minFontSize = 14;
 
 		// Calcular el peso máximo para normalizar
 		const maxWeight = Math.max(...words.map(w => w.weight));
@@ -52,7 +67,7 @@
 
 		// Función para verificar si una posición está ocupada
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = 5; // Margen entre palabras
+			const margin = 8; // Margen entre palabras aumentado
 			return occupiedPositions.some(pos => 
 				!(x + wordWidth + margin < pos.x || 
 				  x - margin > pos.x + pos.width || 
@@ -61,22 +76,41 @@
 			);
 		}
 
-		// Función para encontrar una posición libre
+		// Función para encontrar una posición libre con algoritmo mejorado
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = 100;
+			const maxAttempts = 200;
 			let attempts = 0;
+			const centerX = width / 2;
+			const centerY = height / 2;
 
 			while (attempts < maxAttempts) {
-				const x = Math.random() * (width - wordWidth);
-				const y = Math.random() * (height - wordHeight);
+				// Usar distribución espiral para mejor distribución
+				const angle = attempts * 0.1;
+				const radius = Math.min(attempts * 2, Math.min(width, height) / 4);
+				
+				const x = centerX + radius * Math.cos(angle) - wordWidth / 2;
+				const y = centerY + radius * Math.sin(angle) - wordHeight / 2;
 
-				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
+				// Verificar límites
+				if (x >= 20 && x <= width - wordWidth - 20 && 
+					y >= 60 && y <= height - wordHeight - 20 &&
+					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
 				}
 				attempts++;
 			}
 
-			// Si no encuentra posición, colocar en el centro
+			// Fallback: posición aleatoria
+			for (let i = 0; i < 50; i++) {
+				const x = 20 + Math.random() * (width - wordWidth - 40);
+				const y = 60 + Math.random() * (height - wordHeight - 80);
+
+				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
+					return { x, y };
+				}
+			}
+
+			// Último recurso: centro
 			return {
 				x: (width - wordWidth) / 2,
 				y: (height - wordHeight) / 2
@@ -86,14 +120,13 @@
 		// Ordenar palabras por peso (mayor a menor)
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
 
-		// Dibujar cada palabra
-		sortedWords.forEach(word => {
+		// Dibujar cada palabra con efectos mejorados
+		sortedWords.forEach((word, index) => {
 			// Calcular tamaño de fuente basado en el peso
 			const normalizedWeight = (word.weight - minWeight) / (maxWeight - minWeight);
 			const fontSize = minFontSize + (maxFontSize - minFontSize) * normalizedWeight;
 
-			ctx.font = `${fontSize}px ${fontFamily}`;
-			ctx.fillStyle = word.color || '#333';
+			ctx.font = `600 ${fontSize}px ${fontFamily}`;
 
 			// Medir el texto
 			const textMetrics = ctx.measureText(word.text);
@@ -103,8 +136,36 @@
 			// Encontrar posición libre
 			const position = findFreePosition(wordWidth, wordHeight);
 
-			// Dibujar el texto
+			// Crear gradiente para el texto
+			const textGradient = ctx.createLinearGradient(position.x, position.y, position.x + wordWidth, position.y + wordHeight);
+			
+			// Usar colores más vibrantes y modernos
+			const baseColor = word.color;
+			textGradient.addColorStop(0, baseColor);
+			textGradient.addColorStop(1, adjustBrightness(baseColor, -20));
+
+			// Dibujar sombra sutil
+			ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+			ctx.shadowBlur = 4;
+			ctx.shadowOffsetX = 2;
+			ctx.shadowOffsetY = 2;
+
+			// Dibujar el texto con gradiente
+			ctx.fillStyle = textGradient;
 			ctx.fillText(word.text, position.x, position.y + wordHeight);
+
+			// Resetear sombra
+			ctx.shadowColor = 'transparent';
+			ctx.shadowBlur = 0;
+			ctx.shadowOffsetX = 0;
+			ctx.shadowOffsetY = 0;
+
+			// Agregar efecto hover (borde sutil para palabras grandes)
+			if (normalizedWeight > 0.7) {
+				ctx.strokeStyle = adjustBrightness(baseColor, 30);
+				ctx.lineWidth = 1;
+				ctx.strokeText(word.text, position.x, position.y + wordHeight);
+			}
 
 			// Registrar la posición ocupada
 			occupiedPositions.push({
@@ -115,12 +176,29 @@
 			});
 		});
 
-		// Dibujar título
-		ctx.font = 'bold 24px Arial, sans-serif';
-		ctx.fillStyle = '#333';
+		// Dibujar título con mejor estilo
+		ctx.font = 'bold 28px "Inter", "Segoe UI", sans-serif';
+		ctx.fillStyle = '#1e293b';
 		ctx.textAlign = 'center';
-		ctx.fillText(getTitle(), width / 2, 30);
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+		ctx.shadowBlur = 2;
+		ctx.shadowOffsetY = 1;
+		ctx.fillText(getTitle(), width / 2, 35);
+		
+		// Resetear sombra
+		ctx.shadowColor = 'transparent';
+		ctx.shadowBlur = 0;
+		ctx.shadowOffsetY = 0;
 		ctx.textAlign = 'left';
+	}
+
+	// Función auxiliar para ajustar brillo de color
+	function adjustBrightness(color: string, amount: number): string {
+		const hex = color.replace('#', '');
+		const r = Math.max(0, Math.min(255, parseInt(hex.substr(0, 2), 16) + amount));
+		const g = Math.max(0, Math.min(255, parseInt(hex.substr(2, 2), 16) + amount));
+		const b = Math.max(0, Math.min(255, parseInt(hex.substr(4, 2), 16) + amount));
+		return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 	}
 
 	onMount(() => {
@@ -163,27 +241,108 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 1rem;
-		background: white;
-		border-radius: 0.5rem;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 2rem;
+		background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+		border-radius: 1rem;
+		box-shadow: 
+			0 10px 25px -5px rgba(0, 0, 0, 0.1),
+			0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		border: 1px solid rgba(226, 232, 240, 0.8);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.wordcloud-container::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981, #F59E0B);
+		border-radius: 1rem 1rem 0 0;
 	}
 
 	.wordcloud-canvas {
-		border: 1px solid #e5e7eb;
-		border-radius: 0.375rem;
-		background: #f8f9fa;
+		border: 2px solid rgba(226, 232, 240, 0.6);
+		border-radius: 0.75rem;
+		background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 		cursor: pointer;
-		transition: transform 0.2s ease;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.wordcloud-canvas::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+		pointer-events: none;
+		transition: transform 0.6s ease;
 	}
 
 	.wordcloud-canvas:hover {
-		transform: scale(1.02);
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		transform: translateY(-4px) scale(1.01);
+		box-shadow: 
+			0 20px 40px -10px rgba(0, 0, 0, 0.15),
+			0 8px 16px -4px rgba(0, 0, 0, 0.1);
+		border-color: rgba(217, 119, 87, 0.3);
+	}
+
+	.wordcloud-canvas:hover::before {
+		transform: translateX(100%);
 	}
 
 	.wordcloud-info {
 		text-align: center;
-		margin-top: 0.5rem;
+		margin-top: 1rem;
+		padding: 0.75rem 1.5rem;
+		background: rgba(248, 250, 252, 0.8);
+		border-radius: 0.5rem;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(226, 232, 240, 0.5);
+	}
+
+	.wordcloud-info p {
+		margin: 0;
+		font-weight: 500;
+		color: #475569;
+		font-size: 0.875rem;
+		letter-spacing: 0.025em;
+	}
+
+	/* Animaciones adicionales */
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.wordcloud-container {
+		animation: fadeInUp 0.6s ease-out;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.wordcloud-container {
+			padding: 1rem;
+		}
+		
+		.wordcloud-canvas {
+			transform: scale(0.9);
+		}
+		
+		.wordcloud-canvas:hover {
+			transform: translateY(-2px) scale(0.91);
+		}
 	}
 </style>
