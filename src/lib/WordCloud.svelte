@@ -139,26 +139,38 @@
 			// Encontrar posición libre
 			const position = findFreePosition(wordWidth, wordHeight);
 
-			// Renderizado limpio y profesional - sin gradientes complejos
+			// Renderizado optimizado para máxima intensidad y nitidez
 			const baseColor = word.color;
 			
-			// Solo para palabras muy importantes: sombra ultra sutil
-			if (normalizedWeight > 0.8) {
-				ctx.shadowColor = 'rgba(0, 0, 0, 0.04)';
-				ctx.shadowBlur = 1;
-				ctx.shadowOffsetX = 0.5;
-				ctx.shadowOffsetY = 0.5;
+			// Intensificar el color para mejor contraste
+			const intensifiedColor = adjustBrightness(baseColor, -15);
+			
+			// Sombra sutil para todas las palabras importantes
+			if (normalizedWeight > 0.5) {
+				ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+				ctx.shadowBlur = 1.5;
+				ctx.shadowOffsetX = 0.8;
+				ctx.shadowOffsetY = 0.8;
 			}
 
-			// Dibujar el texto con color sólido para máxima claridad
-			ctx.fillStyle = baseColor;
+			// Dibujar el texto con color intensificado para máxima claridad
+			ctx.fillStyle = intensifiedColor;
 			ctx.fillText(word.text, position.x, position.y + wordHeight);
 
-			// Resetear sombra
+			// Para palabras muy importantes, agregar un borde sutil
+			if (normalizedWeight > 0.7) {
+				ctx.strokeStyle = adjustBrightness(intensifiedColor, -10);
+				ctx.lineWidth = 0.5;
+				ctx.strokeText(word.text, position.x, position.y + wordHeight);
+			}
+
+			// Resetear sombra y stroke
 			ctx.shadowColor = 'transparent';
 			ctx.shadowBlur = 0;
 			ctx.shadowOffsetX = 0;
 			ctx.shadowOffsetY = 0;
+			ctx.strokeStyle = 'transparent';
+			ctx.lineWidth = 0;
 
 			// Registrar la posición ocupada
 			occupiedPositions.push({
