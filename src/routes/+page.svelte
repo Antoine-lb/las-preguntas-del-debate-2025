@@ -321,7 +321,7 @@
 			<!-- Debates -->
 			{#key debatesFiltrados.length}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
 					in:fade={{ duration: 200 }}
 				>
 					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -340,7 +340,7 @@
 			<!-- Preguntas -->
 			{#key totalPreguntas}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
 					in:fade={{ duration: 200 }}
 				>
 					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -359,7 +359,7 @@
 			<!-- Respuestas -->
 			{#key totalRespuestas}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
 					in:fade={{ duration: 200 }}
 				>
 					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

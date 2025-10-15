@@ -4,83 +4,87 @@
 		{
 			"preguntaId": "enade-q1",
 			"candidatoId": "jose-antonio-kast",
-			"resumen": "Necesitamos reducir los plazos de permisología sin comprometer la fiscalización ambiental. Mi gobierno implementará ventanillas únicas digitales, profesionales especializados en cada servicio público y un sistema de silencio administrativo positivo con controles posteriores rigurosos. La austeridad fiscal no puede ser excusa para debilitar la fiscalización: redestinaremos recursos desde áreas improductivas hacia control ambiental efectivo.",
+			"resumen": "El crecimiento no es contra el medio ambiente, sino junto con él. Hay 2.400 instituciones que traban proyectos. Aumentaremos recursos a Contraloría, Fiscalía y tribunales para evitar corrupción. Plan Desafío 90 en primeros días: desregular permisos que cargan mochila de emprendedores, modificar Consejo de Monumentos, Dirección de Obras y Aguas.",
 			"timestamp": 3600
 		},
 		{
 			"preguntaId": "enade-q2",
 			"candidatoId": "johannes-kaiser",
-			"resumen": "Fijo una meta de crecimiento del 5% anual para 2030. El mecanismo de control será transparencia total: publicación en línea de todas las evaluaciones ambientales, participación ciudadana vinculante en proyectos de alto impacto, y un panel de expertos independientes que supervise que la desregulación no debilite estándares. La desregulación inteligente significa eliminar trabas burocráticas innecesarias, no bajar protecciones ambientales científicamente fundamentadas."
+			"resumen": "Meta de crecimiento: 4,5% a 5% anual. Sin esto es inviable cumplir compromisos sociales y financiar deuda. Para evitar debilitar estándares ambientales: sancionar al que incumple la norma, no hacer pedir permiso para cada fase. Permitir trabajar y fiscalizar. Si no cumplen, sancionar penal y civilmente. No detener proyectos hasta que burócratas estén convencidos.",
+			"timestamp": 3900
 		},
 		{
 			"preguntaId": "enade-q3",
 			"candidatoId": "jeannette-jara",
-			"resumen": "Me comprometo a reducir la tasa de homicidios a menos de 3 por cada 100.000 habitantes para 2030. Las dos medidas prioritarias serán: primero, fortalecer la prevención con programas comunitarios y oportunidades para jóvenes en riesgo; segundo, mejorar la investigación criminal con tecnología y más recursos para PDI y Ministerio Público. Todo esto respetando garantías constitucionales y derechos humanos, sin militarizar la seguridad pública.",
-			"timestamp": 3900
+			"resumen": "Seguridad pública presente en todo el país: norte (mafias), sur (violencia intrafamiliar). No hay cifra aceptable de homicidios. Fortalecer policías y capacidad de inteligencia. Perseguir ruta del dinero es clave. Compromiso unitario necesario. Cuando Estado se debilita, crimen ingresa con mayor fuerza. No cree que haya cifra aceptable de delincuentes.",
+			"timestamp": 4200
 		},
 		{
 			"preguntaId": "enade-q4",
 			"candidatoId": "evelyn-matthei",
-			"resumen": "Nos comprometemos a ejecutar 15.000 expulsiones efectivas anuales durante los primeros dos años, priorizando personas con antecedentes penales. Los mecanismos de garantía legal incluyen: debido proceso con derecho a defensa, revisión judicial obligatoria en casos de niños y adolescentes, verificación de identidad para evitar errores, y coordinación con países de origen para confirmar nacionalidad. Implementaremos un sistema biométrico para evitar confusiones de identidad."
+			"resumen": "Primero controlar frontera: cerrar en un año. Control aéreo con satélites, drones, sensores. Policía fronteriza. Meta expulsiones: 10.000 personas con orden de expulsión no ejecutada + 3.000 extranjeros privados de libertad que cumplan pena en su país. Evitar perder condición país libre de plagas.",
+			"timestamp": 4500
 		},
 		{
 			"preguntaId": "enade-q5",
 			"candidatoId": "harold-mayne-nicholls",
-			"resumen": "Propongo mantener la deuda pública bajo el 40% del PIB para 2030, con una trayectoria descendente desde el nivel actual. La regla fiscal permanente será: equilibrio estructural del presupuesto con cláusula de excepción solo para catástrofes naturales o crisis internacionales graves, aprobada por 2/3 del Congreso. Crearemos un Consejo Fiscal Independiente que audite el cumplimiento y emita alertas tempranas ante desviaciones del gasto responsable.",
-			"timestamp": 4200
+			"resumen": "Mantener regla del 44% de deuda PIB, no sobrepasarla. Ajustes automáticos si se alcanza. Financiamiento: crecimiento 4% anual PIB + reducir evasión 1-2 puntos. No recortar gasto público, sino usar bien los recursos del Estado. Mantener programas sociales siendo creativos para que gasto corriente se financie con ingreso corriente.",
+			"timestamp": 4800
 		},
 		{
 			"preguntaId": "enade-q6",
 			"candidatoId": "franco-parisi",
-			"resumen": "Sí, debemos cambiar el sistema electoral. Propongo volver a un sistema mayoritario con segunda vuelta que favorezca la gobernabilidad, combinado con circunscripciones más pequeñas para que todos los chilenos se sientan cercanos a sus representantes. Además, implementaré referéndums vinculantes para decisiones importantes, mecanismos de revocatoria de mandato y parlamento unicameral para reducir costos y aumentar eficiencia. La representación se garantiza dando voz directa a la ciudadanía."
+			"resumen": "Asegurar que todos puedan votar: mineros, personal de primera línea. Voto digital con Clave Única. Elecciones de media temporada: si Presidente lo hace bien gana mayoría, si mal baja mayoría. Partido de centro dispuesto a dialogar con todo el mundo sin discriminar. Necesitamos conversar más entre sectores políticos.",
+			"timestamp": 5100
 		},
 		{
 			"preguntaId": "enade-q7",
 			"candidatoId": "marco-enriquez-ominami",
-			"resumen": "Al menos el 15% de la fuerza laboral debe recibir capacitación relevante cada año hasta 2030, con énfasis en transformación digital e inteligencia artificial. El presupuesto será de 0,3% del PIB anual, financiado con reorganización del SENCE y nuevos recursos. Reportaremos trimestralmente la tasa de inserción laboral mediante seguimiento a 6 y 12 meses post-capacitación, con meta de 70% de inserción en empleos relacionados con la formación recibida.",
-			"timestamp": 4500
+			"resumen": "Uno de cada cinco empleos desaparecerá por robotización e IA. Propuestas: 1) 300.000 empleos para reconversión, 2) 100 liceos técnico-profesionales modelo alemán. Financiamiento: reforma tributaria 0,88% anual (3,52% en 4 años) + plan obras públicas 21.000 millones USD + nueva arquitectura financiera + Banco Central traspase recursos a banca privada. Sin inversión extranjera y reforma tributaria no se puede.",
+			"timestamp": 5400
 		},
 		{
 			"preguntaId": "enade-q8",
-			"candidatoId": "jose-antonio-kast",
-			"resumen": "Para generar un nuevo pacto político en este contexto fragmentado, propongo diálogos temáticos por áreas (seguridad, economía, salud) donde todas las fuerzas políticas aporten. El método será establecer mínimos comunes: qué cosas todos podemos acordar independiente de nuestras diferencias. La crisis social nos enseñó que necesitamos canales permanentes de diálogo, no solo en momentos de crisis. Convocaré a líderes de todos los sectores, incluyendo sociedad civil, gremios y movimientos sociales, a mesas de trabajo con compromisos verificables.",
-			"timestamp": 4800
+			"candidatoId": "marco-enriquez-ominami",
+			"resumen": "Ley de partidos políticos 2014 fue mala. Sobran partidos políticos: entes vacíos, desastrosos, vacíos de militancia, máquinas de poder y corrupción. Cambiar sistema político: menos presidencialista, Jefe de Estado no sea Jefe de Gobierno ni de Coalición. Crisis de doble legitimidad: hace 25 años país elige empate. Seguridad es tema técnico, no ideológico.",
+			"timestamp": 5700
 		},
 		{
 			"preguntaId": "enade-q9",
 			"candidatoId": "evelyn-matthei",
-			"resumen": "Es verdad que represento un sector político, pero mi trayectoria como alcaldesa demuestra capacidad de trabajar con todos. Uniré al país gobernando con resultados concretos, no con discursos: cuando la delincuencia baje, cuando haya más empleos, cuando la salud funcione, todos los chilenos se sentirán representados independiente de por quién votaron. Mi compromiso es un gobierno técnico y eficiente, con los mejores en cada cargo sin importar su color político, enfocado en resolver problemas reales de la gente.",
-			"timestamp": 5100
+			"resumen": "En Providencia decisiones por unanimidad pese a concejal PC y Republicano. Confianza se construye día a día mostrando cifras, cuando gente sabe que no estás robando. Regala libro de Fernando Flores sobre construcción de confianza. Hay que perseverar en confianza, es único camino para sacar a Chile del problema. Confianza entre todos para crecimiento y blindar frontera. Chile como un solo equipo.",
+			"timestamp": 6000
 		},
 		{
 			"preguntaId": "enade-q10",
 			"candidatoId": "jeannette-jara",
-			"resumen": "Implementaremos un sistema de reconocimiento y compensación del trabajo de cuidados no remunerado. Las políticas incluyen: ampliación de la red de salas cuna y jardines infantiles gratuitos, centros de cuidado para adultos mayores en cada comuna, subsidio directo para cuidadoras y cuidadores, reconocimiento de años de cuidado para el cálculo de pensiones, y formación profesional para quienes realizan estas labores. El trabajo de cuidados es fundamental para la economía y debe ser valorado y compensado.",
-			"timestamp": 5400
+			"resumen": "Trabajo doméstico y cuidados no remunerado contribuye al PIB. Reconocer trabajo de cuidadoras: aumentar cobertura de 30.000 a 60.000 personas y estipendio de 33.000 a 160.000 pesos. Construir 4 ELEAM, ampliar viviendas tuteladas, más centros diurnos. Reconocer esfuerzo de gente mayor. Lideró reforma previsional que beneficia a todos.",
+			"timestamp": 6300
 		},
 		{
 			"preguntaId": "enade-q11",
-			"candidatoId": "franco-parisi",
-			"resumen": "La educación pública, incluyendo la unidocente en sectores rurales, requiere inversión y dignificación. Aumentaremos los salarios de profesores rurales en 40%, proveeremos conectividad y tecnología a todas las escuelas rurales, crearemos incentivos para que profesores jóvenes trabajen en zonas apartadas, y estableceremos un programa de tutoría virtual para complementar la educación unidocente. Cada niño en Chile merece educación de calidad, viva donde viva.",
-			"timestamp": 5700
+			"candidatoId": "johannes-kaiser",
+			"resumen": "Entregar sector estatal de educación a autogestión de profesores organizados en cooperativas dirigidas profesionalmente. Ejemplos en Chile y Cataluña. Mejora radical en productividad educacional y reconocimiento de profesores. Recursos llegan más rápido a educación pública. Eliminar administración intermedia libera presupuesto para colegios rurales que no pueden adoptar este sistema.",
+			"timestamp": 6600
 		},
 		{
 			"preguntaId": "enade-q12",
-			"candidatoId": "johannes-kaiser",
-			"resumen": "El avance de la inteligencia artificial creará desafíos, pero la solución no es subsidiar la inactividad sino preparar a las personas. Implementaremos un programa masivo de reconversión laboral enfocado en habilidades que complementen la IA, no que compitan con ella. Para quienes definitivamente queden fuera, crearemos un ingreso básico condicionado a participación en programas de capacitación o trabajo comunitario. La economía formal debe expandirse, no contraerse.",
-			"timestamp": 6000
+			"candidatoId": "franco-parisi",
+			"resumen": "Bienvenida la inteligencia artificial, generará más empleo. No le tiene miedo como emprendedores. Necesita más IA: en CESFAM para diagnosticar antes de ver doctor, en colegios para profesores, para evitar desertificación. Chilenos se adaptarán y saldrán ganando. Ejemplo: sobrinita con síndrome de Down maneja teléfono espectacular. Pasarle tecnología a niños los deslumbra.",
+			"timestamp": 6900
 		},
 		{
 			"preguntaId": "enade-q13",
 			"candidatoId": "jose-antonio-kast",
-			"resumen": "No firmé el Acuerdo por la Paz del 15 de noviembre de 2019 porque ese acuerdo legitimaba la violencia como método de presión política. No podemos premiar a quienes quemaron el Metro, saquearon comercios y destruyeron propiedad pública y privada ofreciéndoles cambiar la Constitución. El Estado de Derecho significa que las reglas se cambian por las vías institucionales, no por la fuerza. Mi decisión fue defender el principio de que en democracia los cambios se hacen votando, no quemando.",
-			"timestamp": 6300
+			"resumen": "Acepta disculpas de Evelyn por ataques de Vox Republicano. Explica negativa a firmar Acuerdo por la Paz: no traería paz real. Después del acuerdo siguieron quemando todo hasta que los paró la pandemia. Le dijo a Piñera que ordenara a sus parlamentarios. Respalda cumplir la ley. El acuerdo no trajo paz como esperaban todos.",
+			"timestamp": 7200
 		},
 		{
 			"preguntaId": "enade-q14",
 			"candidatoId": "harold-mayne-nicholls",
-			"resumen": "Mi estrategia de resiliencia económica ante crisis internacionales tiene tres pilares: primero, diversificación de socios comerciales para no depender de un solo mercado; segundo, fondo de estabilización robusto con ahorro en tiempos buenos; tercero, promoción de industrias de innovación que agreguen valor y no dependan solo de materias primas. Respecto a Argentina, fortaleceremos integración en áreas específicas donde seamos complementarios, pero mantendremos independencia en política fiscal y monetaria. Los recursos para innovación vendrán de eficiencia en el gasto público y reasignación de subsidios ineficientes.",
-			"timestamp": 6600
+			"resumen": "Evitar hacer ciencia ficción con política y economía. Dialogar con Argentina cuando tiene problemas, surgen oportunidades. Ejemplo: hace año y medio íbamos a Mendoza al supermercado, ahora vienen ellos a Viña. Vecinos pasan por ciclos de crisis mayores que los nuestros. Argentina consiguió buen crédito con Estados Unidos. Mantener cercanía y diálogo.",
+			"timestamp": 7500
 		}
 	]
 }
+
