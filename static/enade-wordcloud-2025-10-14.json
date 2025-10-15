@@ -27,7 +27,12 @@
 				{"text": "cooperativas", "weight": 9, "color": "#FF5722"},
 				{"text": "pensiones", "weight": 8, "color": "#9E9E9E"},
 				{"text": "digital", "weight": 7, "color": "#673AB7"},
-				{"text": "control", "weight": 6, "color": "#795548"}
+				{"text": "control", "weight": 6, "color": "#795548"},
+				{"text": "sostenibilidad", "weight": 5, "color": "#4CAF50"},
+				{"text": "innovación", "weight": 4, "color": "#00BCD4"},
+				{"text": "competitividad", "weight": 3, "color": "#FF9800"},
+				{"text": "productividad", "weight": 3, "color": "#8BC34A"},
+				{"text": "infraestructura", "weight": 2, "color": "#607D8B"}
 			]
 		},
 		"candidatos": {
@@ -46,7 +51,12 @@
 					{"text": "emprendedores", "weight": 6, "color": "#BB8FCE"},
 					{"text": "desregulación", "weight": 5, "color": "#85C1E9"},
 					{"text": "acuerdo", "weight": 4, "color": "#F8C471"},
-					{"text": "paz", "weight": 4, "color": "#82E0AA"}
+					{"text": "paz", "weight": 4, "color": "#82E0AA"},
+					{"text": "eficiencia", "weight": 3, "color": "#AED6F1"},
+					{"text": "transparencia", "weight": 3, "color": "#F1948A"},
+					{"text": "modernización", "weight": 2, "color": "#D2B4DE"},
+					{"text": "simplificación", "weight": 2, "color": "#A9DFBF"},
+					{"text": "libertad", "weight": 1, "color": "#FADBD8"}
 				]
 			},
 			"johannes-kaiser": {
@@ -63,7 +73,12 @@
 					{"text": "cooperativas", "weight": 9, "color": "#BB8FCE"},
 					{"text": "autogestión", "weight": 8, "color": "#85C1E9"},
 					{"text": "productividad", "weight": 7, "color": "#F8C471"},
-					{"text": "presupuesto", "weight": 6, "color": "#82E0AA"}
+					{"text": "presupuesto", "weight": 6, "color": "#82E0AA"},
+					{"text": "calidad", "weight": 5, "color": "#AED6F1"},
+					{"text": "excelencia", "weight": 4, "color": "#F1948A"},
+					{"text": "responsabilidad", "weight": 3, "color": "#D2B4DE"},
+					{"text": "mérito", "weight": 2, "color": "#A9DFBF"},
+					{"text": "evaluación", "weight": 1, "color": "#FADBD8"}
 				]
 			},
 			"jeannette-jara": {
@@ -81,7 +96,13 @@
 					{"text": "estipendio", "weight": 10, "color": "#F8C471"},
 					{"text": "PIB", "weight": 9, "color": "#82E0AA"},
 					{"text": "viviendas", "weight": 8, "color": "#AED6F1"},
-					{"text": "reforma", "weight": 7, "color": "#F1948A"}
+					{"text": "reforma", "weight": 7, "color": "#F1948A"},
+					{"text": "derechos", "weight": 6, "color": "#D2B4DE"},
+					{"text": "igualdad", "weight": 5, "color": "#A9DFBF"},
+					{"text": "protección", "weight": 4, "color": "#FADBD8"},
+					{"text": "solidaridad", "weight": 3, "color": "#D5DBDB"},
+					{"text": "justicia", "weight": 2, "color": "#F8D7DA"},
+					{"text": "bienestar", "weight": 1, "color": "#D1ECF1"}
 				]
 			},
 			"evelyn-matthei": {
@@ -99,7 +120,12 @@
 					{"text": "equipo", "weight": 9, "color": "#82E0AA"},
 					{"text": "cifras", "weight": 8, "color": "#AED6F1"},
 					{"text": "crecimiento", "weight": 7, "color": "#F1948A"},
-					{"text": "policía", "weight": 6, "color": "#D2B4DE"}
+					{"text": "policía", "weight": 6, "color": "#D2B4DE"},
+					{"text": "tecnología", "weight": 5, "color": "#A9DFBF"},
+					{"text": "vigilancia", "weight": 4, "color": "#FADBD8"},
+					{"text": "prevención", "weight": 3, "color": "#D5DBDB"},
+					{"text": "orden", "weight": 2, "color": "#F8D7DA"},
+					{"text": "estabilidad", "weight": 1, "color": "#D1ECF1"}
 				]
 			},
 			"harold-mayne-nicholls": {
@@ -117,7 +143,13 @@
 					{"text": "cercanía", "weight": 9, "color": "#AED6F1"},
 					{"text": "crecimiento", "weight": 8, "color": "#F1948A"},
 					{"text": "gasto", "weight": 7, "color": "#D2B4DE"},
-					{"text": "programas", "weight": 6, "color": "#A9DFBF"}
+					{"text": "programas", "weight": 6, "color": "#A9DFBF"},
+					{"text": "finanzas", "weight": 5, "color": "#FADBD8"},
+					{"text": "presupuesto", "weight": 4, "color": "#D5DBDB"},
+					{"text": "equilibrio", "weight": 3, "color": "#F8D7DA"},
+					{"text": "sostenibilidad", "weight": 2, "color": "#D1ECF1"},
+					{"text": "responsabilidad", "weight": 2, "color": "#D4E6F1"},
+					{"text": "transparencia", "weight": 1, "color": "#E8DAEF"}
 				]
 			},
 			"franco-parisi": {
@@ -135,7 +167,12 @@
 					{"text": "tecnología", "weight": 10, "color": "#F1948A"},
 					{"text": "empleo", "weight": 9, "color": "#D2B4DE"},
 					{"text": "diálogo", "weight": 8, "color": "#A9DFBF"},
-					{"text": "partido", "weight": 7, "color": "#FADBD8"}
+					{"text": "partido", "weight": 7, "color": "#FADBD8"},
+					{"text": "modernización", "weight": 6, "color": "#D5DBDB"},
+					{"text": "eficiencia", "weight": 5, "color": "#F8D7DA"},
+					{"text": "transformación", "weight": 4, "color": "#D1ECF1"},
+					{"text": "innovación", "weight": 3, "color": "#D4E6F1"},
+					{"text": "futuro", "weight": 2, "color": "#E8DAEF"}
 				]
 			},
 			"marco-enriquez-ominami": {
@@ -153,16 +190,21 @@
 					{"text": "legitimidad", "weight": 11, "color": "#D2B4DE"},
 					{"text": "inversión", "weight": 10, "color": "#A9DFBF"},
 					{"text": "financiamiento", "weight": 9, "color": "#FADBD8"},
-					{"text": "banca", "weight": 8, "color": "#D5DBDB"}
+					{"text": "banca", "weight": 8, "color": "#D5DBDB"},
+					{"text": "transformación", "weight": 7, "color": "#F8D7DA"},
+					{"text": "modernización", "weight": 6, "color": "#D1ECF1"},
+					{"text": "democracia", "weight": 5, "color": "#D4E6F1"},
+					{"text": "participación", "weight": 4, "color": "#E8DAEF"},
+					{"text": "cambio", "weight": 3, "color": "#F4F6F7"}
 				]
 			}
 		}
 	},
 	"metadata": {
-		"totalWords": 24,
+		"totalWords": 29,
 		"candidatosCount": 7,
 		"created": "2025-01-27",
 		"source": "Respuestas del debate ENADE 2025 - Análisis por candidato",
-		"description": "Nube de palabras extraída de las respuestas específicas de cada candidato en el debate ENADE 2025, basada en los conceptos clave mencionados por cada uno"
+		"description": "Nube de palabras expandida con conceptos adicionales extraídos de las respuestas específicas de cada candidato en el debate ENADE 2025, incluyendo temas transversales y propuestas específicas"
 	}
 }
