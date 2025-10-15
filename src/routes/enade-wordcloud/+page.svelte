@@ -143,6 +143,51 @@
 			</div>
 		</div>
 
+		<!-- Lista de conceptos por candidato - Movida aquí para estar debajo de la nube -->
+		{#if selectedCandidato}
+			<div class="mt-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-8 border border-gray-100">
+				<div class="flex items-center gap-3 mb-8">
+					<div 
+						class="w-12 h-12 rounded-xl flex items-center justify-center"
+						style:background={`linear-gradient(135deg, ${candidatosDisponibles.find(c => c.id === selectedCandidato)?.color}, ${adjustBrightness(candidatosDisponibles.find(c => c.id === selectedCandidato)?.color || '#000', -20)})`}
+					>
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+						</svg>
+					</div>
+					<h3 class="text-2xl font-bold text-gray-900">
+						Conceptos detallados - {candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}
+					</h3>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+					{#each wordcloudData.wordcloudData.candidatos[selectedCandidato].words as word, index}
+						<div class="group bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+							<div class="flex items-center justify-between mb-2">
+								<span class="font-semibold text-gray-900 text-lg">{word.text}</span>
+								<div class="flex items-center gap-2">
+									<div 
+										class="w-4 h-4 rounded-full shadow-sm" 
+										style:background-color={word.color}
+									></div>
+									<span class="text-sm font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded-full">
+										{word.weight}
+									</span>
+								</div>
+							</div>
+							<!-- Barra de progreso visual -->
+							<div class="w-full bg-gray-200 rounded-full h-2">
+								<div 
+									class="h-2 rounded-full transition-all duration-500"
+									style:background-color={word.color}
+									style:width={`${(word.weight / Math.max(...wordcloudData.wordcloudData.candidatos[selectedCandidato].words.map(w => w.weight))) * 100}%`}
+								></div>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/if}
+
 		<!-- Información adicional -->
 		<div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
 			<!-- Estadísticas generales -->
@@ -204,50 +249,6 @@
 			</div>
 		</div>
 
-		<!-- Lista de conceptos por candidato -->
-		{#if selectedCandidato}
-			<div class="mt-12 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-8 border border-gray-100">
-				<div class="flex items-center gap-3 mb-8">
-					<div 
-						class="w-12 h-12 rounded-xl flex items-center justify-center"
-						style:background={`linear-gradient(135deg, ${candidatosDisponibles.find(c => c.id === selectedCandidato)?.color}, ${adjustBrightness(candidatosDisponibles.find(c => c.id === selectedCandidato)?.color || '#000', -20)})`}
-					>
-						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
-						</svg>
-					</div>
-					<h3 class="text-2xl font-bold text-gray-900">
-						Conceptos detallados - {candidatosDisponibles.find(c => c.id === selectedCandidato)?.nombre}
-					</h3>
-				</div>
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-					{#each wordcloudData.wordcloudData.candidatos[selectedCandidato].words as word, index}
-						<div class="group bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-							<div class="flex items-center justify-between mb-2">
-								<span class="font-semibold text-gray-900 text-lg">{word.text}</span>
-								<div class="flex items-center gap-2">
-									<div 
-										class="w-4 h-4 rounded-full shadow-sm" 
-										style:background-color={word.color}
-									></div>
-									<span class="text-sm font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded-full">
-										{word.weight}
-									</span>
-								</div>
-							</div>
-							<!-- Barra de progreso visual -->
-							<div class="w-full bg-gray-200 rounded-full h-2">
-								<div 
-									class="h-2 rounded-full transition-all duration-500"
-									style:background-color={word.color}
-									style:width={`${(word.weight / Math.max(...wordcloudData.wordcloudData.candidatos[selectedCandidato].words.map(w => w.weight))) * 100}%`}
-								></div>
-							</div>
-						</div>
-					{/each}
-				</div>
-			</div>
-		{/if}
 	{/if}
 </div>
 
