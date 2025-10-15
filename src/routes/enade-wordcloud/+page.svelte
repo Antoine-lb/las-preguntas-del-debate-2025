@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import WordCloud from '$lib/WordCloud.svelte';
 	import type { WordCloudResponse } from '$lib/types';
-	import { candidatos } from '$lib/candidatos-2025';
+	import { candidatos2025 } from '$lib/candidatos-2025';
 
 	let wordcloudData: WordCloudResponse | null = null;
 	let selectedCandidato: string | null = null;
@@ -28,7 +28,7 @@
 	$: candidatosDisponibles = wordcloudData 
 		? Object.keys(wordcloudData.wordcloudData.candidatos).map(id => ({
 			id,
-			nombre: candidatos.find(c => c.id === id)?.nombre || wordcloudData!.wordcloudData.candidatos[id].nombre,
+			nombre: candidatos2025.find(c => c.id === id)?.nombre || wordcloudData!.wordcloudData.candidatos[id].nombre,
 			color: wordcloudData!.wordcloudData.candidatos[id].color
 		}))
 		: [];
