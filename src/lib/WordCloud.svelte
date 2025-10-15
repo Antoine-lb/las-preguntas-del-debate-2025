@@ -30,21 +30,17 @@
 	function drawWordCloud() {
 		if (!ctx || !canvas) return;
 
-		// Crear gradiente de fondo
-		const gradient = ctx.createLinearGradient(0, 0, width, height);
-		gradient.addColorStop(0, '#f8fafc');
-		gradient.addColorStop(1, '#e2e8f0');
-		
-		ctx.fillStyle = gradient;
+		// Fondo más limpio y sutil
+		ctx.fillStyle = '#ffffff';
 		ctx.fillRect(0, 0, width, height);
 
-		// Dibujar patrón de puntos sutiles
-		ctx.fillStyle = '#cbd5e1';
-		ctx.globalAlpha = 0.1;
-		for (let i = 0; i < width; i += 40) {
-			for (let j = 0; j < height; j += 40) {
+		// Patrón de puntos muy sutil
+		ctx.fillStyle = '#f1f5f9';
+		ctx.globalAlpha = 0.3;
+		for (let i = 0; i < width; i += 60) {
+			for (let j = 0; j < height; j += 60) {
 				ctx.beginPath();
-				ctx.arc(i, j, 1, 0, 2 * Math.PI);
+				ctx.arc(i, j, 0.5, 0, 2 * Math.PI);
 				ctx.fill();
 			}
 		}
@@ -55,8 +51,8 @@
 
 		// Configuración de fuentes y tamaños mejorada
 		const fontFamily = '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif';
-		const maxFontSize = 56;
-		const minFontSize = 14;
+		const maxFontSize = 72;
+		const minFontSize = 16;
 
 		// Calcular el peso máximo para normalizar
 		const maxWeight = Math.max(...words.map(w => w.weight));
@@ -67,7 +63,7 @@
 
 		// Función para verificar si una posición está ocupada
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = 8; // Margen entre palabras aumentado
+			const margin = 3; // Margen reducido para palabras más juntas
 			return occupiedPositions.some(pos => 
 				!(x + wordWidth + margin < pos.x || 
 				  x - margin > pos.x + pos.width || 
@@ -76,34 +72,38 @@
 			);
 		}
 
-		// Función para encontrar una posición libre con algoritmo mejorado
+		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = 200;
+			const maxAttempts = 300;
 			let attempts = 0;
 			const centerX = width / 2;
 			const centerY = height / 2;
 
+			// Intentar posiciones más cercanas al centro primero
 			while (attempts < maxAttempts) {
-				// Usar distribución espiral para mejor distribución
-				const angle = attempts * 0.1;
-				const radius = Math.min(attempts * 2, Math.min(width, height) / 4);
+				// Usar distribución espiral más compacta
+				const angle = attempts * 0.15;
+				const radius = Math.min(attempts * 1.5, Math.min(width, height) / 3);
 				
-				const x = centerX + radius * Math.cos(angle) - wordWidth / 2;
-				const y = centerY + radius * Math.sin(angle) - wordHeight / 2;
+				// Agregar variación aleatoria para evitar patrones muy regulares
+				const randomOffset = (Math.random() - 0.5) * 20;
+				
+				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
+				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
-				// Verificar límites
-				if (x >= 20 && x <= width - wordWidth - 20 && 
-					y >= 60 && y <= height - wordHeight - 20 &&
+				// Verificar límites más estrictos para mantener compacto
+				if (x >= 10 && x <= width - wordWidth - 10 && 
+					y >= 50 && y <= height - wordHeight - 10 &&
 					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
 				}
 				attempts++;
 			}
 
-			// Fallback: posición aleatoria
-			for (let i = 0; i < 50; i++) {
-				const x = 20 + Math.random() * (width - wordWidth - 40);
-				const y = 60 + Math.random() * (height - wordHeight - 80);
+			// Fallback: posición aleatoria más agresiva
+			for (let i = 0; i < 100; i++) {
+				const x = 10 + Math.random() * (width - wordWidth - 20);
+				const y = 50 + Math.random() * (height - wordHeight - 60);
 
 				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
@@ -122,9 +122,11 @@
 
 		// Dibujar cada palabra con efectos mejorados
 		sortedWords.forEach((word, index) => {
-			// Calcular tamaño de fuente basado en el peso
+			// Calcular tamaño de fuente con mayor diferenciación
 			const normalizedWeight = (word.weight - minWeight) / (maxWeight - minWeight);
-			const fontSize = minFontSize + (maxFontSize - minFontSize) * normalizedWeight;
+			// Usar función cuadrática para mayor diferenciación de tamaños
+			const sizeMultiplier = Math.pow(normalizedWeight, 0.8);
+			const fontSize = minFontSize + (maxFontSize - minFontSize) * sizeMultiplier;
 
 			ctx.font = `600 ${fontSize}px ${fontFamily}`;
 
@@ -264,13 +266,14 @@
 	}
 
 	.wordcloud-canvas {
-		border: 2px solid rgba(226, 232, 240, 0.6);
-		border-radius: 0.75rem;
-		background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+		border: 1px solid rgba(226, 232, 240, 0.8);
+		border-radius: 1rem;
+		background: #ffffff;
 		cursor: pointer;
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		position: relative;
 		overflow: hidden;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	}
 
 	.wordcloud-canvas::before {
@@ -286,11 +289,11 @@
 	}
 
 	.wordcloud-canvas:hover {
-		transform: translateY(-4px) scale(1.01);
+		transform: translateY(-2px) scale(1.005);
 		box-shadow: 
-			0 20px 40px -10px rgba(0, 0, 0, 0.15),
-			0 8px 16px -4px rgba(0, 0, 0, 0.1);
-		border-color: rgba(217, 119, 87, 0.3);
+			0 10px 25px -5px rgba(0, 0, 0, 0.1),
+			0 4px 6px -2px rgba(0, 0, 0, 0.05);
+		border-color: rgba(217, 119, 87, 0.4);
 	}
 
 	.wordcloud-canvas:hover::before {
