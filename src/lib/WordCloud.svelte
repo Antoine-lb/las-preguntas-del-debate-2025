@@ -30,29 +30,24 @@
 	function drawWordCloud() {
 		if (!ctx || !canvas) return;
 
-		// Fondo más limpio y sutil
+		// Fondo ultra limpio y profesional
 		ctx.fillStyle = '#ffffff';
 		ctx.fillRect(0, 0, width, height);
 
-		// Patrón de puntos muy sutil
-		ctx.fillStyle = '#f1f5f9';
-		ctx.globalAlpha = 0.3;
-		for (let i = 0; i < width; i += 60) {
-			for (let j = 0; j < height; j += 60) {
-				ctx.beginPath();
-				ctx.arc(i, j, 0.5, 0, 2 * Math.PI);
-				ctx.fill();
-			}
-		}
-		ctx.globalAlpha = 1;
+		// Gradiente de fondo muy sutil para profundidad
+		const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+		bgGradient.addColorStop(0, '#ffffff');
+		bgGradient.addColorStop(1, '#fefefe');
+		ctx.fillStyle = bgGradient;
+		ctx.fillRect(0, 0, width, height);
 
 		const words = getWordsData();
 		if (words.length === 0) return;
 
-		// Configuración de fuentes y tamaños mejorada con alta nitidez
-		const fontFamily = '"Inter", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif';
-		const maxFontSize = 72;
-		const minFontSize = 16;
+		// Configuración de fuentes profesionales y elegantes
+		const fontFamily = '"Inter", "SF Pro Display", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif';
+		const maxFontSize = 68;
+		const minFontSize = 14;
 
 		// Calcular el peso máximo para normalizar
 		const maxWeight = Math.max(...words.map(w => w.weight));
@@ -128,13 +123,13 @@
 			const sizeMultiplier = Math.pow(normalizedWeight, 0.8);
 			const fontSize = minFontSize + (maxFontSize - minFontSize) * sizeMultiplier;
 
-			// Configurar fuente con peso optimizado para nitidez
-			ctx.font = `600 ${fontSize}px ${fontFamily}`;
+			// Configurar fuente profesional con peso optimizado
+			const fontWeight = normalizedWeight > 0.6 ? '700' : '600';
+			ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
 			
-			// Configurar renderizado de texto para máxima nitidez
+			// Configurar renderizado de texto para máxima calidad
 			ctx.textBaseline = 'alphabetic';
 			ctx.textAlign = 'left';
-			ctx.textRenderingOptimization = 'optimizeQuality';
 
 			// Medir el texto
 			const textMetrics = ctx.measureText(word.text);
@@ -144,23 +139,19 @@
 			// Encontrar posición libre
 			const position = findFreePosition(wordWidth, wordHeight);
 
-			// Crear gradiente más sutil para mejor nitidez
-			const textGradient = ctx.createLinearGradient(position.x, position.y, position.x + wordWidth, position.y + wordHeight);
-			
-			// Usar colores más vibrantes y modernos
+			// Renderizado limpio y profesional - sin gradientes complejos
 			const baseColor = word.color;
-			textGradient.addColorStop(0, baseColor);
-			textGradient.addColorStop(0.5, baseColor);
-			textGradient.addColorStop(1, adjustBrightness(baseColor, -15));
+			
+			// Solo para palabras muy importantes: sombra ultra sutil
+			if (normalizedWeight > 0.8) {
+				ctx.shadowColor = 'rgba(0, 0, 0, 0.04)';
+				ctx.shadowBlur = 1;
+				ctx.shadowOffsetX = 0.5;
+				ctx.shadowOffsetY = 0.5;
+			}
 
-			// Dibujar sombra muy sutil para nitidez
-			ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
-			ctx.shadowBlur = 2;
-			ctx.shadowOffsetX = 1;
-			ctx.shadowOffsetY = 1;
-
-			// Dibujar el texto con gradiente
-			ctx.fillStyle = textGradient;
+			// Dibujar el texto con color sólido para máxima claridad
+			ctx.fillStyle = baseColor;
 			ctx.fillText(word.text, position.x, position.y + wordHeight);
 
 			// Resetear sombra
@@ -168,13 +159,6 @@
 			ctx.shadowBlur = 0;
 			ctx.shadowOffsetX = 0;
 			ctx.shadowOffsetY = 0;
-
-			// Agregar efecto hover (borde sutil para palabras grandes)
-			if (normalizedWeight > 0.7) {
-				ctx.strokeStyle = adjustBrightness(baseColor, 30);
-				ctx.lineWidth = 1;
-				ctx.strokeText(word.text, position.x, position.y + wordHeight);
-			}
 
 			// Registrar la posición ocupada
 			occupiedPositions.push({
@@ -185,24 +169,15 @@
 			});
 		});
 
-		// Dibujar título con máxima nitidez
-		ctx.font = '700 32px "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif';
-		ctx.textRenderingOptimization = 'optimizeQuality';
+		// Título elegante y profesional
+		ctx.font = '600 24px "Inter", "SF Pro Display", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif';
 		ctx.textBaseline = 'alphabetic';
-		ctx.fillStyle = '#0f172a';
+		ctx.fillStyle = '#374151';
 		ctx.textAlign = 'center';
 		
-		// Sombra muy sutil para el título
-		ctx.shadowColor = 'rgba(0, 0, 0, 0.06)';
-		ctx.shadowBlur = 1;
-		ctx.shadowOffsetY = 1;
+		ctx.fillText(getTitle(), width / 2, 35);
 		
-		ctx.fillText(getTitle(), width / 2, 40);
-		
-		// Resetear sombra y alineación
-		ctx.shadowColor = 'transparent';
-		ctx.shadowBlur = 0;
-		ctx.shadowOffsetY = 0;
+		// Resetear configuración
 		ctx.textAlign = 'left';
 	}
 
@@ -234,8 +209,7 @@
 			// Escalar el contexto para la alta resolución
 			ctx.scale(devicePixelRatio, devicePixelRatio);
 			
-			// Configurar renderizado de texto para máxima nitidez
-			ctx.textRenderingOptimization = 'optimizeQuality';
+			// Configurar renderizado para máxima nitidez
 			ctx.imageSmoothingEnabled = true;
 			ctx.imageSmoothingQuality = 'high';
 			
@@ -274,13 +248,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem;
-		background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-		border-radius: 1rem;
+		padding: 2.5rem;
+		background: #ffffff;
+		border-radius: 1.25rem;
 		box-shadow: 
-			0 10px 25px -5px rgba(0, 0, 0, 0.1),
-			0 4px 6px -2px rgba(0, 0, 0, 0.05);
-		border: 1px solid rgba(226, 232, 240, 0.8);
+			0 4px 6px -1px rgba(0, 0, 0, 0.05),
+			0 2px 4px -1px rgba(0, 0, 0, 0.03);
+		border: 1px solid rgba(229, 231, 235, 0.6);
 		position: relative;
 		overflow: hidden;
 	}
@@ -291,25 +265,22 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 4px;
-		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981, #F59E0B);
-		border-radius: 1rem 1rem 0 0;
+		height: 2px;
+		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981);
+		border-radius: 1.25rem 1.25rem 0 0;
 	}
 
 	.wordcloud-canvas {
-		border: 1px solid rgba(226, 232, 240, 0.8);
-		border-radius: 1rem;
+		border: 1px solid rgba(229, 231, 235, 0.5);
+		border-radius: 0.75rem;
 		background: #ffffff;
 		cursor: pointer;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		transition: all 0.2s ease-out;
 		position: relative;
 		overflow: hidden;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 		
 		/* Optimización para alta resolución */
-		image-rendering: -webkit-optimize-contrast;
-		image-rendering: crisp-edges;
-		image-rendering: pixelated;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
@@ -328,11 +299,9 @@
 	}
 
 	.wordcloud-canvas:hover {
-		transform: translateY(-2px) scale(1.005);
-		box-shadow: 
-			0 10px 25px -5px rgba(0, 0, 0, 0.1),
-			0 4px 6px -2px rgba(0, 0, 0, 0.05);
-		border-color: rgba(217, 119, 87, 0.4);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		border-color: rgba(217, 119, 87, 0.3);
 	}
 
 	.wordcloud-canvas:hover::before {
@@ -341,12 +310,11 @@
 
 	.wordcloud-info {
 		text-align: center;
-		margin-top: 1rem;
-		padding: 0.75rem 1.5rem;
-		background: rgba(248, 250, 252, 0.8);
-		border-radius: 0.5rem;
-		backdrop-filter: blur(10px);
-		border: 1px solid rgba(226, 232, 240, 0.5);
+		margin-top: 1.25rem;
+		padding: 1rem 1.5rem;
+		background: rgba(249, 250, 251, 0.9);
+		border-radius: 0.75rem;
+		border: 1px solid rgba(229, 231, 235, 0.4);
 	}
 
 	.wordcloud-info p {
