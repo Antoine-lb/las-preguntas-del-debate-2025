@@ -315,14 +315,16 @@
 	</section>
 
 	<!-- Estadísticas y Filtros Activos -->
-	<section class="mb-8">
-		<p class="text-sm text-gray-500 mb-3">Resultados:</p>
-		<div class="flex items-center justify-between gap-4 flex-wrap">
-			<!-- Estadísticas -->
-			<div class="flex items-center gap-6">
-				<!-- Debates -->
-				<div class="flex items-center gap-2">
-					<svg class="w-5 h-5 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	<section class="mb-6 md:mb-8">
+		<!-- Estadísticas como badges compactos -->
+		<div class="flex flex-wrap items-center gap-2 md:gap-3">
+			<!-- Debates -->
+			{#key debatesFiltrados.length}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					in:fade={{ duration: 200 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -330,17 +332,18 @@
 							d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
 						></path>
 					</svg>
-					{#key debatesFiltrados.length}
-						<span class="text-sm font-medium text-gray-700" in:fade={{ duration: 200 }}>
-							{debatesFiltrados.length}
-							{debatesFiltrados.length === 1 ? 'debate' : 'debates'}
-						</span>
-					{/key}
+					<span class="font-semibold text-gray-900">{debatesFiltrados.length}</span>
+					<span class="text-gray-500">{debatesFiltrados.length === 1 ? 'debate' : 'debates'}</span>
 				</div>
+			{/key}
 
-				<!-- Preguntas -->
-				<div class="flex items-center gap-2">
-					<svg class="w-5 h-5 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<!-- Preguntas -->
+			{#key totalPreguntas}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					in:fade={{ duration: 200 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -348,17 +351,18 @@
 							d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 						></path>
 					</svg>
-					{#key totalPreguntas}
-						<span class="text-sm font-medium text-gray-700" in:fade={{ duration: 200 }}>
-							{totalPreguntas}
-							{totalPreguntas === 1 ? 'pregunta' : 'preguntas'}
-						</span>
-					{/key}
+					<span class="font-semibold text-gray-900">{totalPreguntas}</span>
+					<span class="text-gray-500">{totalPreguntas === 1 ? 'pregunta' : 'preguntas'}</span>
 				</div>
+			{/key}
 
-				<!-- Respuestas -->
-				<div class="flex items-center gap-2">
-					<svg class="w-5 h-5 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<!-- Respuestas -->
+			{#key totalRespuestas}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg bg-white border border-gray-200 text-xs md:text-sm"
+					in:fade={{ duration: 200 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -366,58 +370,46 @@
 							d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
 						></path>
 					</svg>
-					{#key totalRespuestas}
-						<span class="text-sm font-medium text-gray-700" in:fade={{ duration: 200 }}>
-							{totalRespuestas}
-							{totalRespuestas === 1 ? 'respuesta' : 'respuestas'}
-						</span>
-					{/key}
+					<span class="font-semibold text-gray-900">{totalRespuestas}</span>
+					<span class="text-gray-500">{totalRespuestas === 1 ? 'respuesta' : 'respuestas'}</span>
 				</div>
+			{/key}
 
-				<!-- Filtro Activo -->
-				{#if candidatoSeleccionado || temaSeleccionado}
-					{@const colorFiltro =
-						candidatoSeleccionado?.color || temaSeleccionado?.color || '#D97757'}
-					<div
-						class="flex items-center gap-2 pl-4 border-l-2 border-gray-300"
-						in:fly={{ x: -10, duration: 300 }}
-						out:fade={{ duration: 150 }}
+			<!-- Filtro Activo -->
+			{#if candidatoSeleccionado || temaSeleccionado}
+				{@const colorFiltro = candidatoSeleccionado?.color || temaSeleccionado?.color || '#D97757'}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg border text-xs md:text-sm"
+					style="background-color: {colorFiltro}18; border-color: {colorFiltro}60"
+					in:fly={{ x: -10, duration: 300 }}
+					out:fade={{ duration: 150 }}
+				>
+					<span class="font-semibold" style="color: {colorFiltro}">
+						{#if candidatoSeleccionado}
+							{candidatoSeleccionado.nombre}
+						{:else if temaSeleccionado}
+							{temaSeleccionado.nombre}
+						{/if}
+					</span>
+					<button
+						onclick={() => {
+							candidatoSeleccionadoId = null;
+							temaSeleccionadoId = null;
+						}}
+						class="transition-colors hover:opacity-70"
+						style="color: {colorFiltro}"
+						aria-label="Limpiar filtro"
 					>
-						<span class="text-sm font-medium text-gray-600">Filtrado por:</span>
-						<div
-							class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border-2 shadow-sm"
-							style="background-color: {colorFiltro}18; border-color: {colorFiltro}80"
-							in:scale={{ duration: 250, start: 0.9 }}
-						>
-							<span class="text-sm font-semibold" style="color: {colorFiltro}">
-								{#if candidatoSeleccionado}
-									{candidatoSeleccionado.nombre}
-								{:else if temaSeleccionado}
-									{temaSeleccionado.nombre}
-								{/if}
-							</span>
-							<button
-								onclick={() => {
-									candidatoSeleccionadoId = null;
-									temaSeleccionadoId = null;
-								}}
-								class="transition-colors hover:opacity-70"
-								style="color: {colorFiltro}"
-								aria-label="Limpiar filtro"
-							>
-								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-									<path
-										fill-rule="evenodd"
-										d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-										clip-rule="evenodd"
-									></path>
-								</svg>
-							</button>
-						</div>
-					</div>
-				{/if}
-			</div>
-
+						<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+							<path
+								fill-rule="evenodd"
+								d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+					</button>
+				</div>
+			{/if}
 		</div>
 	</section>
 
@@ -438,84 +430,32 @@
 						in:fly={{ y: 20, duration: 400, delay: idx * 100 }}
 					>
 						<!-- Header del Debate -->
-						<header class="p-6 border-b border-gray-200">
-							<div class="flex items-start justify-between gap-4 mb-4">
-								<h3 class="text-2xl font-bold text-gray-900 flex-1">{debate.nombre}</h3>
-								<a
-									href={debate.transcriptUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex-shrink-0 text-sm text-[#D97757] hover:text-[#c56a4c] font-medium hover:underline"
-								>
-									Ver transcripción completa →
-								</a>
-							</div>
-							<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 mb-4">
-								<span class="flex items-center gap-2">
-									<svg class="w-4 h-4 text-[#D97757]" fill="currentColor" viewBox="0 0 20 20">
-										<path
-											fill-rule="evenodd"
-											d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-											clip-rule="evenodd"
-										></path>
-									</svg>
-									{debate.organizador}
-								</span>
-								<span class="flex items-center gap-2">
-									<svg class="w-4 h-4 text-[#D97757]" fill="currentColor" viewBox="0 0 20 20">
-										<path
-											fill-rule="evenodd"
-											d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-											clip-rule="evenodd"
-										></path>
-									</svg>
+						<header class="p-3 md:p-4 border-b border-gray-200">
+							<h3 class="text-lg md:text-xl font-bold text-gray-900 mb-2">{debate.nombre}</h3>
+							<div class="flex flex-wrap gap-x-3 md:gap-x-4 gap-y-1 text-xs md:text-sm text-gray-500">
+								<span>{debate.organizador}</span>
+								<span>•</span>
+								<span>
 									{new Date(debate.fecha).toLocaleDateString('es-CL', {
 										year: 'numeric',
-										month: 'long',
+										month: 'short',
 										day: 'numeric'
 									})}
 								</span>
 								{#if debate.duracion}
-									<span class="flex items-center gap-2">
-										<svg class="w-4 h-4 text-[#D97757]" fill="currentColor" viewBox="0 0 20 20">
-											<path
-												fill-rule="evenodd"
-												d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-												clip-rule="evenodd"
-											></path>
-										</svg>
-										{debate.duracion}
-									</span>
+									<span>•</span>
+									<span>{debate.duracion}</span>
 								{/if}
-							</div>
-
-							<!-- Participantes -->
-							<div>
-								<p class="text-xs font-medium text-gray-500 mb-2">Participantes:</p>
-								<div class="flex flex-wrap gap-2">
-									{#each debate.candidatosIds as candidatoId}
-										{@const candidato = getCandidatoById(candidatoId)}
-										{#if candidato}
-											<div
-												class="inline-flex items-center gap-2 pl-0 pr-3 py-0 rounded-full overflow-hidden h-7"
-												style="background-color: {candidato.color}20"
-											>
-												<div class="h-full flex items-end flex-shrink-0">
-													<img
-														src={candidato.fotoSinFondo || candidato.foto}
-														alt={candidato.nombre}
-														class="h-full w-auto object-contain {candidato.fotoSinFondo
-															? ''
-															: 'rounded-full object-cover'}"
-													/>
-												</div>
-												<span class="text-sm font-semibold" style="color: {candidato.color}">
-													{candidato.abreviacion}
-												</span>
-											</div>
-										{/if}
-									{/each}
-								</div>
+								<span class="ml-auto">
+									<a
+										href={debate.transcriptUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="text-[#D97757] hover:text-[#c56a4c] font-medium hover:underline"
+									>
+										Transcripción →
+									</a>
+								</span>
 							</div>
 						</header>
 
@@ -526,40 +466,37 @@
 									? getRespuesta(pregunta.id, candidatoSeleccionadoId)
 									: null}
 
-								<div class="p-5">
+								<div class="p-3 md:p-4">
 									<!-- Pregunta -->
-									<div class="mb-3">
-										<div class="flex gap-3 items-start">
-											<!-- Burbuja de categoría (siempre presente para mantener alineación) -->
-											{#if pregunta.temaId}
-												{@const tema = getTemaById(pregunta.temaId)}
-												{@const IconoTema = tema ? iconosPorTema[tema.id] : null}
-												{#if tema && IconoTema}
-													<div
-														class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center -mt-1"
-														style="background-color: {tema.color}20; color: {tema.color}; "
-													>
-														<IconoTema class="w-5 h-5" />
-													</div>
-												{/if}
-											{:else}
-												<!-- Burbuja vacía para preguntas sin categoría -->
-												<div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 -mt-1"></div>
+									<div class="flex gap-2 md:gap-2.5 items-start mb-2 md:mb-3">
+										<!-- Burbuja de categoría -->
+										{#if pregunta.temaId}
+											{@const tema = getTemaById(pregunta.temaId)}
+											{@const IconoTema = tema ? iconosPorTema[tema.id] : null}
+											{#if tema && IconoTema}
+												<div
+													class="flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center"
+													style="background-color: {tema.color}20; color: {tema.color};"
+												>
+													<IconoTema class="w-3.5 h-3.5 md:w-4 md:h-4" />
+												</div>
 											{/if}
-											<p class="flex-1 text-gray-900 font-medium leading-relaxed">
-												<span class="text-[#D97757] font-semibold mr-2">{idx + 1}.</span>
-												{pregunta.pregunta}
-											</p>
-										</div>
+										{:else}
+											<div class="flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full bg-gray-100"></div>
+										{/if}
+										<p class="flex-1 text-gray-900 font-medium text-sm md:text-base leading-snug">
+											<span class="text-[#D97757] font-semibold mr-1.5">{idx + 1}.</span>
+											{pregunta.pregunta}
+										</p>
 									</div>
 
 									<!-- Respuestas -->
-									<div class="ml-11">
+									<div class="ml-8 md:ml-9 space-y-2">
 										{#if candidatoSeleccionado && respuestaMostrar}
 											<!-- Vista filtrada: solo el candidato seleccionado -->
-											<div class="flex gap-3 items-start">
+											<div class="flex gap-2 items-start">
 												<div
-													class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+													class="w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
 													style="background-color: {candidatoSeleccionado.color}50"
 												>
 													<img
@@ -570,14 +507,14 @@
 															: 'rounded-full object-cover'}"
 													/>
 												</div>
-												<div class="flex-1">
-													<p class="font-medium text-[#D97757] text-sm mb-0.5">
+												<div class="flex-1 min-w-0">
+													<p class="font-semibold text-gray-900 text-xs md:text-sm mb-0.5">
 														{candidatoSeleccionado.nombre}
 													</p>
-													<p class="text-gray-700 text-sm leading-relaxed">
+													<p class="text-gray-700 text-xs md:text-sm leading-relaxed">
 														{respuestaMostrar.resumen}
 														{#if respuestaMostrar.timestamp}
-															<span class="text-xs text-gray-400 ml-1.5">
+															<span class="text-[10px] md:text-xs text-gray-400 ml-1">
 																{formatearTiempo(respuestaMostrar.timestamp)}
 															</span>
 														{/if}
@@ -597,41 +534,39 @@
 												)[0] || []}
 
 											{#if todasRespuestas.length > 0}
-												<div class="space-y-2.5">
-													{#each todasRespuestas as { candidato, respuesta }}
-														{#if candidato && respuesta}
-															<div class="flex gap-3 items-start">
-																<div
-																	class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
-																	style="background-color: {candidato.color}50"
-																>
-																	<img
-																		src={candidato.fotoSinFondo || candidato.foto}
-																		alt={candidato.nombre}
-																		class="w-full h-full object-contain {candidato.fotoSinFondo
-																			? ''
-																			: 'rounded-full object-cover'}"
-																	/>
-																</div>
-																<div class="flex-1">
-																	<p class="font-medium text-gray-900 text-sm mb-0.5">
-																		{candidato.nombre}
-																	</p>
-																	<p class="text-gray-700 text-sm leading-relaxed">
-																		{respuesta.resumen}
-																		{#if respuesta.timestamp}
-																			<span class="text-xs text-gray-400 ml-1.5">
-																				{formatearTiempo(respuesta.timestamp)}
-																			</span>
-																		{/if}
-																	</p>
-																</div>
+												{#each todasRespuestas as { candidato, respuesta }}
+													{#if candidato && respuesta}
+														<div class="flex gap-2 items-start">
+															<div
+																class="w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+																style="background-color: {candidato.color}50"
+															>
+																<img
+																	src={candidato.fotoSinFondo || candidato.foto}
+																	alt={candidato.nombre}
+																	class="w-full h-full object-contain {candidato.fotoSinFondo
+																		? ''
+																		: 'rounded-full object-cover'}"
+																/>
 															</div>
-														{/if}
-													{/each}
-												</div>
+															<div class="flex-1 min-w-0">
+																<p class="font-semibold text-gray-900 text-xs md:text-sm mb-0.5">
+																	{candidato.nombre}
+																</p>
+																<p class="text-gray-700 text-xs md:text-sm leading-relaxed">
+																	{respuesta.resumen}
+																	{#if respuesta.timestamp}
+																		<span class="text-[10px] md:text-xs text-gray-400 ml-1">
+																			{formatearTiempo(respuesta.timestamp)}
+																		</span>
+																	{/if}
+																</p>
+															</div>
+														</div>
+													{/if}
+												{/each}
 											{:else}
-												<p class="text-gray-500 italic text-sm">
+												<p class="text-gray-500 italic text-xs md:text-sm">
 													No hay respuestas registradas para esta pregunta
 												</p>
 											{/if}
