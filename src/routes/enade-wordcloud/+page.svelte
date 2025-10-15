@@ -12,7 +12,7 @@
 	// Cargar datos de la nube de palabras
 	async function loadWordCloudData() {
 		try {
-			const response = await fetch('/src/routes/respuestas/enade-wordcloud-2025-10-14.json');
+			const response = await fetch('/enade-wordcloud-2025-10-14.json');
 			if (!response.ok) {
 				throw new Error('Error al cargar los datos de la nube de palabras');
 			}
