@@ -213,7 +213,7 @@
 	});
 
 	// Redibujar cuando cambien los datos o candidato
-	$: if (ctx && data) {
+	$: if (ctx && data && candidatoId !== undefined) {
 		drawWordCloud();
 	}
 </script>
