@@ -169,16 +169,7 @@
 			});
 		});
 
-		// Título elegante y profesional
-		ctx.font = '600 24px "Inter", "SF Pro Display", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif';
-		ctx.textBaseline = 'alphabetic';
-		ctx.fillStyle = '#374151';
-		ctx.textAlign = 'center';
-		
-		ctx.fillText(getTitle(), width / 2, 35);
-		
-		// Resetear configuración
-		ctx.textAlign = 'left';
+		// El título ahora se renderiza fuera del canvas, en el componente padre
 	}
 
 	// Función auxiliar para ajustar brillo de color
@@ -224,6 +215,12 @@
 </script>
 
 <div class="wordcloud-container">
+	<!-- Título estilizado fuera del canvas -->
+	<div class="wordcloud-title">
+		<h2 class="title-text">{getTitle()}</h2>
+		<div class="title-decoration"></div>
+	</div>
+	
 	<canvas 
 		bind:this={canvas} 
 		width={width} 
@@ -265,9 +262,63 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 2px;
-		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981);
+		height: 3px;
+		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981, #F59E0B);
 		border-radius: 1.25rem 1.25rem 0 0;
+	}
+
+	.wordcloud-title {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 2rem;
+		position: relative;
+	}
+
+	.title-text {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: #1f2937;
+		margin: 0 0 0.75rem 0;
+		text-align: center;
+		letter-spacing: -0.025em;
+		line-height: 1.2;
+		background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		position: relative;
+		z-index: 2;
+	}
+
+	.title-decoration {
+		width: 60px;
+		height: 4px;
+		background: linear-gradient(90deg, #D97757, #3B82F6, #10B981);
+		border-radius: 2px;
+		position: relative;
+	}
+
+	.title-decoration::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: -20px;
+		width: 20px;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #D97757);
+		transform: translateY(-50%);
+	}
+
+	.title-decoration::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: -20px;
+		width: 20px;
+		height: 2px;
+		background: linear-gradient(90deg, #10B981, transparent);
+		transform: translateY(-50%);
 	}
 
 	.wordcloud-canvas {
