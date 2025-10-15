@@ -186,7 +186,8 @@
 			candidato para filtrar sus respuestas.
 		</p>
 		
-		<!-- Enlace a nube de palabras -->
+		<!-- Enlace a nube de palabras - OCULTO EN DESARROLLO -->
+		<!-- 
 		<div class="mt-6">
 			<a 
 				href="/enade-wordcloud" 
@@ -198,6 +199,7 @@
 				Ver Nube de Palabras del Debate ENADE
 			</a>
 		</div>
+		-->
 	</header>
 
 	<!-- Selector de Candidatos y Temas -->
