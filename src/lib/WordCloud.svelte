@@ -60,71 +60,86 @@
 		// Array para almacenar posiciones ocupadas
 		const occupiedPositions: Array<{ x: number; y: number; width: number; height: number }> = [];
 
-		// Función para verificar si una posición está ocupada - VERSIÓN HIPER ESTRICTA
-		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 50 : 40; // MARGEN HIPER EXTREMO
-			return occupiedPositions.some(pos => {
-				// Verificar si hay intersección con margen HIPER amplio
-				const left1 = x - margin;
-				const right1 = x + wordWidth + margin;
-				const top1 = y - margin;
-				const bottom1 = y + wordHeight + margin;
-				
-				const left2 = pos.x - margin;
-				const right2 = pos.x + pos.width + margin;
-				const top2 = pos.y - margin;
-				const bottom2 = pos.y + pos.height + margin;
-				
-				// Verificar si hay superposición - ALGORITMO HIPER ESTRICTO
-				return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
-			});
-		}
-
-		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
+		// ALGORITMO COMPLETAMENTE NUEVO - POSICIONAMIENTO POR GRID FIJO
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 1500 : 1200; // AÚN MÁS intentos
-			let attempts = 0;
-			const centerX = responsiveWidth / 2;
-			const centerY = responsiveHeight / 2;
-
-			// Intentar posiciones más cercanas al centro primero
-			while (attempts < maxAttempts) {
-				// Usar distribución espiral adaptativa según el dispositivo
-				const angle = attempts * (typeof window !== 'undefined' && window.innerWidth < 768 ? 0.25 : 0.2);
-				const radiusMultiplier = typeof window !== 'undefined' && window.innerWidth < 768 ? 2.5 : 2.0;
-				const radius = Math.min(attempts * radiusMultiplier, Math.min(responsiveWidth, responsiveHeight) / 2.2);
-				
-				// Agregar variación aleatoria para evitar patrones muy regulares
-				const randomOffset = (Math.random() - 0.5) * (typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 30);
-				
-				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
-				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
-
-				// Verificar límites adaptativos según el dispositivo - MÁRGENES HIPER EXTREMOS
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 40;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
-				
-				if (x >= marginX && x <= responsiveWidth - wordWidth - marginX && 
-					y >= marginY && y <= responsiveHeight - wordHeight - marginX &&
-					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
-					return { x, y };
-				}
-				attempts++;
-			}
-
-			// Fallback: posición aleatoria más agresiva
-			for (let i = 0; i < 500; i++) { // MÁXIMOS intentos en fallback
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 40;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
-				const x = marginX + Math.random() * (responsiveWidth - wordWidth - (marginX * 2));
-				const y = marginY + Math.random() * (responsiveHeight - wordHeight - (marginY + 10));
-
-				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
-					return { x, y };
+			// Crear un grid fijo para evitar superposiciones
+			const gridSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 100;
+			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 60;
+			
+			// Crear todas las posiciones posibles del grid
+			const gridPositions = [];
+			for (let y = margin; y <= responsiveHeight - margin - gridSize; y += gridSize) {
+				for (let x = margin; x <= responsiveWidth - margin - gridSize; x += gridSize) {
+					// Verificar que la palabra cabe en esta posición del grid
+					if (x + wordWidth <= responsiveWidth - margin && y + wordHeight <= responsiveHeight - margin) {
+						gridPositions.push({ x, y });
+					}
 				}
 			}
-
-			// Último recurso: centro
+			
+			// Buscar una posición libre en el grid
+			for (const gridPos of gridPositions) {
+				let isOccupied = false;
+				
+				// Verificar si esta posición del grid está ocupada
+				for (const occupiedPos of occupiedPositions) {
+					// Verificar si hay superposición con margen generoso
+					const marginCheck = 20;
+					const left1 = gridPos.x - marginCheck;
+					const right1 = gridPos.x + wordWidth + marginCheck;
+					const top1 = gridPos.y - marginCheck;
+					const bottom1 = gridPos.y + wordHeight + marginCheck;
+					
+					const left2 = occupiedPos.x - marginCheck;
+					const right2 = occupiedPos.x + occupiedPos.width + marginCheck;
+					const top2 = occupiedPos.y - marginCheck;
+					const bottom2 = occupiedPos.y + occupiedPos.height + marginCheck;
+					
+					// Si hay intersección, esta posición está ocupada
+					if (!(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2)) {
+						isOccupied = true;
+						break;
+					}
+				}
+				
+				if (!isOccupied) {
+					return gridPos;
+				}
+			}
+			
+			// Si no se encuentra posición en el grid, usar posiciones aleatorias con márgenes muy grandes
+			const maxAttempts = 1000;
+			const largeMargin = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
+			
+			for (let i = 0; i < maxAttempts; i++) {
+				const x = largeMargin + Math.random() * (responsiveWidth - wordWidth - (largeMargin * 2));
+				const y = largeMargin + Math.random() * (responsiveHeight - wordHeight - (largeMargin * 2));
+				
+				let isOccupied = false;
+				for (const occupiedPos of occupiedPositions) {
+					const marginCheck = 30;
+					const left1 = x - marginCheck;
+					const right1 = x + wordWidth + marginCheck;
+					const top1 = y - marginCheck;
+					const bottom1 = y + wordHeight + marginCheck;
+					
+					const left2 = occupiedPos.x - marginCheck;
+					const right2 = occupiedPos.x + occupiedPos.width + marginCheck;
+					const top2 = occupiedPos.y - marginCheck;
+					const bottom2 = occupiedPos.y + occupiedPos.height + marginCheck;
+					
+					if (!(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2)) {
+						isOccupied = true;
+						break;
+					}
+				}
+				
+				if (!isOccupied) {
+					return { x, y };
+				}
+			}
+			
+			// Último recurso: posición fija en el centro
 			return {
 				x: (responsiveWidth - wordWidth) / 2,
 				y: (responsiveHeight - wordHeight) / 2
@@ -135,25 +150,6 @@
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
 		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 20; // Menos palabras en ambos casos
 		const wordsToRender = sortedWords.slice(0, maxWords);
-
-		// Sistema de posicionamiento basado en grid para móviles
-		let gridPositions: Array<{ x: number; y: number }> = [];
-		if (typeof window !== 'undefined' && window.innerWidth < 768) {
-			// Crear grid para móviles
-			const gridSize = 100; // Espacio MAYOR entre posiciones del grid
-			const startX = 60;
-			const startY = 100;
-			const endX = responsiveWidth - 60;
-			const endY = responsiveHeight - 60;
-			
-			for (let y = startY; y < endY; y += gridSize) {
-				for (let x = startX; x < endX; x += gridSize) {
-					gridPositions.push({ x, y });
-				}
-			}
-			// Mezclar posiciones del grid
-			gridPositions = gridPositions.sort(() => Math.random() - 0.5);
-		}
 
 		// Dibujar cada palabra con efectos mejorados
 		wordsToRender.forEach((word, index) => {
@@ -176,15 +172,8 @@
 			const wordWidth = textMetrics.width;
 			const wordHeight = fontSize;
 
-			// Encontrar posición libre - USAR GRID EN MÓVILES
-			let position;
-			if (typeof window !== 'undefined' && window.innerWidth < 768 && gridPositions.length > 0) {
-				// Usar posición del grid para móviles
-				position = gridPositions[index] || { x: responsiveWidth / 2, y: responsiveHeight / 2 };
-			} else {
-				// Usar algoritmo normal para desktop
-				position = findFreePosition(wordWidth, wordHeight);
-			}
+			// Encontrar posición libre usando el nuevo algoritmo
+			const position = findFreePosition(wordWidth, wordHeight);
 
 			// Renderizado optimizado para máxima intensidad y nitidez
 			const baseColor = word.color;
@@ -219,34 +208,13 @@
 			ctx.strokeStyle = 'transparent';
 			ctx.lineWidth = 0;
 
-			// Verificar ULTRA estricto que no hay colisiones antes de registrar
-			if (!isPositionOccupied(position.x, position.y, wordWidth, wordHeight)) {
-				// Verificación adicional con margen extra
-				const extraMargin = 10;
-				const hasCollision = occupiedPositions.some(pos => {
-					const left1 = position.x - extraMargin;
-					const right1 = position.x + wordWidth + extraMargin;
-					const top1 = position.y - extraMargin;
-					const bottom1 = position.y + wordHeight + extraMargin;
-					
-					const left2 = pos.x - extraMargin;
-					const right2 = pos.x + pos.width + extraMargin;
-					const top2 = pos.y - extraMargin;
-					const bottom2 = pos.y + pos.height + extraMargin;
-					
-					return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
-				});
-				
-				if (!hasCollision) {
-					// Registrar la posición ocupada
-					occupiedPositions.push({
-						x: position.x,
-						y: position.y,
-						width: wordWidth,
-						height: wordHeight
-					});
-				}
-			}
+			// Registrar la posición ocupada (el algoritmo ya verificó que está libre)
+			occupiedPositions.push({
+				x: position.x,
+				y: position.y,
+				width: wordWidth,
+				height: wordHeight
+			});
 		});
 
 		// El título ahora se renderiza fuera del canvas, en el componente padre
