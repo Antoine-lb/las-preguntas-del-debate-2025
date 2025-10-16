@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import WordCloud from '$lib/WordCloud.svelte';
+	import CSSWordCloud from '$lib/CSSWordCloud.svelte';
 	import type { WordCloudResponse } from '$lib/types';
 	import { candidatos2025 } from '$lib/candidatos-2025';
 
@@ -143,11 +143,9 @@
 			{/if}
 			
 			<div class="bg-white rounded-xl md:rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100">
-				<WordCloud 
+				<CSSWordCloud 
 					data={wordcloudData.wordcloudData} 
 					candidatoId={selectedCandidato}
-					width={900}
-					height={600}
 				/>
 			</div>
 		</div>

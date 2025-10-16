@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WordCloud from '$lib/WordCloud.svelte';
+	import CSSWordCloud from '$lib/CSSWordCloud.svelte';
 	import type { WordCloudResponse } from '$lib/types';
 	import { candidatos2025 } from '$lib/candidatos-2025';
 
@@ -166,7 +166,7 @@
 			<!-- Contenedor de la nube de palabras -->
 			<div class="relative px-4 md:px-0">
 				<div class="rounded-xl md:rounded-2xl p-4 md:p-8 bg-white shadow-xl border border-gray-100">
-					<WordCloud 
+					<CSSWordCloud 
 						data={wordcloudData} 
 						candidatoId={selectedCandidato}
 					/>
