@@ -186,7 +186,8 @@
 			candidato para filtrar sus respuestas.
 		</p>
 		
-		<!-- Enlaces a nubes de palabras -->
+		<!-- Enlaces a nubes de palabras - OCULTO EN DESARROLLO -->
+		<!-- 
 		<div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
 			<a 
 				href="/enade-wordcloud" 
@@ -210,6 +211,7 @@
 				<span class="sm:hidden">CHV WordCloud</span>
 			</a>
 		</div>
+		-->
 	</header>
 
 	<!-- Selector de Candidatos y Temas -->
