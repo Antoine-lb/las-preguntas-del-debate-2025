@@ -50,8 +50,8 @@
 
 		// Configuración de fuentes profesionales y elegantes
 		const fontFamily = '"Inter", "SF Pro Display", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif';
-		const maxFontSize = 68;
-		const minFontSize = 14;
+		const maxFontSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 28 : 68;
+		const minFontSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 10 : 14;
 
 		// Calcular el peso máximo para normalizar
 		const maxWeight = Math.max(...words.map(w => w.weight));
@@ -62,7 +62,7 @@
 
 		// Función para verificar si una posición está ocupada
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = 3; // Margen reducido para palabras más juntas
+			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 6; // Mayor margen en móvil
 			return occupiedPositions.some(pos => 
 				!(x + wordWidth + margin < pos.x || 
 				  x - margin > pos.x + pos.width || 
@@ -73,26 +73,30 @@
 
 		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = 300;
+			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 500 : 300;
 			let attempts = 0;
 			const centerX = responsiveWidth / 2;
 			const centerY = responsiveHeight / 2;
 
 			// Intentar posiciones más cercanas al centro primero
 			while (attempts < maxAttempts) {
-				// Usar distribución espiral más compacta
-				const angle = attempts * 0.15;
-				const radius = Math.min(attempts * 1.5, Math.min(responsiveWidth, responsiveHeight) / 3);
+				// Usar distribución espiral adaptativa según el dispositivo
+				const angle = attempts * (typeof window !== 'undefined' && window.innerWidth < 768 ? 0.2 : 0.15);
+				const radiusMultiplier = typeof window !== 'undefined' && window.innerWidth < 768 ? 2.0 : 1.5;
+				const radius = Math.min(attempts * radiusMultiplier, Math.min(responsiveWidth, responsiveHeight) / 2.5);
 				
 				// Agregar variación aleatoria para evitar patrones muy regulares
-				const randomOffset = (Math.random() - 0.5) * 20;
+				const randomOffset = (Math.random() - 0.5) * (typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 20);
 				
 				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
 				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
-				// Verificar límites más estrictos para mantener compacto
-				if (x >= 10 && x <= responsiveWidth - wordWidth - 10 && 
-					y >= 50 && y <= responsiveHeight - wordHeight - 10 &&
+				// Verificar límites adaptativos según el dispositivo
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 10;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 50;
+				
+				if (x >= marginX && x <= responsiveWidth - wordWidth - marginX && 
+					y >= marginY && y <= responsiveHeight - wordHeight - marginX &&
 					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
 				}
@@ -101,8 +105,10 @@
 
 			// Fallback: posición aleatoria más agresiva
 			for (let i = 0; i < 100; i++) {
-				const x = 10 + Math.random() * (responsiveWidth - wordWidth - 20);
-				const y = 50 + Math.random() * (responsiveHeight - wordHeight - 60);
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 10;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 50;
+				const x = marginX + Math.random() * (responsiveWidth - wordWidth - (marginX * 2));
+				const y = marginY + Math.random() * (responsiveHeight - wordHeight - (marginY + 10));
 
 				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
@@ -116,11 +122,13 @@
 			};
 		}
 
-		// Ordenar palabras por peso (mayor a menor)
+		// Ordenar palabras por peso (mayor a menor) y limitar en móviles
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
+		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 20 : sortedWords.length;
+		const wordsToRender = sortedWords.slice(0, maxWords);
 
 		// Dibujar cada palabra con efectos mejorados
-		sortedWords.forEach((word, index) => {
+		wordsToRender.forEach((word, index) => {
 			// Calcular tamaño de fuente con mayor diferenciación
 			const normalizedWeight = (word.weight - minWeight) / (maxWeight - minWeight);
 			// Usar función cuadrática para mayor diferenciación de tamaños
@@ -268,9 +276,9 @@
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
 			{#if candidatoId && data.candidatos[candidatoId]}
-				{data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(20, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
 			{:else}
-				{data.general.words.length} conceptos más utilizados en el debate
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(20, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
 			{/if}
 		</p>
 	</div>
