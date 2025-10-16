@@ -91,19 +91,35 @@
 
 <style>
 	.css-wordcloud-container {
-		@apply relative w-full;
+		position: relative;
+		width: 100%;
+		animation: containerAppear 0.8s ease-out;
 	}
 
 	.wordcloud-title {
-		@apply text-center mb-8;
+		text-align: center;
+		margin-bottom: 2rem;
 	}
 
 	.title-text {
-		@apply text-2xl md:text-3xl font-bold text-gray-900 mb-4;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #111827;
+		margin-bottom: 1rem;
+	}
+
+	@media (min-width: 768px) {
+		.title-text {
+			font-size: 1.875rem;
+		}
 	}
 
 	.title-decoration {
-		@apply w-24 h-1 mx-auto bg-gradient-to-r from-blue-400 via-green-400 to-orange-400 rounded-full;
+		width: 6rem;
+		height: 0.25rem;
+		margin: 0 auto;
+		background: linear-gradient(to right, #60a5fa, #34d399, #fb923c);
+		border-radius: 9999px;
 	}
 
 	.words-grid {
@@ -170,16 +186,16 @@
 	}
 
 	.wordcloud-info {
-		@apply text-center mt-6;
+		text-align: center;
+		margin-top: 1.5rem;
 	}
 
 	.no-words-message {
-		@apply flex items-center justify-center col-span-full py-12;
-	}
-
-	/* Animación de entrada para el contenedor */
-	.css-wordcloud-container {
-		animation: containerAppear 0.8s ease-out;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		grid-column: 1 / -1;
+		padding: 3rem 0;
 	}
 
 	@keyframes containerAppear {
