@@ -6,6 +6,10 @@
 	export let candidatoId: string | null = null;
 	export let width: number = 800;
 	export let height: number = 400;
+	
+	// Variables reactivas para responsive
+	$: responsiveWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(350, window.innerWidth - 32) : width;
+	$: responsiveHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : height;
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
@@ -32,14 +36,14 @@
 
 		// Fondo ultra limpio y profesional
 		ctx.fillStyle = '#ffffff';
-		ctx.fillRect(0, 0, width, height);
+		ctx.fillRect(0, 0, responsiveWidth, responsiveHeight);
 
 		// Gradiente de fondo muy sutil para profundidad
-		const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
+		const bgGradient = ctx.createLinearGradient(0, 0, 0, responsiveHeight);
 		bgGradient.addColorStop(0, '#ffffff');
 		bgGradient.addColorStop(1, '#fefefe');
 		ctx.fillStyle = bgGradient;
-		ctx.fillRect(0, 0, width, height);
+		ctx.fillRect(0, 0, responsiveWidth, responsiveHeight);
 
 		const words = getWordsData();
 		if (words.length === 0) return;
@@ -71,14 +75,14 @@
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
 			const maxAttempts = 300;
 			let attempts = 0;
-			const centerX = width / 2;
-			const centerY = height / 2;
+			const centerX = responsiveWidth / 2;
+			const centerY = responsiveHeight / 2;
 
 			// Intentar posiciones más cercanas al centro primero
 			while (attempts < maxAttempts) {
 				// Usar distribución espiral más compacta
 				const angle = attempts * 0.15;
-				const radius = Math.min(attempts * 1.5, Math.min(width, height) / 3);
+				const radius = Math.min(attempts * 1.5, Math.min(responsiveWidth, responsiveHeight) / 3);
 				
 				// Agregar variación aleatoria para evitar patrones muy regulares
 				const randomOffset = (Math.random() - 0.5) * 20;
@@ -87,8 +91,8 @@
 				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
 				// Verificar límites más estrictos para mantener compacto
-				if (x >= 10 && x <= width - wordWidth - 10 && 
-					y >= 50 && y <= height - wordHeight - 10 &&
+				if (x >= 10 && x <= responsiveWidth - wordWidth - 10 && 
+					y >= 50 && y <= responsiveHeight - wordHeight - 10 &&
 					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
 				}
@@ -97,8 +101,8 @@
 
 			// Fallback: posición aleatoria más agresiva
 			for (let i = 0; i < 100; i++) {
-				const x = 10 + Math.random() * (width - wordWidth - 20);
-				const y = 50 + Math.random() * (height - wordHeight - 60);
+				const x = 10 + Math.random() * (responsiveWidth - wordWidth - 20);
+				const y = 50 + Math.random() * (responsiveHeight - wordHeight - 60);
 
 				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
@@ -107,8 +111,8 @@
 
 			// Último recurso: centro
 			return {
-				x: (width - wordWidth) / 2,
-				y: (height - wordHeight) / 2
+				x: (responsiveWidth - wordWidth) / 2,
+				y: (responsiveHeight - wordHeight) / 2
 			};
 		}
 
@@ -201,13 +205,13 @@
 			const devicePixelRatio = window.devicePixelRatio || 1;
 			const rect = canvas.getBoundingClientRect();
 			
-			// Establecer el tamaño real del canvas
-			canvas.width = width * devicePixelRatio;
-			canvas.height = height * devicePixelRatio;
+			// Establecer el tamaño real del canvas usando dimensiones responsivas
+			canvas.width = responsiveWidth * devicePixelRatio;
+			canvas.height = responsiveHeight * devicePixelRatio;
 			
 			// Establecer el tamaño de visualización
-			canvas.style.width = width + 'px';
-			canvas.style.height = height + 'px';
+			canvas.style.width = responsiveWidth + 'px';
+			canvas.style.height = responsiveHeight + 'px';
 			
 			// Escalar el contexto para la alta resolución
 			ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -218,6 +222,26 @@
 			
 			drawWordCloud();
 		}
+		
+		// Listener para redimensionamiento
+		const handleResize = () => {
+			if (canvas && ctx && data) {
+				// Actualizar dimensiones
+				canvas.width = responsiveWidth * (window.devicePixelRatio || 1);
+				canvas.height = responsiveHeight * (window.devicePixelRatio || 1);
+				canvas.style.width = responsiveWidth + 'px';
+				canvas.style.height = responsiveHeight + 'px';
+				ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+				
+				drawWordCloud();
+			}
+		};
+		
+		window.addEventListener('resize', handleResize);
+		
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	});
 
 	// Redibujar cuando cambien los datos o candidato
@@ -235,8 +259,8 @@
 	
 	<canvas 
 		bind:this={canvas} 
-		width={width} 
-		height={height}
+		width={responsiveWidth} 
+		height={responsiveHeight}
 		class="wordcloud-canvas"
 	></canvas>
 	
