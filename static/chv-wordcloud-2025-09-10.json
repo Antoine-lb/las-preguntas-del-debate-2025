@@ -1,0 +1,206 @@
+{
+	"metadata": {
+		"totalWords": 30,
+		"candidatosCount": 8,
+		"created": "2025-09-10",
+		"source": "Transcripción debate Chilevisión 2025",
+		"description": "Nube de palabras con conceptos predominantes del debate presidencial de Chilevisión, incluyendo temas transversales y propuestas específicas de cada candidato"
+	},
+	"general": {
+		"title": "Debate Chilevisión 2025: conceptos predominantes",
+		"words": [
+			{"text": "seguridad", "weight": 95, "color": "#dc2626"},
+			{"text": "empleo", "weight": 90, "color": "#059669"},
+			{"text": "inmigración", "weight": 85, "color": "#7c3aed"},
+			{"text": "salud", "weight": 80, "color": "#ea580c"},
+			{"text": "delincuencia", "weight": 78, "color": "#dc2626"},
+			{"text": "educación", "weight": 75, "color": "#0891b2"},
+			{"text": "economía", "weight": 72, "color": "#059669"},
+			{"text": "democracia", "weight": 70, "color": "#7c3aed"},
+			{"text": "fronteras", "weight": 68, "color": "#dc2626"},
+			{"text": "gobierno", "weight": 65, "color": "#0891b2"},
+			{"text": "violencia", "weight": 62, "color": "#dc2626"},
+			{"text": "Estado", "weight": 60, "color": "#7c3aed"},
+			{"text": "cáncer", "weight": 58, "color": "#ea580c"},
+			{"text": "jóvenes", "weight": 55, "color": "#0891b2"},
+			{"text": "trabajo", "weight": 52, "color": "#059669"},
+			{"text": "narcotráfico", "weight": 50, "color": "#dc2626"},
+			{"text": "pensiones", "weight": 48, "color": "#ea580c"},
+			{"text": "constitución", "weight": 45, "color": "#7c3aed"},
+			{"text": "vivienda", "weight": 43, "color": "#0891b2"},
+			{"text": "crisis", "weight": 40, "color": "#dc2626"},
+			{"text": "reforma", "weight": 38, "color": "#059669"},
+			{"text": "desarrollo", "weight": 35, "color": "#0891b2"},
+			{"text": "tecnología", "weight": 32, "color": "#7c3aed"},
+			{"text": "futuro", "weight": 30, "color": "#059669"},
+			{"text": "cambio", "weight": 28, "color": "#ea580c"},
+			{"text": "unidad", "weight": 25, "color": "#7c3aed"},
+			{"text": "justicia", "weight": 23, "color": "#0891b2"},
+			{"text": "esperanza", "weight": 20, "color": "#059669"},
+			{"text": "libertad", "weight": 18, "color": "#7c3aed"},
+			{"text": "paz", "weight": 15, "color": "#0891b2"}
+		]
+	},
+	"candidatos": {
+		"harold-mayne-nicholls": {
+			"nombre": "Harold Mayne-Nicholls",
+			"words": [
+				{"text": "mesura", "weight": 95, "color": "#7c3aed"},
+				{"text": "cordura", "weight": 90, "color": "#7c3aed"},
+				{"text": "telemedicina", "weight": 85, "color": "#ea580c"},
+				{"text": "FONASA", "weight": 80, "color": "#ea580c"},
+				{"text": "deportes", "weight": 75, "color": "#059669"},
+				{"text": "salud mental", "weight": 70, "color": "#ea580c"},
+				{"text": "universidad", "weight": 65, "color": "#0891b2"},
+				{"text": "jóvenes", "weight": 60, "color": "#0891b2"},
+				{"text": "inmigración", "weight": 55, "color": "#7c3aed"},
+				{"text": "regularización", "weight": 50, "color": "#7c3aed"},
+				{"text": "Carabineros", "weight": 45, "color": "#dc2626"},
+				{"text": "carrera técnica", "weight": 40, "color": "#0891b2"},
+				{"text": "Panamericanos", "weight": 35, "color": "#059669"},
+				{"text": "pragmatismo", "weight": 30, "color": "#7c3aed"},
+				{"text": "equidad", "weight": 25, "color": "#0891b2"}
+			]
+		},
+		"eduardo-artes": {
+			"nombre": "Eduardo Artés",
+			"words": [
+				{"text": "socialismo", "weight": 95, "color": "#dc2626"},
+				{"text": "dictadura", "weight": 90, "color": "#dc2626"},
+				{"text": "reindustrialización", "weight": 85, "color": "#059669"},
+				{"text": "salud estatal", "weight": 80, "color": "#ea580c"},
+				{"text": "campamentos", "weight": 75, "color": "#0891b2"},
+				{"text": "Mapuche", "weight": 70, "color": "#7c3aed"},
+				{"text": "protesta popular", "weight": 65, "color": "#dc2626"},
+				{"text": "seguridad alimentaria", "weight": 60, "color": "#059669"},
+				{"text": "educación pública", "weight": 55, "color": "#0891b2"},
+				{"text": "autodeterminación", "weight": 50, "color": "#7c3aed"},
+				{"text": "BRICS", "weight": 45, "color": "#059669"},
+				{"text": "no injerencia", "weight": 40, "color": "#7c3aed"},
+				{"text": "trabajadores", "weight": 35, "color": "#0891b2"},
+				{"text": "pueblo", "weight": 30, "color": "#dc2626"},
+				{"text": "lucha", "weight": 25, "color": "#dc2626"}
+			]
+		},
+		"evelyn-matthei": {
+			"nombre": "Evelyn Matthei",
+			"words": [
+				{"text": "unidad", "weight": 95, "color": "#7c3aed"},
+				{"text": "cáncer", "weight": 90, "color": "#ea580c"},
+				{"text": "alianza", "weight": 85, "color": "#7c3aed"},
+				{"text": "seguridad", "weight": 80, "color": "#dc2626"},
+				{"text": "jóvenes", "weight": 75, "color": "#0891b2"},
+				{"text": "vivienda", "weight": 70, "color": "#0891b2"},
+				{"text": "tecnología", "weight": 65, "color": "#7c3aed"},
+				{"text": "minería", "weight": 60, "color": "#059669"},
+				{"text": "liceos técnicos", "weight": 55, "color": "#0891b2"},
+				{"text": "inmigración", "weight": 50, "color": "#7c3aed"},
+				{"text": "expulsión", "weight": 45, "color": "#dc2626"},
+				{"text": "cámaras", "weight": 40, "color": "#7c3aed"},
+				{"text": "democracia", "weight": 35, "color": "#7c3aed"},
+				{"text": "esperanza", "weight": 30, "color": "#059669"},
+				{"text": "futuro", "weight": 25, "color": "#059669"}
+			]
+		},
+		"franco-parisi": {
+			"nombre": "Franco Parisi",
+			"words": [
+				{"text": "meritocracia", "weight": 95, "color": "#059669"},
+				{"text": "terrorismo", "weight": 90, "color": "#dc2626"},
+				{"text": "narcoterrorismo", "weight": 85, "color": "#dc2626"},
+				{"text": "casa propia", "weight": 80, "color": "#0891b2"},
+				{"text": "construcción", "weight": 75, "color": "#059669"},
+				{"text": "infraestructura", "weight": 70, "color": "#059669"},
+				{"text": "inteligencia artificial", "weight": 65, "color": "#7c3aed"},
+				{"text": "programadores", "weight": 60, "color": "#7c3aed"},
+				{"text": "inmigración", "weight": 55, "color": "#7c3aed"},
+				{"text": "minas", "weight": 50, "color": "#dc2626"},
+				{"text": "expulsión", "weight": 45, "color": "#dc2626"},
+				{"text": "PDG", "weight": 40, "color": "#059669"},
+				{"text": "desarrollo", "weight": 35, "color": "#0891b2"},
+				{"text": "oportunidades", "weight": 30, "color": "#059669"},
+				{"text": "coraje", "weight": 25, "color": "#dc2626"}
+			]
+		},
+		"jeannette-jara": {
+			"nombre": "Jeannette Jara",
+			"words": [
+				{"text": "experiencia", "weight": 95, "color": "#7c3aed"},
+				{"text": "bots", "weight": 90, "color": "#7c3aed"},
+				{"text": "trolls", "weight": 85, "color": "#7c3aed"},
+				{"text": "especialistas", "weight": 80, "color": "#ea580c"},
+				{"text": "empadronamiento", "weight": 75, "color": "#7c3aed"},
+				{"text": "fronteras", "weight": 70, "color": "#dc2626"},
+				{"text": "tecnología", "weight": 65, "color": "#7c3aed"},
+				{"text": "Cifrón", "weight": 60, "color": "#dc2626"},
+				{"text": "secreto bancario", "weight": 55, "color": "#059669"},
+				{"text": "empleo", "weight": 50, "color": "#059669"},
+				{"text": "pymes", "weight": 45, "color": "#059669"},
+				{"text": "750 mil", "weight": 40, "color": "#0891b2"},
+				{"text": "reforma", "weight": 35, "color": "#7c3aed"},
+				{"text": "acuerdos", "weight": 30, "color": "#7c3aed"},
+				{"text": "gestión", "weight": 25, "color": "#0891b2"}
+			]
+		},
+		"johannes-kaiser": {
+			"nombre": "Johannes Kaiser",
+			"words": [
+				{"text": "ley", "weight": 95, "color": "#dc2626"},
+				{"text": "violencia política", "weight": 90, "color": "#dc2626"},
+				{"text": "GES", "weight": 85, "color": "#ea580c"},
+				{"text": "oncológico", "weight": 80, "color": "#ea580c"},
+				{"text": "emergencia", "weight": 75, "color": "#dc2626"},
+				{"text": "eficiencia", "weight": 70, "color": "#059669"},
+				{"text": "Contraloría", "weight": 65, "color": "#0891b2"},
+				{"text": "inmigración", "weight": 60, "color": "#7c3aed"},
+				{"text": "traición", "weight": 55, "color": "#dc2626"},
+				{"text": "expulsión", "weight": 50, "color": "#dc2626"},
+				{"text": "armas", "weight": 45, "color": "#dc2626"},
+				{"text": "informalidad", "weight": 40, "color": "#059669"},
+				{"text": "productividad", "weight": 35, "color": "#059669"},
+				{"text": "sector privado", "weight": 30, "color": "#059669"},
+				{"text": "disciplina", "weight": 25, "color": "#dc2626"}
+			]
+		},
+		"jose-antonio-kast": {
+			"nombre": "José Antonio Kast",
+			"words": [
+				{"text": "emergencia", "weight": 95, "color": "#dc2626"},
+				{"text": "verdad", "weight": 90, "color": "#7c3aed"},
+				{"text": "libertad", "weight": 85, "color": "#7c3aed"},
+				{"text": "zanja", "weight": 80, "color": "#dc2626"},
+				{"text": "fronteras", "weight": 75, "color": "#dc2626"},
+				{"text": "delito", "weight": 70, "color": "#dc2626"},
+				{"text": "cárcel", "weight": 65, "color": "#dc2626"},
+				{"text": "comunas", "weight": 60, "color": "#0891b2"},
+				{"text": "desempleo", "weight": 55, "color": "#059669"},
+				{"text": "informalidad", "weight": 50, "color": "#059669"},
+				{"text": "pensiones", "weight": 45, "color": "#ea580c"},
+				{"text": "AFP", "weight": 40, "color": "#ea580c"},
+				{"text": "armas", "weight": 35, "color": "#dc2626"},
+				{"text": "seguridad", "weight": 30, "color": "#dc2626"},
+				{"text": "cambio", "weight": 25, "color": "#059669"}
+			]
+		},
+		"marco-enriquez-ominami": {
+			"nombre": "Marco Enríquez-Ominami",
+			"words": [
+				{"text": "Chile invisible", "weight": 95, "color": "#0891b2"},
+				{"text": "discapacidad", "weight": 90, "color": "#0891b2"},
+				{"text": "desfinanciado", "weight": 85, "color": "#dc2626"},
+				{"text": "60 mil millones", "weight": 80, "color": "#059669"},
+				{"text": "ahorro fiscal", "weight": 75, "color": "#059669"},
+				{"text": "Estado sólido", "weight": 70, "color": "#7c3aed"},
+				{"text": "médicos especialistas", "weight": 65, "color": "#ea580c"},
+				{"text": "inmigración", "weight": 60, "color": "#7c3aed"},
+				{"text": "condenados", "weight": 55, "color": "#dc2626"},
+				{"text": "demografía", "weight": 50, "color": "#0891b2"},
+				{"text": "planificación", "weight": 45, "color": "#7c3aed"},
+				{"text": "socialdemocracia", "weight": 40, "color": "#7c3aed"},
+				{"text": "soberanía", "weight": 35, "color": "#7c3aed"},
+				{"text": "reindustrialización", "weight": 30, "color": "#059669"},
+				{"text": "patria", "weight": 25, "color": "#dc2626"}
+			]
+		}
+	}
+}
