@@ -60,11 +60,11 @@
 		// Array para almacenar posiciones ocupadas
 		const occupiedPositions: Array<{ x: number; y: number; width: number; height: number }> = [];
 
-		// Función para verificar si una posición está ocupada - VERSIÓN ULTRA ESTRICTA
+		// Función para verificar si una posición está ocupada - VERSIÓN HIPER ESTRICTA
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 35 : 25; // MARGEN EXTREMO
+			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 50 : 40; // MARGEN HIPER EXTREMO
 			return occupiedPositions.some(pos => {
-				// Verificar si hay intersección con margen ULTRA amplio
+				// Verificar si hay intersección con margen HIPER amplio
 				const left1 = x - margin;
 				const right1 = x + wordWidth + margin;
 				const top1 = y - margin;
@@ -75,14 +75,14 @@
 				const top2 = pos.y - margin;
 				const bottom2 = pos.y + pos.height + margin;
 				
-				// Verificar si hay superposición - ALGORITMO ULTRA ESTRICTO
+				// Verificar si hay superposición - ALGORITMO HIPER ESTRICTO
 				return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
 			});
 		}
 
 		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 1000 : 800; // Muchos más intentos
+			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 1500 : 1200; // AÚN MÁS intentos
 			let attempts = 0;
 			const centerX = responsiveWidth / 2;
 			const centerY = responsiveHeight / 2;
@@ -100,9 +100,9 @@
 				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
 				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
-				// Verificar límites adaptativos según el dispositivo - MÁRGENES EXTREMOS
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 20;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 70;
+				// Verificar límites adaptativos según el dispositivo - MÁRGENES HIPER EXTREMOS
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 40;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
 				
 				if (x >= marginX && x <= responsiveWidth - wordWidth - marginX && 
 					y >= marginY && y <= responsiveHeight - wordHeight - marginX &&
@@ -113,9 +113,9 @@
 			}
 
 			// Fallback: posición aleatoria más agresiva
-			for (let i = 0; i < 300; i++) { // AÚN MÁS intentos en fallback
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 20;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 70;
+			for (let i = 0; i < 500; i++) { // MÁXIMOS intentos en fallback
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 40;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
 				const x = marginX + Math.random() * (responsiveWidth - wordWidth - (marginX * 2));
 				const y = marginY + Math.random() * (responsiveHeight - wordHeight - (marginY + 10));
 
@@ -131,20 +131,20 @@
 			};
 		}
 
-		// Ordenar palabras por peso (mayor a menor) y limitar DRÁSTICAMENTE en móviles
+		// Ordenar palabras por peso (mayor a menor) y limitar DRÁSTICAMENTE en móviles y desktop
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
-		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 10 : sortedWords.length;
+		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 20; // Menos palabras en ambos casos
 		const wordsToRender = sortedWords.slice(0, maxWords);
 
 		// Sistema de posicionamiento basado en grid para móviles
 		let gridPositions: Array<{ x: number; y: number }> = [];
 		if (typeof window !== 'undefined' && window.innerWidth < 768) {
 			// Crear grid para móviles
-			const gridSize = 80; // Espacio entre posiciones del grid
-			const startX = 40;
-			const startY = 80;
-			const endX = responsiveWidth - 40;
-			const endY = responsiveHeight - 40;
+			const gridSize = 100; // Espacio MAYOR entre posiciones del grid
+			const startX = 60;
+			const startY = 100;
+			const endX = responsiveWidth - 60;
+			const endY = responsiveHeight - 60;
 			
 			for (let y = startY; y < endY; y += gridSize) {
 				for (let x = startX; x < endX; x += gridSize) {
@@ -219,15 +219,33 @@
 			ctx.strokeStyle = 'transparent';
 			ctx.lineWidth = 0;
 
-			// Verificar una vez más que no hay colisiones antes de registrar
+			// Verificar ULTRA estricto que no hay colisiones antes de registrar
 			if (!isPositionOccupied(position.x, position.y, wordWidth, wordHeight)) {
-				// Registrar la posición ocupada
-				occupiedPositions.push({
-					x: position.x,
-					y: position.y,
-					width: wordWidth,
-					height: wordHeight
+				// Verificación adicional con margen extra
+				const extraMargin = 10;
+				const hasCollision = occupiedPositions.some(pos => {
+					const left1 = position.x - extraMargin;
+					const right1 = position.x + wordWidth + extraMargin;
+					const top1 = position.y - extraMargin;
+					const bottom1 = position.y + wordHeight + extraMargin;
+					
+					const left2 = pos.x - extraMargin;
+					const right2 = pos.x + pos.width + extraMargin;
+					const top2 = pos.y - extraMargin;
+					const bottom2 = pos.y + pos.height + extraMargin;
+					
+					return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
 				});
+				
+				if (!hasCollision) {
+					// Registrar la posición ocupada
+					occupiedPositions.push({
+						x: position.x,
+						y: position.y,
+						width: wordWidth,
+						height: wordHeight
+					});
+				}
 			}
 		});
 
@@ -314,9 +332,9 @@
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
 			{#if candidatoId && data.candidatos[candidatoId]}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(10, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(8, data.candidatos[candidatoId].words.length) : Math.min(20, data.candidatos[candidatoId].words.length)} conceptos clave de {data.candidatos[candidatoId].nombre}
 			{:else}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(10, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(8, data.general.words.length) : Math.min(20, data.general.words.length)} conceptos más utilizados en el debate
 			{/if}
 		</p>
 	</div>
