@@ -17,18 +17,18 @@
 	}
 
 	// Obtener las palabras a mostrar
-	$: words = candidatoId && data.candidatos[candidatoId] 
-		? data.candidatos[candidatoId].words 
-		: data.general.words;
+	$: words = candidatoId && data.wordcloudData.candidatos && data.wordcloudData.candidatos[candidatoId] 
+		? data.wordcloudData.candidatos[candidatoId].words 
+		: data.wordcloudData.general.words;
 
 	// Ordenar palabras por peso y limitar cantidad
-	$: sortedWords = [...words].sort((a, b) => b.weight - a.weight);
+	$: sortedWords = words ? [...words].sort((a, b) => b.weight - a.weight) : [];
 	$: maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 24;
 	$: wordsToShow = sortedWords.slice(0, maxWords);
 
 	// Calcular tamaños de fuente
-	$: maxWeight = Math.max(...wordsToShow.map(w => w.weight));
-	$: minWeight = Math.min(...wordsToShow.map(w => w.weight));
+	$: maxWeight = wordsToShow.length > 0 ? Math.max(...wordsToShow.map(w => w.weight)) : 100;
+	$: minWeight = wordsToShow.length > 0 ? Math.min(...wordsToShow.map(w => w.weight)) : 10;
 
 	// Función para calcular tamaño de fuente
 	function getFontSize(weight: number): number {
@@ -50,35 +50,41 @@
 	<!-- Título -->
 	<div class="wordcloud-title">
 		<h2 class="title-text">
-			{candidatoId && data.candidatos[candidatoId] 
-				? `Conceptos de ${data.candidatos[candidatoId].nombre}`
-				: data.general.title}
+			{candidatoId && data.wordcloudData.candidatos && data.wordcloudData.candidatos[candidatoId] 
+				? `Conceptos de ${data.wordcloudData.candidatos[candidatoId].nombre}`
+				: data.wordcloudData.general?.title || 'Nube de Palabras'}
 		</h2>
 		<div class="title-decoration"></div>
 	</div>
 
 	<!-- Grid de palabras -->
 	<div class="words-grid">
-		{#each wordsToShow as word, index}
-			<div 
-				class="word-item"
-				style="
-					font-size: {getFontSize(word.weight)}px;
-					color: {adjustBrightness(word.color, -10)};
-					opacity: {getOpacity(word.weight)};
-					--word-color: {word.color};
-					animation-delay: {index * 0.1}s;
-				"
-			>
-				{word.text}
+		{#if wordsToShow.length > 0}
+			{#each wordsToShow as word, index}
+				<div 
+					class="word-item"
+					style="
+						font-size: {getFontSize(word.weight)}px;
+						color: {adjustBrightness(word.color, -10)};
+						opacity: {getOpacity(word.weight)};
+						--word-color: {word.color};
+						animation-delay: {index * 0.1}s;
+					"
+				>
+					{word.text}
+				</div>
+			{/each}
+		{:else}
+			<div class="no-words-message">
+				<p class="text-gray-500">Cargando palabras...</p>
 			</div>
-		{/each}
+		{/if}
 	</div>
 
 	<!-- Información adicional -->
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
-			{wordsToShow.length} conceptos {candidatoId && data.candidatos[candidatoId] ? 'clave' : 'más utilizados'} {candidatoId && data.candidatos[candidatoId] ? `de ${data.candidatos[candidatoId].nombre}` : 'en el debate'}
+			{wordsToShow.length} conceptos {candidatoId && data.wordcloudData.candidatos[candidatoId] ? 'clave' : 'más utilizados'} {candidatoId && data.wordcloudData.candidatos[candidatoId] ? `de ${data.wordcloudData.candidatos[candidatoId].nombre}` : 'en el debate'}
 		</p>
 	</div>
 </div>
@@ -165,6 +171,10 @@
 
 	.wordcloud-info {
 		@apply text-center mt-6;
+	}
+
+	.no-words-message {
+		@apply flex items-center justify-center col-span-full py-12;
 	}
 
 	/* Animación de entrada para el contenedor */

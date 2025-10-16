@@ -144,7 +144,7 @@
 			
 			<div class="bg-white rounded-xl md:rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100">
 				<CSSWordCloud 
-					data={wordcloudData.wordcloudData} 
+					data={wordcloudData} 
 					candidatoId={selectedCandidato}
 				/>
 			</div>
