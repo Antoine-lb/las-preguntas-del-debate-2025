@@ -60,22 +60,22 @@
 		// Array para almacenar posiciones ocupadas
 		const occupiedPositions: Array<{ x: number; y: number; width: number; height: number }> = [];
 
-		// Función para verificar si una posición está ocupada
+		// Función para verificar si una posición está ocupada - VERSIÓN ULTRA ESTRICTA
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 20 : 12; // Margen aún mayor
+			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 35 : 25; // MARGEN EXTREMO
 			return occupiedPositions.some(pos => {
-				// Verificar si hay intersección con margen amplio
+				// Verificar si hay intersección con margen ULTRA amplio
 				const left1 = x - margin;
 				const right1 = x + wordWidth + margin;
 				const top1 = y - margin;
 				const bottom1 = y + wordHeight + margin;
 				
-				const left2 = pos.x;
-				const right2 = pos.x + pos.width;
-				const top2 = pos.y;
-				const bottom2 = pos.y + pos.height;
+				const left2 = pos.x - margin;
+				const right2 = pos.x + pos.width + margin;
+				const top2 = pos.y - margin;
+				const bottom2 = pos.y + pos.height + margin;
 				
-				// Verificar si hay superposición
+				// Verificar si hay superposición - ALGORITMO ULTRA ESTRICTO
 				return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
 			});
 		}
@@ -100,9 +100,9 @@
 				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
 				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
-				// Verificar límites adaptativos según el dispositivo
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 15;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 60;
+				// Verificar límites adaptativos según el dispositivo - MÁRGENES EXTREMOS
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 20;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 70;
 				
 				if (x >= marginX && x <= responsiveWidth - wordWidth - marginX && 
 					y >= marginY && y <= responsiveHeight - wordHeight - marginX &&
@@ -113,9 +113,9 @@
 			}
 
 			// Fallback: posición aleatoria más agresiva
-			for (let i = 0; i < 200; i++) { // Más intentos en fallback
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 15;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 60;
+			for (let i = 0; i < 300; i++) { // AÚN MÁS intentos en fallback
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 40 : 20;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 70;
 				const x = marginX + Math.random() * (responsiveWidth - wordWidth - (marginX * 2));
 				const y = marginY + Math.random() * (responsiveHeight - wordHeight - (marginY + 10));
 
@@ -131,10 +131,29 @@
 			};
 		}
 
-		// Ordenar palabras por peso (mayor a menor) y limitar en móviles
+		// Ordenar palabras por peso (mayor a menor) y limitar DRÁSTICAMENTE en móviles
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
-		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : sortedWords.length;
+		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 10 : sortedWords.length;
 		const wordsToRender = sortedWords.slice(0, maxWords);
+
+		// Sistema de posicionamiento basado en grid para móviles
+		let gridPositions: Array<{ x: number; y: number }> = [];
+		if (typeof window !== 'undefined' && window.innerWidth < 768) {
+			// Crear grid para móviles
+			const gridSize = 80; // Espacio entre posiciones del grid
+			const startX = 40;
+			const startY = 80;
+			const endX = responsiveWidth - 40;
+			const endY = responsiveHeight - 40;
+			
+			for (let y = startY; y < endY; y += gridSize) {
+				for (let x = startX; x < endX; x += gridSize) {
+					gridPositions.push({ x, y });
+				}
+			}
+			// Mezclar posiciones del grid
+			gridPositions = gridPositions.sort(() => Math.random() - 0.5);
+		}
 
 		// Dibujar cada palabra con efectos mejorados
 		wordsToRender.forEach((word, index) => {
@@ -157,8 +176,15 @@
 			const wordWidth = textMetrics.width;
 			const wordHeight = fontSize;
 
-			// Encontrar posición libre
-			const position = findFreePosition(wordWidth, wordHeight);
+			// Encontrar posición libre - USAR GRID EN MÓVILES
+			let position;
+			if (typeof window !== 'undefined' && window.innerWidth < 768 && gridPositions.length > 0) {
+				// Usar posición del grid para móviles
+				position = gridPositions[index] || { x: responsiveWidth / 2, y: responsiveHeight / 2 };
+			} else {
+				// Usar algoritmo normal para desktop
+				position = findFreePosition(wordWidth, wordHeight);
+			}
 
 			// Renderizado optimizado para máxima intensidad y nitidez
 			const baseColor = word.color;
@@ -288,9 +314,9 @@
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
 			{#if candidatoId && data.candidatos[candidatoId]}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(15, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(10, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
 			{:else}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(15, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(10, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
 			{/if}
 		</p>
 	</div>
