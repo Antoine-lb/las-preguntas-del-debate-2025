@@ -62,18 +62,27 @@
 
 		// Función para verificar si una posición está ocupada
 		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
-			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 12 : 6; // Mayor margen en móvil
-			return occupiedPositions.some(pos => 
-				!(x + wordWidth + margin < pos.x || 
-				  x - margin > pos.x + pos.width || 
-				  y + wordHeight + margin < pos.y || 
-				  y - margin > pos.y + pos.height)
-			);
+			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 20 : 12; // Margen aún mayor
+			return occupiedPositions.some(pos => {
+				// Verificar si hay intersección con margen amplio
+				const left1 = x - margin;
+				const right1 = x + wordWidth + margin;
+				const top1 = y - margin;
+				const bottom1 = y + wordHeight + margin;
+				
+				const left2 = pos.x;
+				const right2 = pos.x + pos.width;
+				const top2 = pos.y;
+				const bottom2 = pos.y + pos.height;
+				
+				// Verificar si hay superposición
+				return !(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2);
+			});
 		}
 
 		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 500 : 300;
+			const maxAttempts = typeof window !== 'undefined' && window.innerWidth < 768 ? 1000 : 800; // Muchos más intentos
 			let attempts = 0;
 			const centerX = responsiveWidth / 2;
 			const centerY = responsiveHeight / 2;
@@ -81,19 +90,19 @@
 			// Intentar posiciones más cercanas al centro primero
 			while (attempts < maxAttempts) {
 				// Usar distribución espiral adaptativa según el dispositivo
-				const angle = attempts * (typeof window !== 'undefined' && window.innerWidth < 768 ? 0.2 : 0.15);
-				const radiusMultiplier = typeof window !== 'undefined' && window.innerWidth < 768 ? 2.0 : 1.5;
-				const radius = Math.min(attempts * radiusMultiplier, Math.min(responsiveWidth, responsiveHeight) / 2.5);
+				const angle = attempts * (typeof window !== 'undefined' && window.innerWidth < 768 ? 0.25 : 0.2);
+				const radiusMultiplier = typeof window !== 'undefined' && window.innerWidth < 768 ? 2.5 : 2.0;
+				const radius = Math.min(attempts * radiusMultiplier, Math.min(responsiveWidth, responsiveHeight) / 2.2);
 				
 				// Agregar variación aleatoria para evitar patrones muy regulares
-				const randomOffset = (Math.random() - 0.5) * (typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 20);
+				const randomOffset = (Math.random() - 0.5) * (typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 30);
 				
 				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
 				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
 
 				// Verificar límites adaptativos según el dispositivo
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 10;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 50;
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 15;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 60;
 				
 				if (x >= marginX && x <= responsiveWidth - wordWidth - marginX && 
 					y >= marginY && y <= responsiveHeight - wordHeight - marginX &&
@@ -104,9 +113,9 @@
 			}
 
 			// Fallback: posición aleatoria más agresiva
-			for (let i = 0; i < 100; i++) {
-				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : 10;
-				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 60 : 50;
+			for (let i = 0; i < 200; i++) { // Más intentos en fallback
+				const marginX = typeof window !== 'undefined' && window.innerWidth < 768 ? 25 : 15;
+				const marginY = typeof window !== 'undefined' && window.innerWidth < 768 ? 70 : 60;
 				const x = marginX + Math.random() * (responsiveWidth - wordWidth - (marginX * 2));
 				const y = marginY + Math.random() * (responsiveHeight - wordHeight - (marginY + 10));
 
@@ -124,7 +133,7 @@
 
 		// Ordenar palabras por peso (mayor a menor) y limitar en móviles
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
-		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 20 : sortedWords.length;
+		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 15 : sortedWords.length;
 		const wordsToRender = sortedWords.slice(0, maxWords);
 
 		// Dibujar cada palabra con efectos mejorados
@@ -184,13 +193,16 @@
 			ctx.strokeStyle = 'transparent';
 			ctx.lineWidth = 0;
 
-			// Registrar la posición ocupada
-			occupiedPositions.push({
-				x: position.x,
-				y: position.y,
-				width: wordWidth,
-				height: wordHeight
-			});
+			// Verificar una vez más que no hay colisiones antes de registrar
+			if (!isPositionOccupied(position.x, position.y, wordWidth, wordHeight)) {
+				// Registrar la posición ocupada
+				occupiedPositions.push({
+					x: position.x,
+					y: position.y,
+					width: wordWidth,
+					height: wordHeight
+				});
+			}
 		});
 
 		// El título ahora se renderiza fuera del canvas, en el componente padre
@@ -276,9 +288,9 @@
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
 			{#if candidatoId && data.candidatos[candidatoId]}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(20, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(15, data.candidatos[candidatoId].words.length) : data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
 			{:else}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(20, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
+				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(15, data.general.words.length) : data.general.words.length} conceptos más utilizados en el debate
 			{/if}
 		</p>
 	</div>
