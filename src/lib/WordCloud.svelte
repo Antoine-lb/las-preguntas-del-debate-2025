@@ -6,10 +6,6 @@
 	export let candidatoId: string | null = null;
 	export let width: number = 800;
 	export let height: number = 400;
-	
-	// Variables reactivas para responsive
-	$: responsiveWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(350, window.innerWidth - 32) : width;
-	$: responsiveHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : height;
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
@@ -36,22 +32,22 @@
 
 		// Fondo ultra limpio y profesional
 		ctx.fillStyle = '#ffffff';
-		ctx.fillRect(0, 0, responsiveWidth, responsiveHeight);
+		ctx.fillRect(0, 0, width, height);
 
 		// Gradiente de fondo muy sutil para profundidad
-		const bgGradient = ctx.createLinearGradient(0, 0, 0, responsiveHeight);
+		const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
 		bgGradient.addColorStop(0, '#ffffff');
 		bgGradient.addColorStop(1, '#fefefe');
 		ctx.fillStyle = bgGradient;
-		ctx.fillRect(0, 0, responsiveWidth, responsiveHeight);
+		ctx.fillRect(0, 0, width, height);
 
 		const words = getWordsData();
 		if (words.length === 0) return;
 
 		// Configuración de fuentes profesionales y elegantes
 		const fontFamily = '"Inter", "SF Pro Display", "Segoe UI", "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif';
-		const maxFontSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 28 : 68;
-		const minFontSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 10 : 14;
+		const maxFontSize = 68;
+		const minFontSize = 14;
 
 		// Calcular el peso máximo para normalizar
 		const maxWeight = Math.max(...words.map(w => w.weight));
@@ -60,99 +56,67 @@
 		// Array para almacenar posiciones ocupadas
 		const occupiedPositions: Array<{ x: number; y: number; width: number; height: number }> = [];
 
-		// ALGORITMO COMPLETAMENTE NUEVO - POSICIONAMIENTO POR GRID FIJO
+		// Función para verificar si una posición está ocupada
+		function isPositionOccupied(x: number, y: number, wordWidth: number, wordHeight: number): boolean {
+			const margin = 3; // Margen reducido para palabras más juntas
+			return occupiedPositions.some(pos => 
+				!(x + wordWidth + margin < pos.x || 
+				  x - margin > pos.x + pos.width || 
+				  y + wordHeight + margin < pos.y || 
+				  y - margin > pos.y + pos.height)
+			);
+		}
+
+		// Función para encontrar una posición libre con algoritmo mejorado para nubes compactas
 		function findFreePosition(wordWidth: number, wordHeight: number): { x: number; y: number } {
-			// Crear un grid fijo para evitar superposiciones
-			const gridSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 100;
-			const margin = typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 60;
-			
-			// Crear todas las posiciones posibles del grid
-			const gridPositions = [];
-			for (let y = margin; y <= responsiveHeight - margin - gridSize; y += gridSize) {
-				for (let x = margin; x <= responsiveWidth - margin - gridSize; x += gridSize) {
-					// Verificar que la palabra cabe en esta posición del grid
-					if (x + wordWidth <= responsiveWidth - margin && y + wordHeight <= responsiveHeight - margin) {
-						gridPositions.push({ x, y });
-					}
+			const maxAttempts = 300;
+			let attempts = 0;
+			const centerX = width / 2;
+			const centerY = height / 2;
+
+			// Intentar posiciones más cercanas al centro primero
+			while (attempts < maxAttempts) {
+				// Usar distribución espiral más compacta
+				const angle = attempts * 0.15;
+				const radius = Math.min(attempts * 1.5, Math.min(width, height) / 3);
+				
+				// Agregar variación aleatoria para evitar patrones muy regulares
+				const randomOffset = (Math.random() - 0.5) * 20;
+				
+				const x = centerX + radius * Math.cos(angle) - wordWidth / 2 + randomOffset;
+				const y = centerY + radius * Math.sin(angle) - wordHeight / 2 + randomOffset;
+
+				// Verificar límites más estrictos para mantener compacto
+				if (x >= 10 && x <= width - wordWidth - 10 && 
+					y >= 50 && y <= height - wordHeight - 10 &&
+					!isPositionOccupied(x, y, wordWidth, wordHeight)) {
+					return { x, y };
 				}
+				attempts++;
 			}
-			
-			// Buscar una posición libre en el grid
-			for (const gridPos of gridPositions) {
-				let isOccupied = false;
-				
-				// Verificar si esta posición del grid está ocupada
-				for (const occupiedPos of occupiedPositions) {
-					// Verificar si hay superposición con margen generoso
-					const marginCheck = 20;
-					const left1 = gridPos.x - marginCheck;
-					const right1 = gridPos.x + wordWidth + marginCheck;
-					const top1 = gridPos.y - marginCheck;
-					const bottom1 = gridPos.y + wordHeight + marginCheck;
-					
-					const left2 = occupiedPos.x - marginCheck;
-					const right2 = occupiedPos.x + occupiedPos.width + marginCheck;
-					const top2 = occupiedPos.y - marginCheck;
-					const bottom2 = occupiedPos.y + occupiedPos.height + marginCheck;
-					
-					// Si hay intersección, esta posición está ocupada
-					if (!(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2)) {
-						isOccupied = true;
-						break;
-					}
-				}
-				
-				if (!isOccupied) {
-					return gridPos;
-				}
-			}
-			
-			// Si no se encuentra posición en el grid, usar posiciones aleatorias con márgenes muy grandes
-			const maxAttempts = 1000;
-			const largeMargin = typeof window !== 'undefined' && window.innerWidth < 768 ? 100 : 80;
-			
-			for (let i = 0; i < maxAttempts; i++) {
-				const x = largeMargin + Math.random() * (responsiveWidth - wordWidth - (largeMargin * 2));
-				const y = largeMargin + Math.random() * (responsiveHeight - wordHeight - (largeMargin * 2));
-				
-				let isOccupied = false;
-				for (const occupiedPos of occupiedPositions) {
-					const marginCheck = 30;
-					const left1 = x - marginCheck;
-					const right1 = x + wordWidth + marginCheck;
-					const top1 = y - marginCheck;
-					const bottom1 = y + wordHeight + marginCheck;
-					
-					const left2 = occupiedPos.x - marginCheck;
-					const right2 = occupiedPos.x + occupiedPos.width + marginCheck;
-					const top2 = occupiedPos.y - marginCheck;
-					const bottom2 = occupiedPos.y + occupiedPos.height + marginCheck;
-					
-					if (!(left1 > right2 || right1 < left2 || top1 > bottom2 || bottom1 < top2)) {
-						isOccupied = true;
-						break;
-					}
-				}
-				
-				if (!isOccupied) {
+
+			// Fallback: posición aleatoria más agresiva
+			for (let i = 0; i < 100; i++) {
+				const x = 10 + Math.random() * (width - wordWidth - 20);
+				const y = 50 + Math.random() * (height - wordHeight - 60);
+
+				if (!isPositionOccupied(x, y, wordWidth, wordHeight)) {
 					return { x, y };
 				}
 			}
-			
-			// Último recurso: posición fija en el centro
+
+			// Último recurso: centro
 			return {
-				x: (responsiveWidth - wordWidth) / 2,
-				y: (responsiveHeight - wordHeight) / 2
+				x: (width - wordWidth) / 2,
+				y: (height - wordHeight) / 2
 			};
 		}
 
-		// Ordenar palabras por peso (mayor a menor) y limitar DRÁSTICAMENTE en móviles y desktop
+		// Ordenar palabras por peso (mayor a menor)
 		const sortedWords = [...words].sort((a, b) => b.weight - a.weight);
-		const maxWords = typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 20; // Menos palabras en ambos casos
-		const wordsToRender = sortedWords.slice(0, maxWords);
 
 		// Dibujar cada palabra con efectos mejorados
-		wordsToRender.forEach((word, index) => {
+		sortedWords.forEach((word, index) => {
 			// Calcular tamaño de fuente con mayor diferenciación
 			const normalizedWeight = (word.weight - minWeight) / (maxWeight - minWeight);
 			// Usar función cuadrática para mayor diferenciación de tamaños
@@ -172,7 +136,7 @@
 			const wordWidth = textMetrics.width;
 			const wordHeight = fontSize;
 
-			// Encontrar posición libre usando el nuevo algoritmo
+			// Encontrar posición libre
 			const position = findFreePosition(wordWidth, wordHeight);
 
 			// Renderizado optimizado para máxima intensidad y nitidez
@@ -208,7 +172,7 @@
 			ctx.strokeStyle = 'transparent';
 			ctx.lineWidth = 0;
 
-			// Registrar la posición ocupada (el algoritmo ya verificó que está libre)
+			// Registrar la posición ocupada
 			occupiedPositions.push({
 				x: position.x,
 				y: position.y,
@@ -237,13 +201,13 @@
 			const devicePixelRatio = window.devicePixelRatio || 1;
 			const rect = canvas.getBoundingClientRect();
 			
-			// Establecer el tamaño real del canvas usando dimensiones responsivas
-			canvas.width = responsiveWidth * devicePixelRatio;
-			canvas.height = responsiveHeight * devicePixelRatio;
+			// Establecer el tamaño real del canvas
+			canvas.width = width * devicePixelRatio;
+			canvas.height = height * devicePixelRatio;
 			
 			// Establecer el tamaño de visualización
-			canvas.style.width = responsiveWidth + 'px';
-			canvas.style.height = responsiveHeight + 'px';
+			canvas.style.width = width + 'px';
+			canvas.style.height = height + 'px';
 			
 			// Escalar el contexto para la alta resolución
 			ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -254,26 +218,6 @@
 			
 			drawWordCloud();
 		}
-		
-		// Listener para redimensionamiento
-		const handleResize = () => {
-			if (canvas && ctx && data) {
-				// Actualizar dimensiones
-				canvas.width = responsiveWidth * (window.devicePixelRatio || 1);
-				canvas.height = responsiveHeight * (window.devicePixelRatio || 1);
-				canvas.style.width = responsiveWidth + 'px';
-				canvas.style.height = responsiveHeight + 'px';
-				ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
-				
-				drawWordCloud();
-			}
-		};
-		
-		window.addEventListener('resize', handleResize);
-		
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
 	});
 
 	// Redibujar cuando cambien los datos o candidato
@@ -291,8 +235,8 @@
 	
 	<canvas 
 		bind:this={canvas} 
-		width={responsiveWidth} 
-		height={responsiveHeight}
+		width={width} 
+		height={height}
 		class="wordcloud-canvas"
 	></canvas>
 	
@@ -300,9 +244,9 @@
 	<div class="wordcloud-info">
 		<p class="text-sm text-gray-600 mt-2">
 			{#if candidatoId && data.candidatos[candidatoId]}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(8, data.candidatos[candidatoId].words.length) : Math.min(20, data.candidatos[candidatoId].words.length)} conceptos clave de {data.candidatos[candidatoId].nombre}
+				{data.candidatos[candidatoId].words.length} conceptos clave de {data.candidatos[candidatoId].nombre}
 			{:else}
-				{typeof window !== 'undefined' && window.innerWidth < 768 ? Math.min(8, data.general.words.length) : Math.min(20, data.general.words.length)} conceptos más utilizados en el debate
+				{data.general.words.length} conceptos más utilizados en el debate
 			{/if}
 		</p>
 	</div>
