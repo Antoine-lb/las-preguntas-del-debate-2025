@@ -202,12 +202,92 @@
 		-->
 	</header>
 
-	<!-- Selector de Candidatos y Temas -->
+	<!-- Selector de Temas y Candidatos -->
 	<section class="mb-12">
-		<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por candidato</h2>
+		<!-- Temas -->
+		<div class="mb-8">
+			<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por tema</h2>
+			<div class="flex flex-wrap gap-3 md:gap-4 justify-center">
+				{#each temas as tema}
+					{@const IconoTema = iconosPorTema[tema.id]}
+					<button
+						onclick={() => seleccionarTema(tema.id)}
+						class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {temaSeleccionadoId ===
+						tema.id
+							? 'shadow-2xl scale-110'
+							: 'hover:shadow-xl'}"
+						style="
+						{temaSeleccionadoId === tema.id
+							? `background: linear-gradient(145deg, ${tema.color}20, ${tema.color}08); box-shadow: 0 20px 40px ${tema.color}25, 0 8px 16px ${tema.color}15, inset 0 1px 0 ${tema.color}30`
+							: `background: linear-gradient(145deg, ${tema.color}12, ${tema.color}05); box-shadow: 0 4px 12px ${tema.color}20, inset 0 1px 0 ${tema.color}15`}
+					"
+						onmouseenter={(e) => {
+							if (temaSeleccionadoId !== tema.id) {
+								e.currentTarget.style.background = `linear-gradient(145deg, ${tema.color}18, ${tema.color}08)`;
+								e.currentTarget.style.boxShadow = `0 12px 24px ${tema.color}30, 0 4px 8px ${tema.color}20, inset 0 1px 0 ${tema.color}25`;
+							}
+						}}
+						onmouseleave={(e) => {
+							if (temaSeleccionadoId !== tema.id) {
+								e.currentTarget.style.background = `linear-gradient(145deg, ${tema.color}12, ${tema.color}05)`;
+								e.currentTarget.style.boxShadow = `0 4px 12px ${tema.color}20, inset 0 1px 0 ${tema.color}15`;
+							}
+						}}
+					>
+						<!-- Icono del tema -->
+						<div class="relative mb-3 md:mb-4">
+							<!-- Círculo exterior con gradiente -->
+							<div class="relative w-16 h-16 md:w-20 md:h-20 rounded-full p-2 transition-all duration-300 group-hover:scale-110 {temaSeleccionadoId === tema.id ? 'scale-110' : ''}"
+								style={temaSeleccionadoId === tema.id 
+									? `background: linear-gradient(135deg, ${tema.color}, ${tema.color}CC); box-shadow: 0 8px 24px ${tema.color}40, 0 0 0 4px ${tema.color}20`
+									: `background: linear-gradient(135deg, ${tema.color}60, ${tema.color}40); box-shadow: 0 4px 12px ${tema.color}30`}>
+								
+								<!-- Icono del tema -->
+								<div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
+									{#if IconoTema}
+										<IconoTema class="w-8 h-8 md:w-10 md:h-10 transition-all duration-300 ease-out group-hover:scale-110" 
+											style={temaSeleccionadoId === tema.id ? `color: ${tema.color}` : `color: ${tema.color}CC`} />
+									{/if}
+								</div>
+							</div>
+							
+							<!-- Indicador de selección -->
+							{#if temaSeleccionadoId === tema.id}
+								<div class="absolute -top-1 -right-1 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-bounce"
+									style="background: linear-gradient(135deg, ${tema.color}, ${tema.color}DD); box-shadow: 0 4px 12px ${tema.color}60, 0 0 0 3px white">
+									✓
+								</div>
+							{/if}
+							
+							<!-- Efecto de pulso en hover -->
+							<div class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none animate-ping"
+								style="background: radial-gradient(circle, ${tema.color}30, transparent 70%)"></div>
+						</div>
+						
+						<!-- Información del tema -->
+						<div class="text-center space-y-2">
+							<h3
+								class="font-bold text-xs md:text-sm leading-tight transition-colors duration-300 {temaSeleccionadoId ===
+								tema.id
+									? ''
+									: 'text-gray-900 group-hover:text-gray-800'}"
+								style={temaSeleccionadoId === tema.id ? `color: ${tema.color}` : ''}
+							>
+								{tema.nombre}
+							</h3>
+						</div>
+						
+						<!-- Efecto de brillo superior -->
+						<div class="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+							style="background: linear-gradient(180deg, ${tema.color}20, transparent)"></div>
+					</button>
+				{/each}
+			</div>
+		</div>
 
 		<!-- Candidatos -->
-		<div class="mb-6">
+		<div>
+			<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por candidato</h2>
 			<div class="flex flex-wrap gap-4 md:gap-6 justify-center">
 				{#each candidatosVisibles as candidato}
 					<button
@@ -374,33 +454,6 @@
 					<div class="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
 						style="background: linear-gradient(180deg, #f59e0b20, transparent)"></div>
 				</button>
-			</div>
-		</div>
-
-		<!-- Temas -->
-		<div>
-			<h3 class="text-sm font-medium text-gray-600 mb-2">Temas</h3>
-			<div class="flex flex-wrap gap-1.5 md:gap-2">
-				{#each temas as tema}
-					{@const IconoTema = iconosPorTema[tema.id]}
-					<button
-						onclick={() => seleccionarTema(tema.id)}
-						class="flex items-center gap-1.5 md:gap-2.5 px-2.5 md:px-4 py-1.5 md:py-2.5 rounded-full border transition-all duration-200 text-xs md:text-sm font-medium {temaSeleccionadoId ===
-						tema.id
-							? 'shadow-md'
-							: 'hover:shadow-sm'}"
-						style="
-							{temaSeleccionadoId === tema.id
-							? `background-color: ${tema.color}30; border-color: ${tema.color}; color: ${tema.color}`
-							: `background-color: ${tema.color}10; border-color: ${tema.color}40; color: ${tema.color}E6`}
-						"
-					>
-						{#if IconoTema}
-							<IconoTema class="w-4 h-4 md:w-6 md:h-6" />
-						{/if}
-						{tema.nombre}
-					</button>
-				{/each}
 			</div>
 		</div>
 	</section>
