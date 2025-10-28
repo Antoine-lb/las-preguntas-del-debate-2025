@@ -15,6 +15,7 @@ import respuestasCHV from './respuestas/chv-debate-presidencial-2025-09-10-BASE.
 import respuestasEnatrans from './respuestas/enatrans-2025-08-07.json';
 import respuestasIcare from './respuestas/icare-congreso-2025-08-26-BASE.json';
 import respuestasEnade from './respuestas/enade-icare-2025-10-14.json';
+import respuestasTuDecides from './respuestas/tu-decides-canal13-2025-10-26.json';
 
 export interface Debate {
 	id: string;
@@ -91,6 +92,11 @@ export const temas: Tema[] = [
 		id: 'empleo',
 		nombre: 'Empleo y Trabajo',
 		color: '#0891b2' // Cian
+	},
+	{
+		id: 'politica',
+		nombre: 'Política y Gobernabilidad',
+		color: '#6b7280' // Gris
 	}
 ];
 
@@ -105,6 +111,25 @@ export const getTemaById = (id: string): Tema | undefined => {
  * Lista de debates presidenciales 2025
  */
 export const debates2025: Debate[] = [
+	{
+		id: 'tu-decides-canal13-2025-10-26',
+		nombre: 'Tú decide - Debate Presidencial Canal 13',
+		fecha: '2025-10-26',
+		organizador: 'Canal 13',
+		duracion: '3h 50m',
+		conductores: ['Soledad Onetto', 'Iván Valenzuela'],
+		transcriptUrl: '',
+		candidatosIds: [
+			'franco-parisi',
+			'jeannette-jara',
+			'marco-enriquez-ominami',
+			'johannes-kaiser',
+			'jose-antonio-kast',
+			'eduardo-artes',
+			'evelyn-matthei',
+			'harold-mayne-nicholls'
+		]
+	},
 	{
 		id: 'enade-icare-2025-10-14',
 		nombre: 'ENADE 2025: Verba et Facta - Panel Presidencial',
@@ -248,6 +273,168 @@ export const debates2025: Debate[] = [
  * Preguntas de todos los debates presidenciales 2025
  */
 export const preguntas2025: Pregunta[] = [
+	// Debate Tú decide - Canal 13 - 26 de octubre de 2025
+	{
+		id: 'tu-decides-q1',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Va a obligar a la banca a renegociar deuda con deudores?',
+		orden: 1,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q2',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo va a recortar esos seis mil millones de dólares del gasto público? ¿Planea cortar la gratuidad universitaria, atención a la salud primaria y municipal, o subvención escolar?',
+		orden: 2,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q3',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Tiene pensado recortar a quienes no cumplen los requisitos exigidos para la gratuidad? ¿Se cancela el beneficio a quienes lo reciben cada mes o está pensando para las futuras postulaciones?',
+		orden: 3,
+		temaId: 'educacion'
+	},
+	{
+		id: 'tu-decides-q4',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo financiará medidas inmediatas para aliviar a las familias? ¿Por qué su programa de gobierno no tiene medidas recaudatorias claras?',
+		orden: 4,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q5',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo va a fijar el precio real de un artículo si, según su programa, actualmente ninguno lo tiene? ¿Por decreto?',
+		orden: 5,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q6',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Qué corresponde hacer con el proyecto Dominga? ¿Y con la ley Lafkenche y el sistema de biodiversidad y áreas protegidas?',
+		orden: 6,
+		temaId: 'medio-ambiente'
+	},
+	{
+		id: 'tu-decides-q7',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo se va a implementar la propuesta de rebajar en 20% las boletas de la luz y establecer un consumo eléctrico vital?',
+		orden: 7,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q8',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Se trata de un problema de financiamiento de la PGU o de principios el querer cambiarla para que no sea universal?',
+		orden: 8,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q9',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Qué piensas de las encuestas considerando tus resultados en candidaturas anteriores y el actual 1%?',
+		orden: 9,
+		temaId: 'politica'
+	},
+	{
+		id: 'tu-decides-q10',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Estás en contra o a favor de la anticoncepción en los CESFAM?',
+		orden: 10,
+		temaId: 'salud'
+	},
+	{
+		id: 'tu-decides-q11',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cuál sería tu decisión respecto de una intervención de Estados Unidos contra Venezuela?',
+		orden: 11,
+		temaId: 'relaciones-exteriores'
+	},
+	{
+		id: 'tu-decides-q12',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Qué acciones específicas tomarás para enfrentar los problemas de salud para los cuales yo ofrezco soluciones?',
+		orden: 12,
+		temaId: 'salud'
+	},
+	{
+		id: 'tu-decides-q13',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo va a manejar las relaciones entre los BRICS y el G7?',
+		orden: 13,
+		temaId: 'relaciones-exteriores'
+	},
+	{
+		id: 'tu-decides-q14',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo se realizará la devolución del IVA en medicamentos?',
+		orden: 14,
+		temaId: 'salud'
+	},
+	{
+		id: 'tu-decides-q15',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Qué propones hacer con la Ley Lafkenche?',
+		orden: 15,
+		temaId: 'medio-ambiente'
+	},
+	{
+		id: 'tu-decides-q16',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Con qué equipo de gobierno va a gestionar considerando la situación actual?',
+		orden: 16,
+		temaId: 'politica'
+	},
+	{
+		id: 'tu-decides-q17',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: 'Dado el costo, ¿cómo planea implementar los barcos cárcel?',
+		orden: 17,
+		temaId: 'seguridad'
+	},
+	{
+		id: 'tu-decides-q18',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: 'Si fueras presidente de una compañía eléctrica, ¿devolverías el dinero cobrado de más?',
+		orden: 18,
+		temaId: 'economia'
+	},
+	{
+		id: 'tu-decides-q19',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Quién crees que te hizo la persecución política que mencionas?',
+		orden: 19,
+		temaId: 'politica'
+	},
+	{
+		id: 'tu-decides-q20',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo planeas crear un millón de empleos?',
+		orden: 20,
+		temaId: 'empleo'
+	},
+	{
+		id: 'tu-decides-q21',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cómo gobernarás con un Parlamento que lo va a bloquear?',
+		orden: 21,
+		temaId: 'politica'
+	},
+	{
+		id: 'tu-decides-q22',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: '¿Cuáles son las diferencias de fondo que te impidieron ir a una primaria con otros candidatos de la derecha?',
+		orden: 22,
+		temaId: 'politica'
+	},
+	{
+		id: 'tu-decides-q23',
+		debateId: 'tu-decides-canal13-2025-10-26',
+		pregunta: 'Si gano las elecciones democráticamente, ¿respetarás el resultado o intentarás derrocarme?',
+		orden: 23,
+		temaId: 'politica'
+	},
 	// Debate ENADE ICARE - 14 de octubre de 2025
 	{
 		id: 'enade-q1',
@@ -1113,6 +1300,9 @@ const cargarRespuestas = (): Respuesta[] => {
 	const todas: Respuesta[] = [];
 
 	// Cargar respuestas de cada debate
+	if (respuestasTuDecides?.respuestas) {
+		todas.push(...respuestasTuDecides.respuestas);
+	}
 	if (respuestasEnade?.respuestas) {
 		todas.push(...respuestasEnade.respuestas);
 	}
