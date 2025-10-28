@@ -113,7 +113,7 @@ export const getTemaById = (id: string): Tema | undefined => {
 export const debates2025: Debate[] = [
 	{
 		id: 'tu-decides-canal13-2025-10-26',
-		nombre: 'Tú decide - Debate Presidencial Canal 13',
+		nombre: 'Tú decides - Debate Presidencial Canal 13',
 		fecha: '2025-10-26',
 		organizador: 'Canal 13',
 		duracion: '3h 50m',
@@ -273,7 +273,7 @@ export const debates2025: Debate[] = [
  * Preguntas de todos los debates presidenciales 2025
  */
 export const preguntas2025: Pregunta[] = [
-	// Debate Tú decide - Canal 13 - 26 de octubre de 2025
+	// Debate Tú decides - Canal 13 - 26 de octubre de 2025
 	{
 		id: 'tu-decides-q1',
 		debateId: 'tu-decides-canal13-2025-10-26',
