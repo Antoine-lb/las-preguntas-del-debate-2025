@@ -204,46 +204,61 @@
 
 	<!-- Selector de Candidatos y Temas -->
 	<section class="mb-12">
-		<h2 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Filtrar por candidato</h2>
+		<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por candidato</h2>
 
 		<!-- Candidatos -->
-		<div class="mb-4">
-			<div class="flex flex-wrap gap-2 md:gap-3">
+		<div class="mb-6">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
 				{#each candidatosVisibles as candidato}
 					<button
 						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group flex items-center gap-1.5 md:gap-2 pr-3 md:pr-4 rounded-full border transition-all duration-200 overflow-hidden h-12 md:h-20 {candidatoSeleccionadoId ===
+						class="group relative flex flex-col items-center p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 overflow-hidden hover:scale-105 hover:shadow-lg {candidatoSeleccionadoId ===
 						candidato.id
-							? 'shadow-md'
-							: ''}"
+							? 'shadow-xl scale-105'
+							: 'hover:shadow-md'}"
 						style="
 						{candidatoSeleccionadoId === candidato.id
-							? `border-color: ${candidato.color}; background-color: ${candidato.color}18`
-							: `border-color: ${candidato.color}40; background-color: ${candidato.color}08`}
+							? `border-color: ${candidato.color}; background: linear-gradient(135deg, ${candidato.color}15, ${candidato.color}08); box-shadow: 0 8px 32px ${candidato.color}25`
+							: `border-color: ${candidato.color}30; background-color: ${candidato.color}05`}
 					"
 						onmouseenter={(e) => {
 							if (candidatoSeleccionadoId !== candidato.id) {
-								e.currentTarget.style.backgroundColor = `${candidato.color}18`;
+								e.currentTarget.style.backgroundColor = `${candidato.color}12`;
+								e.currentTarget.style.borderColor = `${candidato.color}50`;
 							}
 						}}
 						onmouseleave={(e) => {
 							if (candidatoSeleccionadoId !== candidato.id) {
-								e.currentTarget.style.backgroundColor = `${candidato.color}08`;
+								e.currentTarget.style.backgroundColor = `${candidato.color}05`;
+								e.currentTarget.style.borderColor = `${candidato.color}30`;
 							}
 						}}
 					>
-						<div class="h-full flex items-end">
-							<img
-								src={candidato.fotoSinFondo || candidato.foto}
-								alt={candidato.nombre}
-								class="h-full w-auto object-contain transition-transform duration-300 ease-out group-hover:translate-x-2 {candidato.fotoSinFondo
-									? ''
-									: 'rounded-full'}"
-							/>
+						<!-- Imagen del candidato -->
+						<div class="relative mb-3 md:mb-4">
+							<div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 group-hover:scale-110 {candidatoSeleccionadoId === candidato.id ? 'scale-110' : ''}"
+								style={candidatoSeleccionadoId === candidato.id ? `border-color: ${candidato.color}` : `border-color: ${candidato.color}40`}>
+								<img
+									src={candidato.fotoSinFondo || candidato.foto}
+									alt={candidato.nombre}
+									class="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 {candidato.fotoSinFondo
+										? ''
+										: 'rounded-full'}"
+								/>
+							</div>
+							<!-- Indicador de selección -->
+							{#if candidatoSeleccionadoId === candidato.id}
+								<div class="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
+									style="background-color: ${candidato.color}">
+									✓
+								</div>
+							{/if}
 						</div>
-						<div class="text-left py-1 md:py-2">
+						
+						<!-- Información del candidato -->
+						<div class="text-center space-y-1">
 							<h3
-								class="font-semibold text-sm md:text-base leading-tight {candidatoSeleccionadoId ===
+								class="font-bold text-sm md:text-base leading-tight {candidatoSeleccionadoId ===
 								candidato.id
 									? ''
 									: 'text-gray-900'}"
@@ -252,12 +267,12 @@
 								{candidato.nombre}
 							</h3>
 							<p
-								class="hidden md:block text-sm leading-tight {candidatoSeleccionadoId === candidato.id
+								class="text-xs md:text-sm leading-tight px-2 py-1 rounded-full font-medium {candidatoSeleccionadoId === candidato.id
 									? ''
 									: 'text-gray-600'}"
 								style={candidatoSeleccionadoId === candidato.id
-									? `color: ${candidato.color}B3`
-									: ''}
+									? `color: ${candidato.color}; background-color: ${candidato.color}20`
+									: `background-color: ${candidato.color}10`}
 							>
 								{candidato.coalicion || candidato.partido}
 							</p>
@@ -268,32 +283,51 @@
 				<!-- Botón "Otros" para toggle de eliminados -->
 				<button
 					onclick={() => (mostrarEliminados = !mostrarEliminados)}
-					class="group flex items-center gap-1.5 md:gap-2 pr-4 md:pr-6 rounded-full border transition-all duration-200 overflow-hidden h-12 md:h-20 {mostrarEliminados
-						? 'border-yellow-600/30 bg-yellow-50/50 shadow-sm'
-						: 'border-yellow-600/20 bg-transparent hover:bg-yellow-50/30'}"
+					class="group relative flex flex-col items-center p-4 md:p-6 rounded-2xl border-2 transition-all duration-300 overflow-hidden hover:scale-105 hover:shadow-lg {mostrarEliminados
+						? 'shadow-xl scale-105 border-yellow-500 bg-gradient-to-br from-yellow-50 to-yellow-100'
+						: 'hover:shadow-md border-yellow-300 bg-yellow-50/30'}"
 				>
-					<div class="h-full flex items-center justify-center pl-3 md:pl-4">
-						<svg
-							class="w-4 md:w-5 h-4 md:h-5 text-yellow-700 transition-transform duration-300 ease-out {mostrarEliminados
-								? 'rotate-180'
-								: 'group-hover:rotate-90'}"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 4v16m8-8H4"
-							></path>
-						</svg>
+					<!-- Icono -->
+					<div class="relative mb-3 md:mb-4">
+						<div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-yellow-400 bg-yellow-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 {mostrarEliminados ? 'scale-110' : ''}">
+							<svg
+								class="w-8 h-8 text-yellow-600 transition-transform duration-300 ease-out {mostrarEliminados
+									? 'rotate-180'
+									: 'group-hover:rotate-90'}"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 4v16m8-8H4"
+								></path>
+							</svg>
+						</div>
+						<!-- Indicador de estado activo -->
+						{#if mostrarEliminados}
+							<div class="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold bg-yellow-500">
+								✓
+							</div>
+						{/if}
 					</div>
-					<div class="text-left py-1 md:py-2">
-						<h3 class="font-semibold text-sm md:text-base leading-tight text-yellow-700">
+					
+					<!-- Información -->
+					<div class="text-center space-y-1">
+						<h3
+							class="font-bold text-sm md:text-base leading-tight {mostrarEliminados
+								? 'text-yellow-800'
+								: 'text-gray-900'}"
+						>
 							{mostrarEliminados ? 'Ocultar otros' : 'Otros'}
 						</h3>
-						<p class="hidden md:block text-sm leading-tight text-yellow-600">
+						<p
+							class="text-xs md:text-sm leading-tight px-2 py-1 rounded-full font-medium {mostrarEliminados
+								? 'text-yellow-700 bg-yellow-200'
+								: 'text-gray-600 bg-yellow-100'}"
+						>
 							{mostrarEliminados ? 'Eliminados en primarias' : 'Ver más candidatos'}
 						</p>
 					</div>
