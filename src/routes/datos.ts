@@ -333,105 +333,105 @@ export const preguntas2025: Pregunta[] = [
 	{
 		id: 'tu-decides-q9',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Qué piensas de las encuestas considerando tus resultados en candidaturas anteriores y el actual 1%?',
+		pregunta: 'Harold Mayne-Nicholls le pregunta a Marco Enríquez-Ominami: ¿Qué piensas de las encuestas considerando tus resultados en candidaturas anteriores y el actual 1%?',
 		orden: 9,
 		temaId: 'politica'
 	},
 	{
 		id: 'tu-decides-q10',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Estás en contra o a favor de la anticoncepción en los CESFAM?',
+		pregunta: 'Marco Enríquez-Ominami le pregunta a José Antonio Kast: ¿Estás en contra o a favor de la anticoncepción en los CESFAM?',
 		orden: 10,
 		temaId: 'salud'
 	},
 	{
 		id: 'tu-decides-q11',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cuál sería tu decisión respecto de una intervención de Estados Unidos contra Venezuela?',
+		pregunta: 'Johannes Kaiser le pregunta a Harold Mayne-Nicholls: ¿Cuál sería tu decisión respecto de una intervención de Estados Unidos contra Venezuela?',
 		orden: 11,
 		temaId: 'relaciones-exteriores'
 	},
 	{
 		id: 'tu-decides-q12',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Qué acciones específicas tomarás para enfrentar los problemas de salud para los cuales yo ofrezco soluciones?',
+		pregunta: 'Evelyn Matthei le pregunta a Johannes Kaiser: ¿Qué acciones específicas tomarás para enfrentar los problemas de salud para los cuales yo ofrezco soluciones?',
 		orden: 12,
 		temaId: 'salud'
 	},
 	{
 		id: 'tu-decides-q13',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cómo va a manejar las relaciones entre los BRICS y el G7?',
+		pregunta: 'Eduardo Artés le pregunta a Evelyn Matthei: ¿Cómo va a manejar las relaciones entre los BRICS y el G7?',
 		orden: 13,
 		temaId: 'relaciones-exteriores'
 	},
 	{
 		id: 'tu-decides-q14',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cómo se realizará la devolución del IVA en medicamentos?',
+		pregunta: 'Jeannette Jara le pregunta a Franco Parisi: ¿Cómo se realizará la devolución del IVA en medicamentos?',
 		orden: 14,
 		temaId: 'salud'
 	},
 	{
 		id: 'tu-decides-q15',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Qué propones hacer con la Ley Lafkenche?',
+		pregunta: 'Franco Parisi le pregunta a Jeannette Jara: ¿Qué propones hacer con la Ley Lafkenche?',
 		orden: 15,
 		temaId: 'medio-ambiente'
 	},
 	{
 		id: 'tu-decides-q16',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Con qué equipo de gobierno va a gestionar considerando la situación actual?',
+		pregunta: 'Johannes Kaiser le pregunta a Jeannette Jara: ¿Con qué equipo de gobierno va a gestionar considerando la situación actual?',
 		orden: 16,
 		temaId: 'politica'
 	},
 	{
 		id: 'tu-decides-q17',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: 'Dado el costo, ¿cómo planea implementar los barcos cárcel?',
+		pregunta: 'Eduardo Artés le pregunta a Franco Parisi: Dado el costo, ¿cómo planea implementar los barcos cárcel?',
 		orden: 17,
 		temaId: 'seguridad'
 	},
 	{
 		id: 'tu-decides-q18',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: 'Si fueras presidente de una compañía eléctrica, ¿devolverías el dinero cobrado de más?',
+		pregunta: 'Harold Mayne-Nicholls le pregunta a José Antonio Kast: Si fueras presidente de una compañía eléctrica, ¿devolverías el dinero cobrado de más?',
 		orden: 18,
 		temaId: 'economia'
 	},
 	{
 		id: 'tu-decides-q19',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Quién crees que te hizo la persecución política que mencionas?',
+		pregunta: 'Franco Parisi le pregunta a Marco Enríquez-Ominami: ¿Quién crees que te hizo la persecución política que mencionas?',
 		orden: 19,
 		temaId: 'politica'
 	},
 	{
 		id: 'tu-decides-q20',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cómo planeas crear un millón de empleos?',
+		pregunta: 'José Antonio Kast le pregunta a Evelyn Matthei: ¿Cómo planeas crear un millón de empleos?',
 		orden: 20,
 		temaId: 'empleo'
 	},
 	{
 		id: 'tu-decides-q21',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cómo gobernarás con un Parlamento que lo va a bloquear?',
+		pregunta: 'Marco Enríquez-Ominami le pregunta a Harold Mayne-Nicholls: ¿Cómo gobernarás con un Parlamento que lo va a bloquear?',
 		orden: 21,
 		temaId: 'politica'
 	},
 	{
 		id: 'tu-decides-q22',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: '¿Cuáles son las diferencias de fondo que te impidieron ir a una primaria con otros candidatos de la derecha?',
+		pregunta: 'Jeannette Jara le pregunta a Johannes Kaiser: ¿Cuáles son las diferencias de fondo que te impidieron ir a una primaria con otros candidatos de la derecha?',
 		orden: 22,
 		temaId: 'politica'
 	},
 	{
 		id: 'tu-decides-q23',
 		debateId: 'tu-decides-canal13-2025-10-26',
-		pregunta: 'Si gano las elecciones democráticamente, ¿respetarás el resultado o intentarás derrocarme?',
+		pregunta: 'Evelyn Matthei le pregunta a Eduardo Artés: Si gano las elecciones democráticamente, ¿respetarás el resultado o intentarás derrocarme?',
 		orden: 23,
 		temaId: 'politica'
 	},
