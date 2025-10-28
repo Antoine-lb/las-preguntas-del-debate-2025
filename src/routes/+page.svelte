@@ -208,59 +208,69 @@
 
 		<!-- Candidatos -->
 		<div class="mb-6">
-			<div class="flex flex-wrap gap-3 md:gap-4 justify-center">
+			<div class="flex flex-wrap gap-4 md:gap-6 justify-center">
 				{#each candidatosVisibles as candidato}
 					<button
 						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group relative flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 md:py-4 rounded-2xl border-2 transition-all duration-300 overflow-hidden hover:scale-105 hover:shadow-xl {candidatoSeleccionadoId ===
+						class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {candidatoSeleccionadoId ===
 						candidato.id
-							? 'shadow-2xl scale-105'
-							: 'hover:shadow-lg'}"
+							? 'shadow-2xl scale-110'
+							: 'hover:shadow-xl'}"
 						style="
 						{candidatoSeleccionadoId === candidato.id
-							? `border-color: ${candidato.color}; background: linear-gradient(135deg, ${candidato.color}20, ${candidato.color}10); box-shadow: 0 12px 40px ${candidato.color}30, 0 4px 16px ${candidato.color}20`
-							: `border-color: ${candidato.color}25; background-color: ${candidato.color}08; box-shadow: 0 2px 8px ${candidato.color}15`}
+							? `background: linear-gradient(145deg, ${candidato.color}20, ${candidato.color}08); box-shadow: 0 20px 40px ${candidato.color}25, 0 8px 16px ${candidato.color}15, inset 0 1px 0 ${candidato.color}30`
+							: `background: linear-gradient(145deg, ${candidato.color}12, ${candidato.color}05); box-shadow: 0 4px 12px ${candidato.color}20, inset 0 1px 0 ${candidato.color}15`}
 					"
 						onmouseenter={(e) => {
 							if (candidatoSeleccionadoId !== candidato.id) {
-								e.currentTarget.style.backgroundColor = `${candidato.color}15`;
-								e.currentTarget.style.borderColor = `${candidato.color}60`;
-								e.currentTarget.style.boxShadow = `0 8px 25px ${candidato.color}25, 0 2px 8px ${candidato.color}15`;
+								e.currentTarget.style.background = `linear-gradient(145deg, ${candidato.color}18, ${candidato.color}08)`;
+								e.currentTarget.style.boxShadow = `0 12px 24px ${candidato.color}30, 0 4px 8px ${candidato.color}20, inset 0 1px 0 ${candidato.color}25`;
 							}
 						}}
 						onmouseleave={(e) => {
 							if (candidatoSeleccionadoId !== candidato.id) {
-								e.currentTarget.style.backgroundColor = `${candidato.color}08`;
-								e.currentTarget.style.borderColor = `${candidato.color}25`;
-								e.currentTarget.style.boxShadow = `0 2px 8px ${candidato.color}15`;
+								e.currentTarget.style.background = `linear-gradient(145deg, ${candidato.color}12, ${candidato.color}05)`;
+								e.currentTarget.style.boxShadow = `0 4px 12px ${candidato.color}20, inset 0 1px 0 ${candidato.color}15`;
 							}
 						}}
 					>
-						<!-- Imagen del candidato -->
-						<div class="relative">
-							<div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 {candidatoSeleccionadoId === candidato.id ? 'scale-110 rotate-2' : ''}"
-								style={candidatoSeleccionadoId === candidato.id ? `border-color: ${candidato.color}; box-shadow: 0 4px 16px ${candidato.color}40` : `border-color: ${candidato.color}50; box-shadow: 0 2px 8px ${candidato.color}20`}>
-								<img
-									src={candidato.fotoSinFondo || candidato.foto}
-									alt={candidato.nombre}
-									class="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-110 group-hover:brightness-110 {candidato.fotoSinFondo
-										? ''
-										: 'rounded-full'}"
-								/>
+						<!-- Avatar del candidato -->
+						<div class="relative mb-3 md:mb-4">
+							<!-- Círculo exterior con gradiente -->
+							<div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {candidatoSeleccionadoId === candidato.id ? 'scale-110' : ''}"
+								style={candidatoSeleccionadoId === candidato.id 
+									? `background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}CC); box-shadow: 0 8px 24px ${candidato.color}40, 0 0 0 4px ${candidato.color}20`
+									: `background: linear-gradient(135deg, ${candidato.color}60, ${candidato.color}40); box-shadow: 0 4px 12px ${candidato.color}30`}>
+								
+								<!-- Imagen del candidato -->
+								<div class="w-full h-full rounded-full overflow-hidden bg-white">
+									<img
+										src={candidato.fotoSinFondo || candidato.foto}
+										alt={candidato.nombre}
+										class="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-105 {candidato.fotoSinFondo
+											? ''
+											: 'rounded-full'}"
+									/>
+								</div>
 							</div>
+							
 							<!-- Indicador de selección -->
 							{#if candidatoSeleccionadoId === candidato.id}
-								<div class="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-pulse"
-									style="background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}CC); box-shadow: 0 2px 8px ${candidato.color}60">
+								<div class="absolute -top-1 -right-1 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce"
+									style="background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}DD); box-shadow: 0 4px 12px ${candidato.color}60, 0 0 0 3px white">
 									✓
 								</div>
 							{/if}
+							
+							<!-- Efecto de pulso en hover -->
+							<div class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none animate-ping"
+								style="background: radial-gradient(circle, ${candidato.color}30, transparent 70%)"></div>
 						</div>
 						
 						<!-- Información del candidato -->
-						<div class="text-left min-w-0 flex-1">
+						<div class="text-center space-y-2">
 							<h3
-								class="font-bold text-sm md:text-base leading-tight mb-1 transition-colors duration-300 {candidatoSeleccionadoId ===
+								class="font-bold text-sm md:text-base leading-tight transition-colors duration-300 {candidatoSeleccionadoId ===
 								candidato.id
 									? ''
 									: 'text-gray-900 group-hover:text-gray-800'}"
@@ -268,78 +278,101 @@
 							>
 								{candidato.nombre}
 							</h3>
-							<p
-								class="text-xs md:text-sm leading-tight px-2 py-1 rounded-full font-medium transition-all duration-300 {candidatoSeleccionadoId === candidato.id
-									? ''
-									: 'text-gray-600 group-hover:text-gray-700'}"
+							
+							<!-- Etiqueta del partido -->
+							<div class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 {candidatoSeleccionadoId === candidato.id
+								? ''
+								: 'group-hover:scale-105'}"
 								style={candidatoSeleccionadoId === candidato.id
-									? `color: ${candidato.color}; background: linear-gradient(135deg, ${candidato.color}25, ${candidato.color}15); box-shadow: 0 2px 4px ${candidato.color}20`
-									: `background: linear-gradient(135deg, ${candidato.color}15, ${candidato.color}08); box-shadow: 0 1px 3px ${candidato.color}10`}
+									? `color: white; background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}CC); box-shadow: 0 2px 8px ${candidato.color}40`
+									: `color: ${candidato.color}; background: linear-gradient(135deg, ${candidato.color}20, ${candidato.color}10); box-shadow: 0 1px 4px ${candidato.color}20`}
 							>
 								{candidato.coalicion || candidato.partido}
-							</p>
+							</div>
 						</div>
 						
-						<!-- Efecto de brillo en hover -->
-						<div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-							style="background: linear-gradient(135deg, transparent, ${candidato.color}10, transparent)"></div>
+						<!-- Efecto de brillo superior -->
+						<div class="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+							style="background: linear-gradient(180deg, ${candidato.color}20, transparent)"></div>
 					</button>
 				{/each}
 
 				<!-- Botón "Otros" para toggle de eliminados -->
 				<button
 					onclick={() => (mostrarEliminados = !mostrarEliminados)}
-					class="group relative flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 md:py-4 rounded-2xl border-2 transition-all duration-300 overflow-hidden hover:scale-105 hover:shadow-xl {mostrarEliminados
-						? 'shadow-2xl scale-105 border-yellow-500 bg-gradient-to-r from-yellow-100 to-yellow-50'
-						: 'hover:shadow-lg border-yellow-300 bg-yellow-50/30'}"
+					class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {mostrarEliminados
+						? 'shadow-2xl scale-110'
+						: 'hover:shadow-xl'}"
+					style={mostrarEliminados
+						? 'background: linear-gradient(145deg, #fef3c7, #fde68a); box-shadow: 0 20px 40px #f59e0b25, 0 8px 16px #f59e0b15, inset 0 1px 0 #f59e0b30'
+						: 'background: linear-gradient(145deg, #fef3c7, #fde68a); box-shadow: 0 4px 12px #f59e0b20, inset 0 1px 0 #f59e0b15'}
 				>
-					<!-- Icono -->
-					<div class="relative">
-						<div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-3 border-yellow-400 bg-yellow-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 {mostrarEliminados ? 'scale-110 rotate-2' : ''}">
-							<svg
-								class="w-6 h-6 md:w-8 md:h-8 text-yellow-600 transition-transform duration-300 ease-out {mostrarEliminados
-									? 'rotate-180'
-									: 'group-hover:rotate-90'}"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M12 4v16m8-8H4"
-								></path>
-							</svg>
+					<!-- Avatar del botón -->
+					<div class="relative mb-3 md:mb-4">
+						<!-- Círculo exterior con gradiente -->
+						<div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {mostrarEliminados ? 'scale-110' : ''}"
+							style={mostrarEliminados 
+								? 'background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 8px 24px #f59e0b40, 0 0 0 4px #f59e0b20'
+								: 'background: linear-gradient(135deg, #f59e0b60, #f59e0b40); box-shadow: 0 4px 12px #f59e0b30'}>
+							
+							<!-- Icono -->
+							<div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
+								<svg
+									class="w-8 h-8 md:w-10 md:h-10 text-yellow-600 transition-transform duration-300 ease-out {mostrarEliminados
+										? 'rotate-180'
+										: 'group-hover:rotate-90'}"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M12 4v16m8-8H4"
+									></path>
+								</svg>
+							</div>
 						</div>
-						<!-- Indicador de estado activo -->
+						
+						<!-- Indicador de selección -->
 						{#if mostrarEliminados}
-							<div class="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-pulse bg-gradient-to-br from-yellow-500 to-yellow-600">
+							<div class="absolute -top-1 -right-1 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce"
+								style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 12px #f59e0b60, 0 0 0 3px white">
 								✓
 							</div>
 						{/if}
+						
+						<!-- Efecto de pulso en hover -->
+						<div class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none animate-ping"
+							style="background: radial-gradient(circle, #f59e0b30, transparent 70%)"></div>
 					</div>
 					
 					<!-- Información -->
-					<div class="text-left min-w-0 flex-1">
+					<div class="text-center space-y-2">
 						<h3
-							class="font-bold text-sm md:text-base leading-tight mb-1 transition-colors duration-300 {mostrarEliminados
+							class="font-bold text-sm md:text-base leading-tight transition-colors duration-300 {mostrarEliminados
 								? 'text-yellow-800'
 								: 'text-gray-900 group-hover:text-gray-800'}"
 						>
 							{mostrarEliminados ? 'Ocultar otros' : 'Otros'}
 						</h3>
-						<p
-							class="text-xs md:text-sm leading-tight px-2 py-1 rounded-full font-medium transition-all duration-300 {mostrarEliminados
-								? 'text-yellow-700 bg-gradient-to-r from-yellow-200 to-yellow-100'
-								: 'text-gray-600 bg-gradient-to-r from-yellow-100 to-yellow-50'}"
+						
+						<!-- Etiqueta -->
+						<div class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 {mostrarEliminados
+							? ''
+							: 'group-hover:scale-105'}"
+							style={mostrarEliminados
+								? 'color: white; background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 2px 8px #f59e0b40'
+								: 'color: #f59e0b; background: linear-gradient(135deg, #f59e0b20, #f59e0b10); box-shadow: 0 1px 4px #f59e0b20'}
 						>
 							{mostrarEliminados ? 'Eliminados en primarias' : 'Ver más candidatos'}
-						</p>
+						</div>
 					</div>
 					
-					<!-- Efecto de brillo en hover -->
-					<div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-r from-transparent via-yellow-100/20 to-transparent"></div>
+					<!-- Efecto de brillo superior -->
+					<div class="absolute top-0 left-0 right-0 h-1/2 rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+						style="background: linear-gradient(180deg, #f59e0b20, transparent)"></div>
 				</button>
 			</div>
 		</div>
