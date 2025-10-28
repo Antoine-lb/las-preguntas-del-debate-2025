@@ -206,20 +206,20 @@
 	<section class="mb-12">
 		<!-- Temas -->
 		<div class="mb-8">
-			<div class="text-center mb-8">
-				<h2 class="text-2xl md:text-3xl font-bold mb-3 text-gray-800">
+			<div class="text-center mb-6 md:mb-8">
+				<h2 class="text-xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-800 leading-tight">
 					¿Qué dicen los candidatos sobre estas temáticas?
 				</h2>
-				<div class="w-24 h-1 bg-gray-600 rounded-full mx-auto"></div>
+				<div class="w-16 md:w-24 h-0.5 md:h-1 bg-gray-600 rounded-full mx-auto"></div>
 			</div>
-			<div class="flex flex-wrap gap-3 md:gap-4 justify-center">
+			<div class="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:gap-4 justify-center">
 				{#each temas as tema}
 					{@const IconoTema = iconosPorTema[tema.id]}
 					<button
 						onclick={() => seleccionarTema(tema.id)}
-						class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {temaSeleccionadoId ===
+						class="group relative flex flex-col items-center p-2 md:p-4 rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden active:scale-105 md:hover:scale-110 hover:shadow-2xl {temaSeleccionadoId ===
 						tema.id
-							? 'shadow-2xl scale-110'
+							? 'shadow-2xl scale-105 md:scale-110'
 							: 'hover:shadow-xl'}"
 						style="
 						{temaSeleccionadoId === tema.id
@@ -242,7 +242,7 @@
 						<!-- Icono del tema -->
 						<div class="relative mb-3 md:mb-4">
 							<!-- Círculo exterior con gradiente -->
-							<div class="relative w-16 h-16 md:w-20 md:h-20 rounded-full p-2 transition-all duration-300 group-hover:scale-110 {temaSeleccionadoId === tema.id ? 'scale-110' : ''}"
+							<div class="relative w-12 h-12 md:w-20 md:h-20 rounded-full p-1.5 md:p-2 transition-all duration-300 group-hover:scale-110 {temaSeleccionadoId === tema.id ? 'scale-105 md:scale-110' : ''}"
 								style={temaSeleccionadoId === tema.id 
 									? `background: linear-gradient(135deg, ${tema.color}, ${tema.color}CC); box-shadow: 0 8px 24px ${tema.color}40, 0 0 0 4px ${tema.color}20`
 									: `background: linear-gradient(135deg, ${tema.color}60, ${tema.color}40); box-shadow: 0 4px 12px ${tema.color}30`}>
@@ -250,7 +250,7 @@
 								<!-- Icono del tema -->
 								<div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
 									{#if IconoTema}
-										<IconoTema class="w-8 h-8 md:w-10 md:h-10 transition-all duration-300 ease-out group-hover:scale-110" 
+										<IconoTema class="w-6 h-6 md:w-10 md:h-10 transition-all duration-300 ease-out group-hover:scale-110" 
 											style={temaSeleccionadoId === tema.id ? `color: ${tema.color}` : `color: ${tema.color}CC`} />
 									{/if}
 								</div>
@@ -258,7 +258,7 @@
 							
 							<!-- Indicador de selección -->
 							{#if temaSeleccionadoId === tema.id}
-								<div class="absolute -top-1 -right-1 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-bounce"
+								<div class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg animate-bounce"
 									style="background: linear-gradient(135deg, ${tema.color}, ${tema.color}DD); box-shadow: 0 4px 12px ${tema.color}60, 0 0 0 3px white">
 									✓
 								</div>
@@ -270,7 +270,7 @@
 						</div>
 						
 						<!-- Información del tema -->
-						<div class="text-center space-y-2">
+						<div class="text-center space-y-1 md:space-y-2">
 							<h3
 								class="font-bold text-xs md:text-sm leading-tight transition-colors duration-300 {temaSeleccionadoId ===
 								tema.id
@@ -292,19 +292,19 @@
 
 		<!-- Candidatos -->
 		<div>
-			<div class="text-center mb-8">
-				<h2 class="text-2xl md:text-3xl font-bold mb-3 text-gray-800">
+			<div class="text-center mb-6 md:mb-8">
+				<h2 class="text-xl md:text-3xl font-bold mb-2 md:mb-3 text-gray-800 leading-tight">
 					Elige a tu candidato
 				</h2>
-				<div class="w-24 h-1 bg-gray-600 rounded-full mx-auto"></div>
+				<div class="w-16 md:w-24 h-0.5 md:h-1 bg-gray-600 rounded-full mx-auto"></div>
 			</div>
-			<div class="flex flex-wrap gap-4 md:gap-6 justify-center">
+			<div class="grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-6 justify-center">
 				{#each candidatosVisibles as candidato}
 					<button
 						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {candidatoSeleccionadoId ===
+						class="group relative flex flex-col items-center p-2 md:p-4 rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden active:scale-105 md:hover:scale-110 hover:shadow-2xl {candidatoSeleccionadoId ===
 						candidato.id
-							? 'shadow-2xl scale-110'
+							? 'shadow-2xl scale-105 md:scale-110'
 							: 'hover:shadow-xl'}"
 						style="
 						{candidatoSeleccionadoId === candidato.id
@@ -327,7 +327,7 @@
 						<!-- Avatar del candidato -->
 						<div class="relative mb-3 md:mb-4">
 							<!-- Círculo exterior con gradiente -->
-							<div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {candidatoSeleccionadoId === candidato.id ? 'scale-110' : ''}"
+							<div class="relative w-16 h-16 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {candidatoSeleccionadoId === candidato.id ? 'scale-105 md:scale-110' : ''}"
 								style={candidatoSeleccionadoId === candidato.id 
 									? `background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}CC); box-shadow: 0 8px 24px ${candidato.color}40, 0 0 0 4px ${candidato.color}20`
 									: `background: linear-gradient(135deg, ${candidato.color}60, ${candidato.color}40); box-shadow: 0 4px 12px ${candidato.color}30`}>
@@ -346,7 +346,7 @@
 							
 							<!-- Indicador de selección -->
 							{#if candidatoSeleccionadoId === candidato.id}
-								<div class="absolute -top-1 -right-1 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce"
+								<div class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs md:text-sm font-bold shadow-lg animate-bounce"
 									style="background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}DD); box-shadow: 0 4px 12px ${candidato.color}60, 0 0 0 3px white">
 									✓
 								</div>
@@ -358,9 +358,9 @@
 						</div>
 						
 						<!-- Información del candidato -->
-						<div class="text-center space-y-2">
+						<div class="text-center space-y-1 md:space-y-2">
 							<h3
-								class="font-bold text-sm md:text-base leading-tight transition-colors duration-300 {candidatoSeleccionadoId ===
+								class="font-bold text-xs md:text-base leading-tight transition-colors duration-300 {candidatoSeleccionadoId ===
 								candidato.id
 									? ''
 									: 'text-gray-900 group-hover:text-gray-800'}"
@@ -370,7 +370,7 @@
 							</h3>
 							
 							<!-- Etiqueta del partido -->
-							<div class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 {candidatoSeleccionadoId === candidato.id
+							<div class="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs font-semibold transition-all duration-300 {candidatoSeleccionadoId === candidato.id
 								? ''
 								: 'group-hover:scale-105'}"
 								style={candidatoSeleccionadoId === candidato.id
@@ -390,8 +390,8 @@
 				<!-- Botón "Otros" para toggle de eliminados -->
 				<button
 					onclick={() => (mostrarEliminados = !mostrarEliminados)}
-					class="group relative flex flex-col items-center p-3 md:p-4 rounded-3xl transition-all duration-300 overflow-hidden hover:scale-110 hover:shadow-2xl {mostrarEliminados
-						? 'shadow-2xl scale-110'
+					class="group relative flex flex-col items-center p-2 md:p-4 rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden active:scale-105 md:hover:scale-110 hover:shadow-2xl {mostrarEliminados
+						? 'shadow-2xl scale-105 md:scale-110'
 						: 'hover:shadow-xl'}"
 					style={mostrarEliminados
 						? 'background: linear-gradient(145deg, #fef3c7, #fde68a); box-shadow: 0 20px 40px #f59e0b25, 0 8px 16px #f59e0b15, inset 0 1px 0 #f59e0b30'
@@ -400,7 +400,7 @@
 					<!-- Avatar del botón -->
 					<div class="relative mb-3 md:mb-4">
 						<!-- Círculo exterior con gradiente -->
-						<div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {mostrarEliminados ? 'scale-110' : ''}"
+						<div class="relative w-16 h-16 md:w-24 md:h-24 rounded-full p-1 transition-all duration-300 group-hover:scale-110 {mostrarEliminados ? 'scale-105 md:scale-110' : ''}"
 							style={mostrarEliminados 
 								? 'background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 8px 24px #f59e0b40, 0 0 0 4px #f59e0b20'
 								: 'background: linear-gradient(135deg, #f59e0b60, #f59e0b40); box-shadow: 0 4px 12px #f59e0b30'}>
@@ -408,7 +408,7 @@
 							<!-- Icono -->
 							<div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
 								<svg
-									class="w-8 h-8 md:w-10 md:h-10 text-yellow-600 transition-transform duration-300 ease-out {mostrarEliminados
+									class="w-6 h-6 md:w-10 md:h-10 text-yellow-600 transition-transform duration-300 ease-out {mostrarEliminados
 										? 'rotate-180'
 										: 'group-hover:rotate-90'}"
 									fill="none"
@@ -427,7 +427,7 @@
 						
 						<!-- Indicador de selección -->
 						{#if mostrarEliminados}
-							<div class="absolute -top-1 -right-1 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce"
+							<div class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs md:text-sm font-bold shadow-lg animate-bounce"
 								style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 12px #f59e0b60, 0 0 0 3px white">
 								✓
 							</div>
@@ -439,9 +439,9 @@
 					</div>
 					
 					<!-- Información -->
-					<div class="text-center space-y-2">
+					<div class="text-center space-y-1 md:space-y-2">
 						<h3
-							class="font-bold text-sm md:text-base leading-tight transition-colors duration-300 {mostrarEliminados
+							class="font-bold text-xs md:text-base leading-tight transition-colors duration-300 {mostrarEliminados
 								? 'text-yellow-800'
 								: 'text-gray-900 group-hover:text-gray-800'}"
 						>
@@ -449,7 +449,7 @@
 						</h3>
 						
 						<!-- Etiqueta -->
-						<div class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 {mostrarEliminados
+						<div class="px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs font-semibold transition-all duration-300 {mostrarEliminados
 							? ''
 							: 'group-hover:scale-105'}"
 							style={mostrarEliminados
