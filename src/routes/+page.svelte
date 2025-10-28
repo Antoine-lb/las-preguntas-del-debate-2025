@@ -53,6 +53,31 @@
 	let mostrarEliminados = $state(false);
 
 	/**
+	 * Estado: término de búsqueda
+	 */
+	let terminoBusqueda = $state('');
+
+	/**
+	 * Estado: mostrar barra de búsqueda
+	 */
+	let mostrarBusqueda = $state(false);
+
+	/**
+	 * Estado: modo de comparación
+	 */
+	let modoComparacion = $state(false);
+
+	/**
+	 * Estado: candidatos seleccionados para comparación
+	 */
+	let candidatosComparacion = $state<string[]>([]);
+
+	/**
+	 * Estado: loading para simular carga
+	 */
+	let isLoading = $state(false);
+
+	/**
 	 * Candidato seleccionado derivado
 	 */
 	const candidatoSeleccionado = $derived(
@@ -129,35 +154,152 @@
 	});
 
 	/**
-	 * Calcula el total de respuestas visibles según filtros
+	 * Calcula el total de preguntas sin filtros
+	 */
+	const totalPreguntasSinFiltros = $derived.by(() => {
+		return debatesFiltrados.reduce((acc, d) => {
+			const preguntas = getPreguntasPorDebate(d.id);
+			return acc + preguntas.length;
+		}, 0);
+	});
+
+	/**
+	 * Calcula el total de respuestas visibles
 	 */
 	const totalRespuestas = $derived.by(() => {
-		let count = 0;
-		debatesFiltrados.forEach((d) => {
+		return debatesFiltrados.reduce((acc, d) => {
 			const preguntas = getPreguntasPorDebate(d.id);
 			const filtradas = candidatoSeleccionadoId
 				? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
 				: temaSeleccionadoId
 					? preguntas.filter((p) => p.temaId === temaSeleccionadoId)
 					: preguntas;
-
-			filtradas.forEach((pregunta) => {
+			
+			return acc + filtradas.reduce((respAcc, p) => {
 				if (candidatoSeleccionadoId) {
-					// Solo contar la respuesta del candidato seleccionado
-					if (getRespuesta(pregunta.id, candidatoSeleccionadoId)) {
-						count++;
+					return respAcc + (getRespuesta(p.id, candidatoSeleccionadoId!) ? 1 : 0);
+				} else {
+					// Contar todas las respuestas para esta pregunta
+					return respAcc + Object.values(getRespuesta(p.id, '') || {}).length;
+				}
+			}, 0);
+		}, 0);
+	});
+
+	/**
+	 * Filtra preguntas por término de búsqueda
+	 */
+	const preguntasFiltradasPorBusqueda = $derived.by(() => {
+		if (!terminoBusqueda.trim()) return [];
+
+		const termino = terminoBusqueda.toLowerCase().trim();
+		const resultados: Array<{debate: Debate, pregunta: Pregunta, candidato: any, respuesta: any}> = [];
+
+		debatesFiltrados.forEach(debate => {
+			const preguntas = getPreguntasPorDebate(debate.id);
+			preguntas.forEach(pregunta => {
+				// Buscar en el texto de la pregunta
+				if (pregunta.pregunta.toLowerCase().includes(termino)) {
+					// Si hay filtro de candidato, solo mostrar su respuesta
+					if (candidatoSeleccionadoId) {
+						const respuesta = getRespuesta(pregunta.id, candidatoSeleccionadoId);
+						if (respuesta) {
+							resultados.push({
+								debate,
+								pregunta,
+								candidato: getCandidatoById(candidatoSeleccionadoId),
+								respuesta
+							});
+						}
+					} else {
+						// Mostrar todas las respuestas a esta pregunta
+						debate.candidatosIds.forEach(candidatoId => {
+							const respuesta = getRespuesta(pregunta.id, candidatoId);
+							if (respuesta && respuesta.resumen.toLowerCase().includes(termino)) {
+								resultados.push({
+									debate,
+									pregunta,
+									candidato: getCandidatoById(candidatoId),
+									respuesta
+								});
+							}
+						});
 					}
 				} else {
-					// Contar todas las respuestas a esta pregunta
-					d.candidatosIds.forEach((cId) => {
-						if (getRespuesta(pregunta.id, cId)) {
-							count++;
+					// Buscar en las respuestas
+					debate.candidatosIds.forEach(candidatoId => {
+						const respuesta = getRespuesta(pregunta.id, candidatoId);
+						if (respuesta && respuesta.resumen.toLowerCase().includes(termino)) {
+							// Aplicar filtros adicionales
+							if (candidatoSeleccionadoId && candidatoId !== candidatoSeleccionadoId) return;
+							if (temaSeleccionadoId && pregunta.temaId !== temaSeleccionadoId) return;
+							
+							resultados.push({
+								debate,
+								pregunta,
+								candidato: getCandidatoById(candidatoId),
+								respuesta
+							});
 						}
 					});
 				}
 			});
 		});
-		return count;
+
+		return resultados;
+	});
+
+	/**
+	 * Función para alternar candidato en comparación
+	 */
+	function alternarCandidatoComparacion(candidatoId: string) {
+		if (candidatosComparacion.includes(candidatoId)) {
+			candidatosComparacion = candidatosComparacion.filter(id => id !== candidatoId);
+		} else if (candidatosComparacion.length < 3) {
+			candidatosComparacion = [...candidatosComparacion, candidatoId];
+		}
+	}
+
+	/**
+	 * Función para limpiar comparación
+	 */
+	function limpiarComparacion() {
+		candidatosComparacion = [];
+		modoComparacion = false;
+	}
+
+	/**
+	 * Preguntas para comparación
+	 */
+	const preguntasComparacion = $derived.by(() => {
+		if (!modoComparacion || candidatosComparacion.length === 0) return [];
+
+		const preguntas: Array<{
+			pregunta: Pregunta;
+			tema: any;
+			respuestas: Array<{candidato: any, respuesta: any}>;
+		}> = [];
+
+		debatesFiltrados.forEach(debate => {
+			const preguntasDebate = getPreguntasPorDebate(debate.id);
+			preguntasDebate.forEach(pregunta => {
+				const respuestas = candidatosComparacion.map(candidatoId => {
+					const candidato = getCandidatoById(candidatoId);
+					const respuesta = getRespuesta(pregunta.id, candidatoId);
+					return { candidato, respuesta };
+				}).filter(r => r.respuesta); // Solo incluir candidatos que respondieron
+
+				if (respuestas.length > 0) {
+					preguntas.push({
+						pregunta,
+						tema: getTemaById(pregunta.temaId),
+						respuestas
+					});
+				}
+			});
+		});
+
+		return preguntas;
 	});
 
 </script>
@@ -301,11 +443,14 @@
 			<div class="grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-6 justify-center">
 				{#each candidatosVisibles as candidato}
 					<button
-						onclick={() => seleccionarCandidato(candidato.id)}
-						class="group relative flex flex-col items-center p-2 md:p-4 rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden active:scale-105 md:hover:scale-110 hover:shadow-2xl {candidatoSeleccionadoId ===
-						candidato.id
-							? 'shadow-2xl scale-105 md:scale-110'
-							: 'hover:shadow-xl'}"
+						onclick={() => modoComparacion ? alternarCandidatoComparacion(candidato.id) : seleccionarCandidato(candidato.id)}
+						class="group relative flex flex-col items-center p-2 md:p-4 rounded-2xl md:rounded-3xl transition-all duration-300 overflow-hidden active:scale-105 md:hover:scale-110 hover:shadow-2xl {modoComparacion 
+							? candidatosComparacion.includes(candidato.id) 
+								? 'shadow-2xl scale-105 md:scale-110 ring-2 ring-purple-500' 
+								: 'hover:shadow-xl'
+							: candidatoSeleccionadoId === candidato.id
+								? 'shadow-2xl scale-105 md:scale-110'
+								: 'hover:shadow-xl'}"
 						style="
 						{candidatoSeleccionadoId === candidato.id
 							? `background: linear-gradient(145deg, ${candidato.color}20, ${candidato.color}08); box-shadow: 0 20px 40px ${candidato.color}25, 0 8px 16px ${candidato.color}15, inset 0 1px 0 ${candidato.color}30`
@@ -345,10 +490,10 @@
 							</div>
 							
 							<!-- Indicador de selección -->
-							{#if candidatoSeleccionadoId === candidato.id}
+							{#if modoComparacion ? candidatosComparacion.includes(candidato.id) : candidatoSeleccionadoId === candidato.id}
 								<div class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs md:text-sm font-bold shadow-lg animate-bounce"
-									style="background: linear-gradient(135deg, ${candidato.color}, ${candidato.color}DD); box-shadow: 0 4px 12px ${candidato.color}60, 0 0 0 3px white">
-									✓
+									style="background: {modoComparacion ? 'linear-gradient(135deg, #8b5cf6, #7c3aed)' : `linear-gradient(135deg, ${candidato.color}, ${candidato.color}DD)`}; box-shadow: 0 4px 12px {modoComparacion ? '#8b5cf660' : `${candidato.color}60`}, 0 0 0 3px white">
+									{modoComparacion ? candidatosComparacion.indexOf(candidato.id) + 1 : '✓'}
 								</div>
 							{/if}
 							
@@ -468,6 +613,111 @@
 		</div>
 	</section>
 
+	<!-- Barra de Búsqueda y Comparación -->
+	<section class="mb-6 md:mb-8">
+		<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+			<!-- Botones de herramientas -->
+			<div class="flex flex-wrap gap-3">
+				<!-- Botón para mostrar/ocultar búsqueda -->
+				<button
+					onclick={() => mostrarBusqueda = !mostrarBusqueda}
+					class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+					</svg>
+					{mostrarBusqueda ? 'Ocultar búsqueda' : 'Buscar en respuestas'}
+				</button>
+
+				<!-- Botón para modo de comparación -->
+				<button
+					onclick={() => modoComparacion = !modoComparacion}
+					class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 hover:shadow-md {modoComparacion 
+						? 'border-purple-300 bg-purple-50 text-purple-700' 
+						: 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'}"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+					</svg>
+					{modoComparacion ? 'Salir de comparación' : 'Comparar candidatos'}
+				</button>
+			</div>
+
+			<!-- Barra de búsqueda -->
+			{#if mostrarBusqueda}
+				<div class="w-full md:w-96 relative" in:fly={{ y: -10, duration: 300 }} out:fade={{ duration: 150 }}>
+					<div class="relative">
+						<input
+							type="text"
+							bind:value={terminoBusqueda}
+							placeholder="Buscar por palabras clave en preguntas y respuestas..."
+							class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+						/>
+						<svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+						</svg>
+						{#if terminoBusqueda}
+							<button
+								onclick={() => terminoBusqueda = ''}
+								class="absolute right-3 top-2.5 w-4 h-4 text-gray-400 hover:text-gray-600"
+							>
+								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+								</svg>
+							</button>
+						{/if}
+					</div>
+					
+					<!-- Resultados de búsqueda -->
+					{#if terminoBusqueda && preguntasFiltradasPorBusqueda.length > 0}
+						<div class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-96 overflow-y-auto">
+							<div class="p-3 border-b border-gray-100">
+								<p class="text-sm text-gray-600">
+									{preguntasFiltradasPorBusqueda.length} resultado{preguntasFiltradasPorBusqueda.length === 1 ? '' : 's'} para "{terminoBusqueda}"
+								</p>
+							</div>
+							<div class="divide-y divide-gray-100">
+								{#each preguntasFiltradasPorBusqueda.slice(0, 10) as resultado}
+									<div class="p-3 hover:bg-gray-50 cursor-pointer" onclick={() => {
+										// Scroll to the question
+										const element = document.getElementById(`pregunta-${resultado.pregunta.id}`);
+										if (element) {
+											element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+											element.classList.add('ring-2', 'ring-blue-500');
+											setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500'), 3000);
+										}
+										mostrarBusqueda = false;
+									}}>
+										<div class="flex items-start gap-3">
+											<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+												<img
+													src={resultado.candidato.fotoSinFondo || resultado.candidato.foto}
+													alt={resultado.candidato.nombre}
+													class="w-full h-full object-cover"
+												/>
+											</div>
+											<div class="flex-1 min-w-0">
+												<p class="text-sm font-medium text-gray-900 truncate">
+													{resultado.candidato.nombre}
+												</p>
+												<p class="text-xs text-gray-500 mb-1">
+													{getTemaById(resultado.pregunta.temaId)?.nombre}
+												</p>
+												<p class="text-sm text-gray-700 line-clamp-2">
+													{resultado.pregunta.pregunta}
+												</p>
+											</div>
+										</div>
+									</div>
+								{/each}
+							</div>
+						</div>
+					{/if}
+				</div>
+			{/if}
+		</div>
+	</section>
+
 	<!-- Estadísticas y Filtros Activos -->
 	<section class="mb-6 md:mb-8">
 		<!-- Estadísticas como badges compactos -->
@@ -475,10 +725,11 @@
 			<!-- Debates -->
 			{#key debatesFiltrados.length}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
-					in:fade={{ duration: 200 }}
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm shadow-sm hover:shadow-md transition-all duration-200"
+					in:scale={{ duration: 300, start: 0.8 }}
+					out:fade={{ duration: 200 }}
 				>
-					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -491,13 +742,14 @@
 				</div>
 			{/key}
 
-			<!-- Preguntas -->
+			<!-- Preguntas con progreso -->
 			{#key totalPreguntas}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
-					in:fade={{ duration: 200 }}
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm shadow-sm hover:shadow-md transition-all duration-200"
+					in:scale={{ duration: 300, start: 0.8 }}
+					out:fade={{ duration: 200 }}
 				>
-					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -506,17 +758,24 @@
 						></path>
 					</svg>
 					<span class="font-semibold text-gray-900">{totalPreguntas}</span>
-					<span class="text-gray-500">{totalPreguntas === 1 ? 'pregunta' : 'preguntas'}</span>
+					<span class="text-gray-500">
+						{#if candidatoSeleccionado || temaSeleccionado}
+							de {totalPreguntasSinFiltros} preguntas
+						{:else}
+							{totalPreguntas === 1 ? 'pregunta' : 'preguntas'}
+						{/if}
+					</span>
 				</div>
 			{/key}
 
 			<!-- Respuestas -->
 			{#key totalRespuestas}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm"
-					in:fade={{ duration: 200 }}
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-white border border-gray-200 text-xs md:text-sm shadow-sm hover:shadow-md transition-all duration-200"
+					in:scale={{ duration: 300, start: 0.8 }}
+					out:fade={{ duration: 200 }}
 				>
-					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-[#D97757]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -529,11 +788,44 @@
 				</div>
 			{/key}
 
+			<!-- Indicador de búsqueda activa -->
+			{#if terminoBusqueda}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-blue-50 border border-blue-200 text-xs md:text-sm shadow-sm"
+					in:fade={{ duration: 200 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+					</svg>
+					<span class="font-semibold text-blue-800">
+						{preguntasFiltradasPorBusqueda.length} resultado{preguntasFiltradasPorBusqueda.length === 1 ? '' : 's'} para "{terminoBusqueda}"
+					</span>
+				</div>
+			{/if}
+
+			<!-- Indicador de filtros activos -->
+			{#if candidatoSeleccionado || temaSeleccionado}
+				<div
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-amber-50 border border-amber-200 text-xs md:text-sm shadow-sm"
+					in:fade={{ duration: 200 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"
+						></path>
+					</svg>
+					<span class="font-semibold text-amber-800">Filtros activos</span>
+				</div>
+			{/if}
+
 			<!-- Filtro Activo -->
 			{#if candidatoSeleccionado || temaSeleccionado}
 				{@const colorFiltro = candidatoSeleccionado?.color || temaSeleccionado?.color || '#D97757'}
 				<div
-					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg border text-xs md:text-sm"
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-lg border text-xs md:text-sm shadow-sm"
 					style="background-color: {colorFiltro}18; border-color: {colorFiltro}60"
 					in:fly={{ x: -10, duration: 300 }}
 					out:fade={{ duration: 150 }}
@@ -564,13 +856,189 @@
 					</button>
 				</div>
 			{/if}
+
+			<!-- Botón Limpiar Todos los Filtros -->
+			{#if candidatoSeleccionado || temaSeleccionado}
+				<button
+					onclick={() => {
+						candidatoSeleccionadoId = null;
+						temaSeleccionadoId = null;
+					}}
+					class="inline-flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-2 rounded-full bg-red-50 border border-red-200 text-xs md:text-sm font-medium text-red-700 hover:bg-red-100 transition-colors shadow-sm"
+					in:fly={{ x: -10, duration: 300 }}
+					out:fade={{ duration: 150 }}
+				>
+					<svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						></path>
+					</svg>
+					Limpiar filtros
+				</button>
+			{/if}
 		</div>
 	</section>
 
-	<!-- Debates y Preguntas -->
-	<section class="space-y-12">
-		{#key `${candidatoSeleccionadoId}-${temaSeleccionadoId}`}
-			{#each debatesFiltrados as debate, idx}
+	<!-- Modo de Comparación -->
+	{#if modoComparacion}
+		<section class="mb-8">
+			<div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border border-purple-200 p-6">
+				<div class="flex flex-col md:flex-row gap-4 items-center justify-between mb-6">
+					<div>
+						<h3 class="text-lg font-bold text-gray-900 mb-2">Modo de Comparación</h3>
+						<p class="text-sm text-gray-600">
+							Selecciona hasta 3 candidatos para comparar sus respuestas lado a lado
+						</p>
+					</div>
+					<div class="flex gap-2">
+						{#if candidatosComparacion.length > 0}
+							<button
+								onclick={limpiarComparacion}
+								class="px-4 py-2 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors"
+							>
+								Limpiar selección
+							</button>
+						{/if}
+						<button
+							onclick={() => modoComparacion = false}
+							class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+						>
+							Salir de comparación
+						</button>
+					</div>
+				</div>
+
+				<!-- Candidatos seleccionados -->
+				{#if candidatosComparacion.length > 0}
+					<div class="flex flex-wrap gap-3 mb-6">
+						{#each candidatosComparacion as candidatoId, index}
+							{@const candidato = getCandidatoById(candidatoId)}
+							<div class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-purple-200 shadow-sm">
+								<div class="w-6 h-6 rounded-full overflow-hidden">
+									<img
+										src={candidato.fotoSinFondo || candidato.foto}
+										alt={candidato.nombre}
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<span class="text-sm font-medium text-gray-900">{candidato.nombre}</span>
+								<button
+									onclick={() => alternarCandidatoComparacion(candidatoId)}
+									class="w-5 h-5 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition-colors flex items-center justify-center"
+								>
+									<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+									</svg>
+								</button>
+							</div>
+						{/each}
+					</div>
+
+					<!-- Preguntas de comparación -->
+					{#if preguntasComparacion.length > 0}
+						<div class="space-y-6">
+							{#each preguntasComparacion as item, idx}
+								<div class="bg-white rounded-lg border border-gray-200 p-4">
+									<!-- Pregunta -->
+									<div class="flex gap-3 items-start mb-4">
+										{#if item.tema}
+											{@const IconoTema = iconosPorTema[item.tema.id]}
+											{#if IconoTema}
+												<div
+													class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+													style="background-color: {item.tema.color}20; color: {item.tema.color};"
+												>
+													<IconoTema class="w-4 h-4" />
+												</div>
+											{/if}
+										{/if}
+										<div class="flex-1">
+											<p class="text-gray-900 font-medium text-sm mb-1">
+												<span class="text-purple-600 font-semibold mr-2">{idx + 1}.</span>
+												{item.pregunta.pregunta}
+											</p>
+											{#if item.tema}
+												<span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+													{item.tema.nombre}
+												</span>
+											{/if}
+										</div>
+									</div>
+
+									<!-- Respuestas lado a lado -->
+									<div class="grid grid-cols-1 md:grid-cols-{Math.min(candidatosComparacion.length, 3)} gap-4">
+										{#each item.respuestas as respuesta}
+											<div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+												<div class="flex items-center gap-3 mb-3">
+													<div class="w-8 h-8 rounded-full overflow-hidden">
+														<img
+															src={respuesta.candidato.fotoSinFondo || respuesta.candidato.foto}
+															alt={respuesta.candidato.nombre}
+															class="w-full h-full object-cover"
+														/>
+													</div>
+													<div>
+														<p class="font-medium text-gray-900 text-sm">{respuesta.candidato.nombre}</p>
+														<p class="text-xs text-gray-500">{respuesta.candidato.coalicion || respuesta.candidato.partido}</p>
+													</div>
+												</div>
+												<p class="text-sm text-gray-700 leading-relaxed">
+													{respuesta.respuesta.resumen}
+												</p>
+											</div>
+										{/each}
+									</div>
+								</div>
+							{/each}
+						</div>
+					{:else}
+						<div class="text-center py-8">
+							<svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+							</svg>
+							<p class="text-gray-500">No hay preguntas comunes para los candidatos seleccionados</p>
+						</div>
+					{/if}
+				{:else}
+					<div class="text-center py-8">
+						<svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+						</svg>
+						<p class="text-gray-500">Selecciona candidatos para comenzar la comparación</p>
+					</div>
+				{/if}
+			</div>
+		</section>
+	{/if}
+
+	<!-- Loading State -->
+	{#if isLoading}
+		<section class="space-y-8">
+			{#each Array(2) as _, idx}
+				<div class="bg-white rounded-lg border border-gray-200 p-6 animate-pulse">
+					<div class="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+					<div class="space-y-4">
+						{#each Array(3) as _, qIdx}
+							<div class="border-t border-gray-100 pt-4">
+								<div class="h-4 bg-gray-200 rounded w-3/4 mb-3"></div>
+								<div class="ml-8 space-y-2">
+									<div class="h-3 bg-gray-200 rounded w-full"></div>
+									<div class="h-3 bg-gray-200 rounded w-5/6"></div>
+								</div>
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</section>
+	{:else}
+		<!-- Debates y Preguntas -->
+		<section class="space-y-12">
+			{#key `${candidatoSeleccionadoId}-${temaSeleccionadoId}-${terminoBusqueda}`}
+				{#each debatesFiltrados as debate, idx}
 				{@const preguntas = getPreguntasPorDebate(debate.id)}
 				{@const preguntasConRespuesta = candidatoSeleccionadoId
 					? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
@@ -580,8 +1048,9 @@
 
 				{#if preguntasConRespuesta.length > 0}
 					<article
-						class="bg-white rounded-lg border border-gray-200"
-						in:fly={{ y: 20, duration: 400, delay: idx * 100 }}
+						class="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+						in:fly={{ y: 20, duration: 500, delay: idx * 150 }}
+						out:fade={{ duration: 300 }}
 					>
 						<!-- Header del Debate -->
 						<header class="p-3 md:p-4 border-b border-gray-200">
@@ -620,7 +1089,12 @@
 									? getRespuesta(pregunta.id, candidatoSeleccionadoId)
 									: null}
 
-								<div class="p-3 md:p-4">
+								<div 
+									id="pregunta-{pregunta.id}" 
+									class="p-3 md:p-4 hover:bg-gray-50 transition-colors duration-200 group"
+									in:fly={{ x: -20, duration: 400, delay: idx * 100 }}
+									out:fade={{ duration: 200 }}
+								>
 									<!-- Pregunta -->
 									<div class="flex gap-2 md:gap-2.5 items-start mb-2 md:mb-3">
 										<!-- Burbuja de categoría -->
@@ -648,7 +1122,10 @@
 									<div class="ml-8 md:ml-9 space-y-2">
 										{#if candidatoSeleccionado && respuestaMostrar}
 											<!-- Vista filtrada: solo el candidato seleccionado -->
-											<div class="flex gap-2 items-start">
+											<div 
+												class="flex gap-2 items-start p-3 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 hover:shadow-sm transition-all duration-300"
+												in:scale={{ duration: 300, delay: 200 }}
+											>
 												<div
 													class="w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
 													style="background-color: {candidatoSeleccionado.color}50"
@@ -688,9 +1165,13 @@
 												)[0] || []}
 
 											{#if todasRespuestas.length > 0}
-												{#each todasRespuestas as { candidato, respuesta }}
+												{#each todasRespuestas as { candidato, respuesta }, respIdx}
 													{#if candidato && respuesta}
-														<div class="flex gap-2 items-start">
+														<div 
+															class="flex gap-2 items-start p-3 rounded-lg hover:bg-gray-50 transition-all duration-300 group"
+															in:fly={{ y: 10, duration: 400, delay: respIdx * 100 }}
+															out:fade={{ duration: 200 }}
+														>
 															<div
 																class="w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
 																style="background-color: {candidato.color}50"
@@ -733,5 +1214,6 @@
 				{/if}
 			{/each}
 		{/key}
-	</section>
+		</section>
+	{/if}
 </div>
