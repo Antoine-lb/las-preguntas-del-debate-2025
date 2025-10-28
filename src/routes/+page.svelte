@@ -206,7 +206,12 @@
 	<section class="mb-12">
 		<!-- Temas -->
 		<div class="mb-8">
-			<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por tema</h2>
+			<div class="text-center mb-8">
+				<h2 class="text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+					¿Qué dicen los candidatos sobre estas temáticas?
+				</h2>
+				<div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto"></div>
+			</div>
 			<div class="flex flex-wrap gap-3 md:gap-4 justify-center">
 				{#each temas as tema}
 					{@const IconoTema = iconosPorTema[tema.id]}
@@ -287,7 +292,12 @@
 
 		<!-- Candidatos -->
 		<div>
-			<h2 class="text-lg md:text-xl font-semibold mb-6 text-gray-900">Filtrar por candidato</h2>
+			<div class="text-center mb-8">
+				<h2 class="text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+					Elige a tu candidato
+				</h2>
+				<div class="w-24 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full mx-auto"></div>
+			</div>
 			<div class="flex flex-wrap gap-4 md:gap-6 justify-center">
 				{#each candidatosVisibles as candidato}
 					<button
