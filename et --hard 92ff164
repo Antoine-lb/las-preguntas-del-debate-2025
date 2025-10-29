@@ -1,0 +1,32 @@
+[33mcommit 92ff1643b712da0455cb37b8d95537f4d8186b5c[m
+Author: nicolasgarcia1-cell <nicolas.garcia1@mail.udp.cl>
+Date:   Wed Oct 29 13:10:18 2025 -0300
+
+    titulo
+
+[1mdiff --git a/src/routes/+page.svelte b/src/routes/+page.svelte[m
+[1mindex c3bde4b..3ee8f5b 100644[m
+[1m--- a/src/routes/+page.svelte[m
+[1m+++ b/src/routes/+page.svelte[m
+[36m@@ -307,10 +307,10 @@[m
+ </script>[m
+ [m
+ <svelte:head>[m
+[31m-	<title>Presidencial 2025: Las Respuestas que definirán Chile | Parlamento AI</title>[m
+[32m+[m	[32m<title>Presidencial 2025: las respuestas que definirán Chile | Parlamento AI</title>[m
+ 	<meta[m
+ 		name="description"[m
+[31m-		content="Presidencial 2025: Las Respuestas que definirán Chile. Explora de forma interactiva todas las preguntas y respuestas de los candidatos presidenciales. Filtra por candidato y compara propuestas."[m
+[32m+[m		[32mcontent="Presidencial 2025: las respuestas que definirán Chile. Explora de forma interactiva todas las preguntas y respuestas de los candidatos presidenciales. Filtra por candidato y compara propuestas."[m
+ 	/>[m
+ </svelte:head>[m
+ [m
+[36m@@ -324,7 +324,7 @@[m
+ [m
+ 	<!-- Header -->[m
+ 	<header class="mb-12 text-center">[m
+[31m-		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Presidencial 2025: Las Respuestas que definirán Chile</h1>[m
+[32m+[m		[32m<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Presidencial 2025: las respuestas que definirán Chile</h1>[m
+ 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">[m
+ 			Infografía interactiva con todas las preguntas y respuestas de los candidatos. Haz clic en un[m
+ 			candidato para filtrar sus respuestas.[m
