@@ -621,64 +621,111 @@
 				<!-- Botón para mostrar/ocultar búsqueda -->
 				<button
 					onclick={() => mostrarBusqueda = !mostrarBusqueda}
-					class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md"
+					class="group relative inline-flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 overflow-hidden {mostrarBusqueda
+						? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
+						: 'bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10'}"
 				>
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-					</svg>
-					{mostrarBusqueda ? 'Ocultar búsqueda' : 'Buscar en respuestas'}
+					<!-- Icono de búsqueda -->
+					<div class="relative">
+						<svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+						</svg>
+						{#if mostrarBusqueda}
+							<div class="absolute inset-0 animate-ping opacity-20">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+								</svg>
+							</div>
+						{/if}
+					</div>
+					
+					<span class="relative z-10">
+						{mostrarBusqueda ? 'Ocultar búsqueda' : 'Buscar en respuestas'}
+					</span>
+					
+					<!-- Efecto de brillo -->
+					<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 				</button>
 
 				<!-- Botón para modo de comparación -->
 				<button
 					onclick={() => modoComparacion = !modoComparacion}
-					class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 shadow-sm hover:scale-105 active:scale-95 hover:shadow-md {modoComparacion 
-						? 'border-purple-300 bg-purple-50 text-purple-700' 
-						: 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'}"
+					class="group relative inline-flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 overflow-hidden {modoComparacion
+						? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg shadow-purple-500/25'
+						: 'bg-white text-gray-700 border-2 border-gray-200 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-500/10'}"
 				>
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-					</svg>
-					{modoComparacion ? 'Salir de comparación' : 'Comparar candidatos'}
+					<!-- Icono de comparación -->
+					<div class="relative">
+						<svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+						</svg>
+						{#if modoComparacion}
+							<div class="absolute inset-0 animate-ping opacity-20">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+								</svg>
+							</div>
+						{/if}
+					</div>
+					
+					<span class="relative z-10">
+						{modoComparacion ? 'Salir de comparación' : 'Comparar candidatos'}
+					</span>
+					
+					<!-- Efecto de brillo -->
+					<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 				</button>
 			</div>
 
 			<!-- Barra de búsqueda -->
 			{#if mostrarBusqueda}
 				<div class="w-full md:w-96 relative" in:fly={{ y: -10, duration: 300 }} out:fade={{ duration: 150 }}>
-					<div class="relative">
+					<div class="relative group">
+						<!-- Input con diseño mejorado -->
 						<input
 							type="text"
 							bind:value={terminoBusqueda}
 							placeholder="Buscar por palabras clave en preguntas y respuestas..."
-							class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+							class="w-full pl-12 pr-12 py-4 bg-white border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 text-sm font-medium placeholder-gray-400 transition-all duration-300 shadow-lg hover:shadow-xl focus:shadow-2xl focus:shadow-blue-500/10"
 						/>
-						<svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-						</svg>
+						
+						<!-- Icono de búsqueda -->
+						<div class="absolute left-4 top-1/2 transform -translate-y-1/2">
+							<svg class="w-5 h-5 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+							</svg>
+						</div>
+						
+						<!-- Botón de limpiar -->
 						{#if terminoBusqueda}
 							<button
 								onclick={() => terminoBusqueda = ''}
-								class="absolute right-3 top-2.5 w-4 h-4 text-gray-400 hover:text-gray-600"
+								class="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
 							>
-								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
 								</svg>
 							</button>
 						{/if}
+						
+						<!-- Efecto de brillo en focus -->
+						<div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 					</div>
 					
 					<!-- Resultados de búsqueda -->
 					{#if terminoBusqueda && preguntasFiltradasPorBusqueda.length > 0}
-						<div class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10 max-h-96 overflow-y-auto">
-							<div class="p-3 border-b border-gray-100">
-								<p class="text-sm text-gray-600">
+						<div class="absolute top-full left-0 right-0 mt-3 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl z-10 max-h-96 overflow-y-auto backdrop-blur-sm">
+							<div class="p-4 border-b border-gray-100 bg-gradient-to-r from-blue-50 to-purple-50 rounded-t-2xl">
+								<p class="text-sm font-semibold text-gray-700 flex items-center gap-2">
+									<svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+									</svg>
 									{preguntasFiltradasPorBusqueda.length} resultado{preguntasFiltradasPorBusqueda.length === 1 ? '' : 's'} para "{terminoBusqueda}"
 								</p>
 							</div>
 							<div class="divide-y divide-gray-100">
 								{#each preguntasFiltradasPorBusqueda.slice(0, 10) as resultado}
-									<div class="p-3 hover:bg-gray-50 cursor-pointer" onclick={() => {
+									<div class="group p-4 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 cursor-pointer transition-all duration-200 hover:shadow-sm" onclick={() => {
 										// Scroll to the question
 										const element = document.getElementById(`pregunta-${resultado.pregunta.id}`);
 										if (element) {
@@ -688,22 +735,33 @@
 										}
 										mostrarBusqueda = false;
 									}}>
-										<div class="flex items-start gap-3">
-											<div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+										<div class="flex items-start gap-4">
+											<!-- Avatar del candidato con borde mejorado -->
+											<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-gray-200 group-hover:ring-blue-300 transition-all duration-200">
 												<img
 													src={resultado.candidato.fotoSinFondo || resultado.candidato.foto}
 													alt={resultado.candidato.nombre}
 													class="w-full h-full object-cover"
 												/>
+												<!-- Efecto de brillo en hover -->
+												<div class="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
 											</div>
+											
 											<div class="flex-1 min-w-0">
-												<p class="text-sm font-medium text-gray-900 truncate">
+												<!-- Nombre del candidato con color -->
+												<p class="text-sm font-semibold text-gray-900 truncate group-hover:text-blue-700 transition-colors duration-200">
 													{resultado.candidato.nombre}
 												</p>
-												<p class="text-xs text-gray-500 mb-1">
-													{getTemaById(resultado.pregunta.temaId)?.nombre}
-												</p>
-												<p class="text-sm text-gray-700 line-clamp-2">
+												
+												<!-- Tema con badge -->
+												<div class="flex items-center gap-2 mt-1 mb-2">
+													<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 group-hover:bg-blue-100 group-hover:text-blue-700 transition-colors duration-200">
+														{getTemaById(resultado.pregunta.temaId)?.nombre}
+													</span>
+												</div>
+												
+												<!-- Pregunta con highlight del término de búsqueda -->
+												<p class="text-sm text-gray-700 line-clamp-2 group-hover:text-gray-800 transition-colors duration-200">
 													{resultado.pregunta.pregunta}
 												</p>
 											</div>
@@ -1041,7 +1099,7 @@
 				{#each debatesFiltrados as debate, idx}
 				{@const preguntas = getPreguntasPorDebate(debate.id)}
 				{@const preguntasConRespuesta = candidatoSeleccionadoId
-					? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId!))
+					? preguntas.filter((p) => getRespuesta(p.id, candidatoSeleccionadoId))
 					: temaSeleccionadoId
 						? preguntas.filter((p) => p.temaId === temaSeleccionadoId)
 						: preguntas}
