@@ -307,10 +307,10 @@
 </script>
 
 <svelte:head>
-	<title>Debates Presidenciales Chile 2025 - Infografía Interactiva | Parlamento AI</title>
+	<title>Presidencial 2025: Las Respuestas que definirán Chile | Parlamento AI</title>
 	<meta
 		name="description"
-		content="Explora de forma interactiva todos los debates presidenciales de Chile 2025. Filtra por candidato, lee sus respuestas y compara propuestas."
+		content="Presidencial 2025: Las Respuestas que definirán Chile. Explora de forma interactiva todas las preguntas y respuestas de los candidatos presidenciales. Filtra por candidato y compara propuestas."
 	/>
 </svelte:head>
 
@@ -324,7 +324,7 @@
 
 	<!-- Header -->
 	<header class="mb-12 text-center">
-		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Las preguntas del debate</h1>
+		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Presidencial 2025: Las Respuestas que definirán Chile</h1>
 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
 			Infografía interactiva con todas las preguntas y respuestas de los candidatos. Haz clic en un
 			candidato para filtrar sus respuestas.
