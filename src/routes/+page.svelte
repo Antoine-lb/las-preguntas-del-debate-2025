@@ -22,6 +22,7 @@
 	import IconoHeart from '~icons/solar/heart-pulse-bold-duotone';
 	import IconoGraduationCap from '~icons/solar/user-speak-bold-duotone';
 	import IconoBriefcase from '~icons/solar/case-minimalistic-bold-duotone';
+	import IconoGovernment from '~icons/solar/office-bold-duotone';
 
 	/**
 	 * Mapeo de temas a componentes de iconos
@@ -34,7 +35,8 @@
 		'relaciones-exteriores': IconoGlobe,
 		salud: IconoHeart,
 		educacion: IconoGraduationCap,
-		empleo: IconoBriefcase
+		empleo: IconoBriefcase,
+		politica: IconoGovernment
 	};
 
 	/**
