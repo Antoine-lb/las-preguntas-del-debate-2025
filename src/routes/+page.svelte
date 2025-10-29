@@ -22,7 +22,7 @@
 	import IconoHeart from '~icons/solar/heart-pulse-bold-duotone';
 	import IconoGraduationCap from '~icons/solar/user-speak-bold-duotone';
 	import IconoBriefcase from '~icons/solar/case-minimalistic-bold-duotone';
-	import IconoGovernment from '~icons/solar/office-bold-duotone';
+	import IconoGovernment from '~icons/solar/home-2-bold-duotone';
 
 	/**
 	 * Mapeo de temas a componentes de iconos
@@ -702,6 +702,7 @@
 						{#if terminoBusqueda}
 							<button
 								onclick={() => terminoBusqueda = ''}
+								aria-label="Limpiar búsqueda"
 								class="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
 							>
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -727,16 +728,32 @@
 							</div>
 							<div class="divide-y divide-gray-100">
 								{#each preguntasFiltradasPorBusqueda.slice(0, 10) as resultado}
-									<div class="group p-4 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 cursor-pointer transition-all duration-200 hover:shadow-sm" onclick={() => {
-										// Scroll to the question
-										const element = document.getElementById(`pregunta-${resultado.pregunta.id}`);
-										if (element) {
-											element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-											element.classList.add('ring-2', 'ring-blue-500');
-											setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500'), 3000);
-										}
-										mostrarBusqueda = false;
-									}}>
+									<button 
+										class="group p-4 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 cursor-pointer transition-all duration-200 hover:shadow-sm w-full text-left"
+										onclick={() => {
+											// Scroll to the question
+											const element = document.getElementById(`pregunta-${resultado.pregunta.id}`);
+											if (element) {
+												element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+												element.classList.add('ring-2', 'ring-blue-500');
+												setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500'), 3000);
+											}
+											mostrarBusqueda = false;
+										}}
+										onkeydown={(e) => {
+											if (e.key === 'Enter' || e.key === ' ') {
+												e.preventDefault();
+												// Scroll to the question
+												const element = document.getElementById(`pregunta-${resultado.pregunta.id}`);
+												if (element) {
+													element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+													element.classList.add('ring-2', 'ring-blue-500');
+													setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500'), 3000);
+												}
+												mostrarBusqueda = false;
+											}
+										}}
+									>
 										<div class="flex items-start gap-4">
 											<!-- Avatar del candidato con borde mejorado -->
 											<div class="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-gray-200 group-hover:ring-blue-300 transition-all duration-200">
@@ -768,7 +785,7 @@
 												</p>
 											</div>
 										</div>
-									</div>
+									</button>
 								{/each}
 							</div>
 						</div>
@@ -987,6 +1004,7 @@
 								<span class="text-sm font-medium text-gray-900">{candidato.nombre}</span>
 								<button
 									onclick={() => alternarCandidatoComparacion(candidatoId)}
+									aria-label="Eliminar {candidato.nombre} de la comparación"
 									class="w-5 h-5 rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition-colors flex items-center justify-center"
 								>
 									<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
