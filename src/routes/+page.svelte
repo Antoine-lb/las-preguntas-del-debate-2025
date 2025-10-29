@@ -5,6 +5,7 @@
 		debates2025,
 		getPreguntasPorDebate,
 		getRespuesta,
+		getRespuestasPorPregunta,
 		formatearTiempo,
 		construirUrlTimestamp,
 		temas,
@@ -453,7 +454,7 @@
 		if (navigator.share) {
 			navigator.share({
 				title: 'Respuesta de candidato presidencial',
-				text: `Mira esta respuesta de ${getCandidatoById(candidatoId)?.nombre} sobre ${getTemaById(getPreguntaById(preguntaId)?.temaId)?.nombre}`,
+				text: `Mira esta respuesta de ${getCandidatoById(candidatoId)?.nombre}`,
 				url: url
 			});
 		} else {
@@ -1183,7 +1184,7 @@
 				<!-- Botón de exportación -->
 				<div class="relative group">
 					<button
-						onclick={() => {}} // Se abrirá el menú desplegable
+						onclick={() => {}}
 						class="group relative inline-flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 overflow-hidden bg-white text-gray-700 border-2 border-gray-200 hover:border-green-300 hover:shadow-lg hover:shadow-green-500/10"
 					>
 						<!-- Icono de descarga -->
