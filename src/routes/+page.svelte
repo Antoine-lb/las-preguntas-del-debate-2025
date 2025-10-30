@@ -351,67 +351,16 @@
 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mt-3">
 			¿Qué encontrarás en esta Infografía Interactiva? Puedes seleccionar alguna de las temáticas y filtrar según el candidato para conocer su visión de país.
 		</p>
-		<div class="mt-4 flex items-center justify-center gap-3">
-			<!-- Sitio oficial -->
-			<a
-				href="https://parlamento.ai/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-				aria-label="Ir al sitio web de Parlamento.ai"
-			>
-				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3.2a15.7 15.7 0 00-1.4-3.5 8.1 8.1 0 014.6 3.5zM12 3.8c.6.8 1.4 2.1 2 4.2h-4c.6-2.1 1.4-3.4 2-4.2zM5.1 8a8.1 8.1 0 014.6-3.5A15.7 15.7 0 008.3 8H5.1zM4.2 10h3.7a20.2 20.2 0 00-.1 2c0 .7 0 1.3.1 2H4.2a8 8 0 010-4zm.9 6h3.2c.3 1.2.8 2.5 1.4 3.5a8.1 8.1 0 01-4.6-3.5zM12 20.2c-.6-.8-1.4-2.1-2-4.2h4c-.6 2.1-1.4 3.4-2 4.2zM18.9 16a8.1 8.1 0 01-4.6 3.5 15.7 15.7 0 001.4-3.5h3.2zM20 12c0 .7 0 1.3-.1 2h-3.7a20.2 20.2 0 000-4H20c.1.7.1 1.3.1 2z"/>
-				</svg>
-				<span>parlamento.ai</span>
-			</a>
-			<a
-				href="https://x.com/parlamento_ai"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-				aria-label="Ir al perfil de X (Twitter) de Parlamento.ai"
-			>
-				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M13.2 10.1L20.9 2h-1.8l-6.7 7.1L8 2H2l8.1 11.6L2 22h1.8l7.2-7.6L16 22h6l-8.8-11.9z" />
-				</svg>
-				<span>Seguir a @parlamento_ai</span>
-			</a>
-			<a
-				href="https://www.linkedin.com/company/parlamento-ai/?viewAsMember=true"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-				aria-label="Ir al perfil de LinkedIn de Parlamento.ai"
-			>
-				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.5 0h4.8v2.05h.07c.67-1.26 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.63V23H18V16.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.43V23H8.5V8z"/>
-				</svg>
-				<span>LinkedIn: Parlamento.ai</span>
-			</a>
-			<a
-				href="https://www.instagram.com/parlamento.ai/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-				aria-label="Ir al perfil de Instagram de Parlamento.ai"
-			>
-				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-					<path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .4 1.5.9.5.5.7.9.9 1.5.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.4 1-.9 1.5-.5.5-.9.7-1.5.9-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.4-1.5-.9-.5-.5-.7-.9-.9-1.5-.2-.5-.3-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.4-1 .9-1.5.5-.5.9-.7 1.5-.9.5-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.3.9-.3 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.9.3 1.9.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.3-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.4-.1-.9-.3-1.9-.3-1.2-.1-1.6-.1-4.7-.1zm0 2.8a6.2 6.2 0 1 1 0 12.4 6.2 6.2 0 0 1 0-12.4zm0 10.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-10.9a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" />
-				</svg>
-				<span>Instagram: @parlamento.ai</span>
-			</a>
-		</div>
 
-		<!-- Logo Parlamento.ai (entre secciones, más prominente, con nombre) -->
+
+		<!-- Logo Parlamento.ai (entre secciones) -->
 		<div class="mt-6 md:mt-8 flex items-center justify-center">
-			<a href="https://parlamento.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ir al sitio de Parlamento.ai" class="inline-flex items-center gap-3 md:gap-4">
+			<a href="https://parlamento.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ir al sitio de Parlamento.ai">
 				<img
 					src="/logo.png"
 					alt="Parlamento.ai"
-					class="h-12 md:h-16 opacity-85 hover:opacity-100 transition-opacity duration-200"
+					class="h-12 md:h-14 opacity-85 hover:opacity-100 transition-opacity duration-200"
 				/>
-				<span class="text-lg md:text-2xl font-semibold tracking-tight text-gray-900/90">parlamento.ai</span>
 			</a>
 		</div>
 		
@@ -1181,6 +1130,60 @@
 			</div>
 		</section>
 	{/if}
+
+	<!-- Redes sociales al final -->
+	<section class="mt-12 md:mt-16 mb-8">
+		<div class="flex flex-wrap items-center justify-center gap-3">
+			<a
+				href="https://parlamento.ai/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al sitio web de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3.2a15.7 15.7 0 00-1.4-3.5 8.1 8.1 0 014.6 3.5zM12 3.8c.6.8 1.4 2.1 2 4.2h-4c.6-2.1 1.4-3.4 2-4.2zM5.1 8a8.1 8.1 0 014.6-3.5A15.7 15.7 0 008.3 8H5.1zM4.2 10h3.7a20.2 20.2 0 00-.1 2c0 .7 0 1.3.1 2H4.2a8 8 0 010-4zm.9 6h3.2c.3 1.2.8 2.5 1.4 3.5a8.1 8.1 0 01-4.6-3.5zM12 20.2c-.6-.8-1.4-2.1-2-4.2h4c-.6 2.1-1.4 3.4-2 4.2zM18.9 16a8.1 8.1 0 01-4.6 3.5 15.7 15.7 0 001.4-3.5h3.2zM20 12c0 .7 0 1.3-.1 2h-3.7a20.2 20.2 0 000-4H20c.1.7.1 1.3.1 2z"/>
+				</svg>
+				<span>parlamento.ai</span>
+			</a>
+			<a
+				href="https://x.com/parlamento_ai"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de X (Twitter) de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M13.2 10.1L20.9 2h-1.8l-6.7 7.1L8 2H2l8.1 11.6L2 22h1.8l7.2-7.6L16 22h6l-8.8-11.9z" />
+				</svg>
+				<span>Seguir a @parlamento_ai</span>
+			</a>
+			<a
+				href="https://www.linkedin.com/company/parlamento-ai/?viewAsMember=true"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de LinkedIn de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.5 0h4.8v2.05h.07c.67-1.26 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.63V23H18V16.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.43V23H8.5V8z"/>
+				</svg>
+				<span>LinkedIn: Parlamento.ai</span>
+			</a>
+			<a
+				href="https://www.instagram.com/parlamento.ai/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de Instagram de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .4 1.5.9.5.5.7.9.9 1.5.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.4 1-.9 1.5-.5.5-.9.7-1.5.9-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.4-1.5-.9-.5-.5-.7-.9-.9-1.5-.2-.5-.3-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.4-1 .9-1.5.5-.5.9-.7 1.5-.9.5-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.3.9-.3 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.9.3 1.9.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.3-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.4-.1-.9-.3-1.9-.3-1.2-.1-1.6-.1-4.7-.1zm0 2.8a6.2 6.2 0 1 1 0 12.4 6.2 6.2 0 0 1 0-12.4zm0 10.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-10.9a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" />
+				</svg>
+				<span>Instagram: @parlamento.ai</span>
+			</a>
+		</div>
+	</section>
 
 	<!-- Loading State -->
 	{#if isLoading}
