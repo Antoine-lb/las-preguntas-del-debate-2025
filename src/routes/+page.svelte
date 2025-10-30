@@ -352,6 +352,19 @@
 			¿Qué encontrarás en esta Infografía Interactiva? Puedes seleccionar alguna de las temáticas y filtrar según el candidato para conocer su visión de país.
 		</p>
 		<div class="mt-4 flex items-center justify-center gap-3">
+			<!-- Sitio oficial -->
+			<a
+				href="https://parlamento.ai/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al sitio web de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-3.2a15.7 15.7 0 00-1.4-3.5 8.1 8.1 0 014.6 3.5zM12 3.8c.6.8 1.4 2.1 2 4.2h-4c.6-2.1 1.4-3.4 2-4.2zM5.1 8a8.1 8.1 0 014.6-3.5A15.7 15.7 0 008.3 8H5.1zM4.2 10h3.7a20.2 20.2 0 00-.1 2c0 .7 0 1.3.1 2H4.2a8 8 0 010-4zm.9 6h3.2c.3 1.2.8 2.5 1.4 3.5a8.1 8.1 0 01-4.6-3.5zM12 20.2c-.6-.8-1.4-2.1-2-4.2h4c-.6 2.1-1.4 3.4-2 4.2zM18.9 16a8.1 8.1 0 01-4.6 3.5 15.7 15.7 0 001.4-3.5h3.2zM20 12c0 .7 0 1.3-.1 2h-3.7a20.2 20.2 0 000-4H20c.1.7.1 1.3.1 2z"/>
+				</svg>
+				<span>parlamento.ai</span>
+			</a>
 			<a
 				href="https://x.com/parlamento_ai"
 				target="_blank"
