@@ -402,6 +402,17 @@
 				<span>Instagram: @parlamento.ai</span>
 			</a>
 		</div>
+
+		<!-- Logo Parlamento.ai (discreto y armónico) -->
+		<div class="mt-4 flex items-center justify-center">
+			<a href="https://parlamento.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ir al sitio de Parlamento.ai">
+				<img
+					src="/logo.png"
+					alt="Parlamento.ai"
+					class="h-8 md:h-10 opacity-80 hover:opacity-100 transition-opacity duration-200"
+				/>
+			</a>
+		</div>
 		
 		<!-- Enlace a nube de palabras - OCULTO EN DESARROLLO -->
 		<!-- 
