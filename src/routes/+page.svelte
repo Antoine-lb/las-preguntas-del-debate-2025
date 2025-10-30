@@ -316,19 +316,19 @@
 	<title>Presidencial 2025: las respuestas que definirán Chile | Parlamento AI</title>
 	<meta
 		name="description"
-		content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato."
+		content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar las propuestas de país que representan los candidatos. Explora por temática y filtra por candidato."
 	/>
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Presidencial 2025: las respuestas que definirán Chile" />
-	<meta property="og:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato." />
+	<meta property="og:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar las propuestas de país que representan los candidatos. Explora por temática y filtra por candidato." />
 	<meta property="og:image" content="/logo.png" />
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Presidencial 2025: las respuestas que definirán Chile" />
-	<meta name="twitter:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato." />
+	<meta name="twitter:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar las propuestas de país que representan los candidatos. Explora por temática y filtra por candidato." />
 	<meta name="twitter:image" content="/logo.png" />
 	<meta name="twitter:site" content="@parlamento_ai" />
 	<meta name="twitter:creator" content="@parlamento_ai" />
@@ -346,7 +346,7 @@
 	<header class="mb-12 text-center">
 		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Presidencial 2025: las respuestas que definirán Chile</h1>
 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
-			Presentamos la Infografía Interactiva que contiene todas las intervenciones de los candidatos presidenciales en distintos debates. Se trata de un trabajo mancomunado entre Parlamento.ai y El Mostrador, con el fin de visibilizar las propuestas de país que representan.
+			Presentamos la Infografía Interactiva que contiene todas las intervenciones de los candidatos presidenciales en distintos debates. Se trata de un trabajo mancomunado entre Parlamento.ai y El Mostrador, con el fin de visibilizar las propuestas de país que representan los candidatos.
 		</p>
 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mt-3">
 			¿Qué encontrarás en esta Infografía Interactiva? Puedes seleccionar alguna de las temáticas y filtrar según el candidato para conocer su visión de país.
@@ -375,6 +375,18 @@
 					<path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.5 0h4.8v2.05h.07c.67-1.26 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.63V23H18V16.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.43V23H8.5V8z"/>
 				</svg>
 				<span>LinkedIn: Parlamento.ai</span>
+			</a>
+			<a
+				href="https://www.instagram.com/parlamento.ai/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de Instagram de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .4 1.5.9.5.5.7.9.9 1.5.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.4 1-.9 1.5-.5.5-.9.7-1.5.9-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.4-1.5-.9-.5-.5-.7-.9-.9-1.5-.2-.5-.3-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.4-1 .9-1.5.5-.5.9-.7 1.5-.9.5-.2 1.2-.3 2.4-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.3.9-.3 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.9.3 1.9.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.3-.9.3-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.4-.1-.9-.3-1.9-.3-1.2-.1-1.6-.1-4.7-.1zm0 2.8a6.2 6.2 0 1 1 0 12.4 6.2 6.2 0 0 1 0-12.4zm0 10.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-10.9a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z" />
+				</svg>
+				<span>Instagram: @parlamento.ai</span>
 			</a>
 		</div>
 		
