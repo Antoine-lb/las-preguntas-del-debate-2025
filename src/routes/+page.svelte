@@ -316,8 +316,22 @@
 	<title>Presidencial 2025: las respuestas que definirán Chile | Parlamento AI</title>
 	<meta
 		name="description"
-		content="Presidencial 2025: las respuestas que definirán Chile. Explora de forma interactiva todas las preguntas y respuestas de los candidatos presidenciales. Filtra por candidato y compara propuestas."
+		content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato."
 	/>
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Presidencial 2025: las respuestas que definirán Chile" />
+	<meta property="og:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato." />
+	<meta property="og:image" content="/logo.png" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Presidencial 2025: las respuestas que definirán Chile" />
+	<meta name="twitter:description" content="Presentamos la Infografía Interactiva con todas las intervenciones de los candidatos presidenciales en distintos debates. Un trabajo de Parlamento.ai y El Mostrador para visibilizar sus propuestas. Explora por temática y filtra por candidato." />
+	<meta name="twitter:image" content="/logo.png" />
+	<meta name="twitter:site" content="@parlamento_ai" />
+	<meta name="twitter:creator" content="@parlamento_ai" />
 </svelte:head>
 
 <div class="container mx-auto px-4 py-8 max-w-4xl">
@@ -332,9 +346,37 @@
 	<header class="mb-12 text-center">
 		<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900">Presidencial 2025: las respuestas que definirán Chile</h1>
 		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
-			Infografía interactiva con todas las preguntas y respuestas de los candidatos. Haz clic en un
-			candidato para filtrar sus respuestas.
+			Presentamos la Infografía Interactiva que contiene todas las intervenciones de los candidatos presidenciales en distintos debates. Se trata de un trabajo mancomunado entre Parlamento.ai y El Mostrador, con el fin de visibilizar las propuestas de país que representan.
 		</p>
+		<p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mt-3">
+			¿Qué encontrarás en esta Infografía Interactiva? Puedes seleccionar alguna de las temáticas y filtrar según el candidato para conocer su visión de país.
+		</p>
+		<div class="mt-4 flex items-center justify-center gap-3">
+			<a
+				href="https://x.com/parlamento_ai"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de X (Twitter) de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M13.2 10.1L20.9 2h-1.8l-6.7 7.1L8 2H2l8.1 11.6L2 22h1.8l7.2-7.6L16 22h6l-8.8-11.9z" />
+				</svg>
+				<span>Seguir a @parlamento_ai</span>
+			</a>
+			<a
+				href="https://www.linkedin.com/company/parlamento-ai/?viewAsMember=true"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+				aria-label="Ir al perfil de LinkedIn de Parlamento.ai"
+			>
+				<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.5 0h4.8v2.05h.07c.67-1.26 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.63V23H18V16.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.43V23H8.5V8z"/>
+				</svg>
+				<span>LinkedIn: Parlamento.ai</span>
+			</a>
+		</div>
 		
 		<!-- Enlace a nube de palabras - OCULTO EN DESARROLLO -->
 		<!-- 
