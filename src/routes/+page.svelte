@@ -403,14 +403,15 @@
 			</a>
 		</div>
 
-		<!-- Logo Parlamento.ai (discreto y armónico) -->
-		<div class="mt-4 flex items-center justify-center">
-			<a href="https://parlamento.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ir al sitio de Parlamento.ai">
+		<!-- Logo Parlamento.ai (entre secciones, más prominente, con nombre) -->
+		<div class="mt-6 md:mt-8 flex items-center justify-center">
+			<a href="https://parlamento.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ir al sitio de Parlamento.ai" class="inline-flex items-center gap-3 md:gap-4">
 				<img
 					src="/logo.png"
 					alt="Parlamento.ai"
-					class="h-8 md:h-10 opacity-80 hover:opacity-100 transition-opacity duration-200"
+					class="h-12 md:h-16 opacity-85 hover:opacity-100 transition-opacity duration-200"
 				/>
+				<span class="text-lg md:text-2xl font-semibold tracking-tight text-gray-900/90">parlamento.ai</span>
 			</a>
 		</div>
 		
